@@ -6,25 +6,29 @@ Static landing page for [ccboard](https://github.com/FlorianBruniaux/ccboard) - 
 
 ## Features
 
-- 🎨 **Dark theme** with Rust/Orange accent (#f97316)
+- 🎨 **Light/dark theme** toggle with OS preference detection
 - 📱 **Responsive** design (mobile, tablet, desktop)
 - 🔍 **Search** with Cmd+K (MiniSearch integration)
 - ⚡ **Static** - No build step required
 - ♿ **Accessible** - WCAG 2.1 compliant
-- 📊 **SEO optimized** - Schema.org structured data
+- 📊 **SEO optimized** - Schema.org structured data + sitemap.xml
 
 ## Structure
 
 ```
 ccboard-landing/
 ├── index.html              # Main landing page (~1000 lines)
-├── styles.css              # Stylesheet (~1200 lines)
+├── styles.css              # Stylesheet (~1200 lines, light/dark themes)
 ├── search.js               # Search functionality (copied from cc-copilot-bridge)
 ├── search-data.js          # Search index (features, FAQ, docs)
 ├── favicon.svg             # Terminal icon (orange accent)
-├── robots.txt              # SEO
+├── robots.txt              # SEO (references sitemap.xml)
+├── sitemap.xml             # Sitemap for search engines
 ├── CNAME                   # GitHub Pages custom domain
 ├── README.md               # This file
+├── CLAUDE.md               # Instructions for Claude Code
+├── .claude/
+│   └── settings.local.json # Permission presets for local development
 ├── assets/
 │   └── screenshots/        # 13 PNGs (copied from ccboard repo)
 └── .github/
@@ -91,13 +95,32 @@ gh api repos/FlorianBruniaux/ccboard-landing/pages -X PUT \
   -f https_enforced=true
 ```
 
+## Light/Dark Theme
+
+**Auto-detection with manual override**:
+- Detects OS preference (`prefers-color-scheme`)
+- User preference persists in `localStorage`
+- Anti-FOUC script runs before CSS loads
+- Smooth transitions (0.3s, respects `prefers-reduced-motion`)
+- Toggle button in header with sun/moon icons
+
+**CSS Architecture**:
+- `:root` defines **light theme** variables (default)
+- `[data-theme="dark"]` overrides with **dark theme** variables
+- All hardcoded colors replaced with CSS custom properties
+- Theme-aware shadows, borders, and button colors
+
+**Palette**:
+- **Light**: `--bg-primary: #fafbfc`, `--accent: #ea580c` (Orange 600)
+- **Dark**: `--bg-primary: #0d1117`, `--accent: #f97316` (Orange 500)
+
 ## Design Decisions
 
 | Decision | Choice | Justification |
 |----------|--------|---------------|
 | **Base pattern** | cc-copilot-bridge | Simplest, same dev audience |
-| **Theme** | Dark only | TUI = terminal = dark, dev audience |
-| **Accent color** | Orange/Rust #f97316 | Rust language association |
+| **Theme** | Light/dark toggle | OS preference + manual override, better accessibility |
+| **Accent color** | Orange/Rust | Rust language association, adjusted per theme |
 | **i18n** | EN only | boldguy rule |
 | **Build step** | None | Static pure HTML/CSS/JS |
 

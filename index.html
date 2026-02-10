@@ -8,9 +8,14 @@
 
   <!-- SEO -->
   <link rel="canonical" href="https://ccboard.bruniaux.com/">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta name="author" content="Florian Bruniaux">
   <meta name="keywords" content="Claude Code, TUI, dashboard, Rust, monitoring, analytics, sessions, costs">
+
+  <!-- Preconnect / DNS Prefetch -->
+  <link rel="preconnect" href="https://img.shields.io" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -18,14 +23,31 @@
   <meta property="og:description" content="Monitor sessions, analyze costs, manage config with 9 interactive tabs. Rust TUI + Web, 89x speedup, 234 tests.">
   <meta property="og:url" content="https://ccboard.bruniaux.com/">
   <meta property="og:site_name" content="ccboard">
+  <meta property="og:image" content="https://ccboard.bruniaux.com/assets/screenshots/dashboard.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ccboard - TUI/Web Dashboard for Claude Code">
   <meta name="twitter:description" content="9 tabs, 89x speedup, 234 tests, 5.8MB binary.">
+  <meta name="twitter:image" content="https://ccboard.bruniaux.com/assets/screenshots/dashboard.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Progressive Enhancement -->
+  <script>document.documentElement.classList.add('js-loaded');</script>
+
+  <!-- Anti-FOUC Theme Script (must load before styles) -->
+  <script>
+    (function() {
+      const storedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
@@ -46,6 +68,78 @@
     },
     "license": "https://opensource.org/licenses/MIT",
     "softwareVersion": "0.5.0"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is ccboard?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ccboard is a unified TUI/Web dashboard for Claude Code management. It provides 9 interactive tabs for monitoring sessions, analyzing costs, managing config, hooks, agents, and MCP servers. Built in Rust with a 5.8MB binary."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the cache work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ccboard uses SQLite to cache session metadata with mtime-based invalidation. This provides an 89x speedup (20s → 224ms) after the first run, with >99% cache hit rate. The cache only stores metadata; full session content is loaded on-demand."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it work on Linux/Windows?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! ccboard supports macOS (fully tested), Linux (community-tested), and Windows (experimental). Platform-specific features like file manager integration are cross-platform compatible."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does it cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ccboard is free and open-source, licensed under MIT OR Apache-2.0. No subscription, no hidden costs. The cost analytics features help you track your Claude API usage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use the web interface?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! Run ccboard web --port 3333 for the web UI, or ccboard both to run TUI + Web simultaneously. The web interface has 100% feature parity with the TUI (9 pages)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it support real-time monitoring?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! ccboard includes a file watcher that monitors ~/.claude changes with 500ms debounce. Live updates appear in both TUI and Web (via Server-Sent Events). The Sessions tab also detects live Claude processes with CPU/RAM/Token metrics."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the difference with ccusage/agtrace?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ccusage (10K stars) is a CLI cost tracker (no dashboard). agtrace (23 stars) focuses on observability with MCP self-reflection. ccboard is the only multi-concern dashboard combining config, hooks, agents, MCP status, and advanced analytics with forecasting in a single TUI+Web binary."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I contribute?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Contributions welcome! See CONTRIBUTING.md for guidelines. Fork the repo, create a feature branch, run tests (cargo test --all), and open a Pull Request. Zero clippy warnings required."
+        }
+      }
+    ]
   }
   </script>
 
@@ -82,6 +176,22 @@
 
         <!-- Actions -->
         <div class="nav-actions">
+          <button class="theme-toggle" role="switch" aria-checked="false" aria-label="Toggle dark mode">
+            <svg class="sun-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="moon-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
           <button class="search-trigger" aria-label="Search (⌘K)">
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="8"/>
@@ -754,6 +864,47 @@ q          Quit</code></pre>
         console.error('Copy failed:', err);
       }
     }
+  </script>
+
+  <!-- Theme Toggle -->
+  <script>
+    (function() {
+      const themeToggle = document.querySelector('.theme-toggle');
+
+      function getTheme() {
+        const stored = localStorage.getItem('theme');
+        if (stored) return stored;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+
+        // Update ARIA attributes
+        const isDark = theme === 'dark';
+        themeToggle.setAttribute('aria-checked', isDark ? 'true' : 'false');
+        themeToggle.setAttribute('aria-label', isDark ? 'Toggle light mode' : 'Toggle dark mode');
+      }
+
+      // Initialize theme
+      setTheme(getTheme());
+
+      // Toggle click handler
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+      });
+
+      // Listen for OS theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        // Only auto-switch if user hasn't set a manual preference
+        if (!localStorage.getItem('theme')) {
+          setTheme(e.matches ? 'dark' : 'light');
+        }
+      });
+    })();
   </script>
 </body>
 </html>
