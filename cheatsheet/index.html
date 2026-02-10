@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ccboard Cheatsheet: Commands & Shortcuts | Quick Reference</title>
+    <meta name="description" content="Free printable ccboard cheatsheet. Essential commands, keyboard shortcuts, 9 tabs overview, and workflows for Claude Code monitoring.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <link rel="canonical" href="https://ccboard.bruniaux.com/cheatsheet/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="ccboard Cheatsheet - Quick Reference">
+    <meta property="og:description" content="Free printable ccboard cheatsheet. Essential commands, keyboard shortcuts, and workflows.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ccboard.bruniaux.com/cheatsheet/">
+    <meta property="og:image" content="https://ccboard.bruniaux.com/assets/screenshots/dashboard.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="ccboard">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ccboard Cheatsheet - Quick Reference">
+    <meta name="twitter:description" content="Free printable ccboard cheatsheet. Essential commands and shortcuts.">
+    <meta name="twitter:image" content="https://ccboard.bruniaux.com/assets/screenshots/dashboard.png">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "name": "ccboard Cheatsheet",
+        "description": "Complete command reference for ccboard dashboard",
+        "author": {"@type": "Person", "name": "Florian BRUNIAUX"},
+        "dateModified": "2026-02-10",
+        "inLanguage": "en"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Anti-FOUC: Apply theme BEFORE CSS renders -->
+    <script>
+      (function() {
+        var stored = localStorage.getItem('theme');
+        var theme = stored || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
+    <link rel="stylesheet" href="../styles.css">
+
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent: #f97316;
+            --accent-secondary: #ea580c;
+            --border: #30363d;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            padding: var(--space-md) 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .logo-icon {
+            font-size: 1.3rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: var(--space-md);
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-secondary);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--bg-secondary);
+            border-color: var(--text-secondary);
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: var(--space-xl) 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent) 0%, #fb923c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-lg);
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .meta-info a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .meta-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-lg);
+            padding: var(--space-xl) 0;
+        }
+
+        .section {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: var(--space-lg);
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .section h2 {
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .section h3 {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin: var(--space-md) 0 var(--space-sm);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th, td {
+            padding: var(--space-sm);
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        td:first-child {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        /* Code blocks */
+        code {
+            font-family: var(--font-mono);
+            background-color: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            color: var(--accent);
+        }
+
+        pre {
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: var(--space-md);
+            overflow-x: auto;
+            font-size: 0.8rem;
+            margin: var(--space-sm) 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: var(--text-primary);
+        }
+
+        /* Lists */
+        ul, ol {
+            padding-left: var(--space-lg);
+            margin: var(--space-sm) 0;
+        }
+
+        li {
+            margin: var(--space-xs) 0;
+            font-size: 0.9rem;
+        }
+
+        /* Tips */
+        .tip {
+            background: rgba(249, 115, 22, 0.1);
+            border-left: 3px solid var(--accent);
+            padding: var(--space-sm) var(--space-md);
+            margin: var(--space-md) 0;
+            font-size: 0.85rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: var(--space-xl) 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: rgba(249, 115, 22, 0.2);
+            color: var(--accent);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: var(--space-xs);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .meta-info {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <span class="logo-icon">>_</span>
+                    <span>ccboard</span>
+                </a>
+                <div class="header-actions">
+                    <a href="/" class="btn btn-secondary">← Back to Home</a>
+                    <a href="https://github.com/FlorianBruniaux/ccboard" class="btn btn-primary" target="_blank" rel="noopener">
+                        ⭐ GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1><span>ccboard</span> Cheatsheet</h1>
+            <p>Quick reference for commands, keybindings, and workflows</p>
+            <div class="meta-info">
+                <span>Version 0.5.0</span>
+                <span>•</span>
+                <span>9 Interactive Tabs</span>
+                <span>•</span>
+                <span><a href="https://github.com/FlorianBruniaux/ccboard" target="_blank" rel="noopener">View on GitHub</a></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="content container">
+        <!-- Installation -->
+        <section class="section">
+            <h2>📦 Installation</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Command</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cargo</td>
+                        <td><code>cargo install ccboard</code></td>
+                    </tr>
+                    <tr>
+                        <td>Homebrew</td>
+                        <td><code>brew install ccboard</code></td>
+                    </tr>
+                    <tr>
+                        <td>From source</td>
+                        <td><code>git clone && cargo build --release</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="tip">
+                💡 Requires Rust 1.85+ for cargo installation
+            </div>
+        </section>
+
+        <!-- Launch Commands -->
+        <section class="section">
+            <h2>🚀 Launch Commands</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ccboard</td>
+                        <td>Launch TUI (default)</td>
+                    </tr>
+                    <tr>
+                        <td>ccboard web</td>
+                        <td>Launch web interface (port 3333)</td>
+                    </tr>
+                    <tr>
+                        <td>ccboard both</td>
+                        <td>Launch TUI + Web simultaneously</td>
+                    </tr>
+                    <tr>
+                        <td>ccboard stats</td>
+                        <td>Print summary and exit</td>
+                    </tr>
+                    <tr>
+                        <td>ccboard web --port 8080</td>
+                        <td>Web interface on custom port</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Keybindings -->
+        <section class="section">
+            <h2>⌨️ Keybindings</h2>
+            <h3>Tab Navigation</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>1-9</td>
+                        <td>Jump to specific tab</td>
+                    </tr>
+                    <tr>
+                        <td>Tab</td>
+                        <td>Next tab</td>
+                    </tr>
+                    <tr>
+                        <td>Shift+Tab</td>
+                        <td>Previous tab</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>List Navigation</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>j / ↓</td>
+                        <td>Move down</td>
+                    </tr>
+                    <tr>
+                        <td>k / ↑</td>
+                        <td>Move up</td>
+                    </tr>
+                    <tr>
+                        <td>h / ←</td>
+                        <td>Move left (in tables)</td>
+                    </tr>
+                    <tr>
+                        <td>l / →</td>
+                        <td>Move right (in tables)</td>
+                    </tr>
+                    <tr>
+                        <td>Enter</td>
+                        <td>Select / Open item</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Actions</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>/</td>
+                        <td>Search in current tab</td>
+                    </tr>
+                    <tr>
+                        <td>:</td>
+                        <td>Command palette</td>
+                    </tr>
+                    <tr>
+                        <td>r</td>
+                        <td>Refresh data</td>
+                    </tr>
+                    <tr>
+                        <td>e</td>
+                        <td>Edit file in $EDITOR</td>
+                    </tr>
+                    <tr>
+                        <td>o</td>
+                        <td>Reveal in file manager</td>
+                    </tr>
+                    <tr>
+                        <td>?</td>
+                        <td>Show help</td>
+                    </tr>
+                    <tr>
+                        <td>q</td>
+                        <td>Quit</td>
+                    </tr>
+                    <tr>
+                        <td>Esc</td>
+                        <td>Close dialog / Cancel</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 9 Tabs Overview -->
+        <section class="section">
+            <h2>📊 9 Tabs Overview</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tab</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1. Dashboard</td>
+                        <td>Key metrics, model usage, 7-day activity</td>
+                    </tr>
+                    <tr>
+                        <td>2. Sessions</td>
+                        <td>Browse sessions, live process detection</td>
+                    </tr>
+                    <tr>
+                        <td>3. Config</td>
+                        <td>Cascading config viewer (global/project/local)</td>
+                    </tr>
+                    <tr>
+                        <td>4. Hooks</td>
+                        <td>Event-based hook management</td>
+                    </tr>
+                    <tr>
+                        <td>5. Agents</td>
+                        <td>Custom AI personas and commands</td>
+                    </tr>
+                    <tr>
+                        <td>6. Costs</td>
+                        <td>Token analytics with 4 sub-tabs</td>
+                    </tr>
+                    <tr>
+                        <td>7. History</td>
+                        <td>Full-text search with temporal patterns</td>
+                    </tr>
+                    <tr>
+                        <td>8. MCP</td>
+                        <td>Server management with status detection</td>
+                    </tr>
+                    <tr>
+                        <td>9. Analytics</td>
+                        <td>Budget tracking, trends, insights, forecasting</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Performance -->
+        <section class="section">
+            <h2>⚡ Performance</h2>
+            <ul>
+                <li><strong>89x faster</strong> startup with warm cache (20s → 224ms)</li>
+                <li><strong>>99% cache hit rate</strong> after first run</li>
+                <li><strong>10K+ sessions</strong> handled effortlessly</li>
+            </ul>
+            <h3>Cache Management</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Location</td>
+                        <td><code>~/.cache/ccboard/</code></td>
+                    </tr>
+                    <tr>
+                        <td>Clear cache</td>
+                        <td><code>rm -rf ~/.cache/ccboard/</code></td>
+                    </tr>
+                    <tr>
+                        <td>Invalidation</td>
+                        <td>Automatic (mtime-based)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Web Interface -->
+        <section class="section">
+            <h2>🌐 Web Interface</h2>
+            <h3>Features</h3>
+            <ul>
+                <li>100% feature parity with TUI</li>
+                <li>Real-time updates via Server-Sent Events</li>
+                <li>9 pages matching TUI tabs</li>
+                <li>Responsive design (mobile, tablet, desktop)</li>
+            </ul>
+            <h3>Access</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Default URL</td>
+                        <td><code>http://localhost:3333</code></td>
+                    </tr>
+                    <tr>
+                        <td>Custom port</td>
+                        <td><code>ccboard web --port 8080</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Configuration -->
+        <section class="section">
+            <h2>⚙️ Configuration</h2>
+            <h3>Claude Code Directory</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Location</td>
+                        <td><code>~/.claude/</code></td>
+                    </tr>
+                    <tr>
+                        <td>Sessions</td>
+                        <td><code>~/.claude/sessions/</code></td>
+                    </tr>
+                    <tr>
+                        <td>Config</td>
+                        <td><code>~/.claude/config.json</code></td>
+                    </tr>
+                    <tr>
+                        <td>Hooks</td>
+                        <td><code>~/.claude/hooks/</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="tip">
+                💡 ccboard automatically detects changes with 500ms debounce
+            </div>
+        </section>
+
+        <!-- Comparison -->
+        <section class="section">
+            <h2>🔍 vs Alternatives</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>ccboard</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dashboard</td>
+                        <td>✓ TUI + Web</td>
+                    </tr>
+                    <tr>
+                        <td>Multi-tab</td>
+                        <td>✓ 9 tabs</td>
+                    </tr>
+                    <tr>
+                        <td>Cost analytics</td>
+                        <td>✓ + forecasting</td>
+                    </tr>
+                    <tr>
+                        <td>Config mgmt</td>
+                        <td>✓ 4-column diff</td>
+                    </tr>
+                    <tr>
+                        <td>Hooks/Agents</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>MCP status</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>Real-time</td>
+                        <td>✓ Watch + SSE</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: var(--space-sm);">
+                ccusage: CLI-only, no dashboard<br>
+                agtrace: Observability focus, 3 views<br>
+                claudelytics: Stale (6 months)
+            </p>
+        </section>
+
+        <!-- Quick Tips -->
+        <section class="section">
+            <h2>💡 Quick Tips</h2>
+            <ul>
+                <li>Press <code>r</code> to force refresh if data seems stale</li>
+                <li>Use <code>/</code> for fuzzy search within tabs</li>
+                <li>Press <code>1-9</code> to jump directly to any tab</li>
+                <li>Sessions tab detects live Claude processes (CPU/RAM/Tokens)</li>
+                <li>Analytics tab includes 7/30/90-day cost forecasting</li>
+                <li>Config tab shows cascading (global → project → local)</li>
+                <li>Use <code>ccboard both</code> for simultaneous TUI + Web access</li>
+            </ul>
+        </section>
+
+        <!-- Troubleshooting -->
+        <section class="section">
+            <h2>🔧 Troubleshooting</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Issue</th>
+                        <th>Solution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Slow startup</td>
+                        <td>First run builds cache (~20s), then 224ms</td>
+                    </tr>
+                    <tr>
+                        <td>Data not updating</td>
+                        <td>Press <code>r</code> to force refresh</td>
+                    </tr>
+                    <tr>
+                        <td>Web port in use</td>
+                        <td>Use <code>--port 8080</code> (or any free port)</td>
+                    </tr>
+                    <tr>
+                        <td>Cache issues</td>
+                        <td><code>rm -rf ~/.cache/ccboard/</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Resources -->
+        <section class="section">
+            <h2>📚 Resources</h2>
+            <ul>
+                <li><a href="https://github.com/FlorianBruniaux/ccboard" target="_blank" rel="noopener">GitHub Repository</a></li>
+                <li><a href="https://github.com/FlorianBruniaux/ccboard/blob/main/README.md" target="_blank" rel="noopener">Full Documentation</a></li>
+                <li><a href="https://github.com/FlorianBruniaux/ccboard/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing Guide</a></li>
+                <li><a href="https://cc.bruniaux.com" target="_blank" rel="noopener">Claude Code Ultimate Guide</a></li>
+            </ul>
+        </section>
+
+        <!-- Architecture -->
+        <section class="section">
+            <h2>🏗️ Architecture</h2>
+            <pre><code>ccboard
+├── TUI (Ratatui)
+├── Web (Axum + SSE)
+└── Core Library
+    ├── SQLite cache
+    ├── File watcher
+    └── Session parser</code></pre>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: var(--space-sm);">
+                <strong>Binary size:</strong> 5.8MB<br>
+                <strong>Language:</strong> Rust<br>
+                <strong>License:</strong> MIT OR Apache-2.0<br>
+                <strong>Tests:</strong> 234
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>
+                Made with 🦀 by <a href="https://github.com/FlorianBruniaux" target="_blank" rel="noopener">Florian BRUNIAUX</a>
+                • <a href="https://github.com/FlorianBruniaux/ccboard" target="_blank" rel="noopener">Open Source</a>
+                • <a href="https://ccboard.bruniaux.com" target="_blank" rel="noopener">ccboard.bruniaux.com</a>
+            </p>
+            <p style="margin-top: var(--space-sm); font-size: 0.8rem;">
+                ccboard v0.5.0 • MIT OR Apache-2.0 License
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
