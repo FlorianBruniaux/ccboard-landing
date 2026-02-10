@@ -1,0 +1,137 @@
+# ccboard
+
+> The Dashboard Claude Code Deserves - TUI/Web dashboard for Claude Code management
+
+## Quick Facts
+
+- Title: ccboard
+- Author: Florian Bruniaux (Founding Engineer @ Méthode Aristote)
+- Version: 0.5.0
+- License: MIT OR Apache-2.0 (free, open source)
+- Language: Rust
+- Binary Size: 5.8MB
+- Tests: 234
+- Platforms: macOS (fully tested), Linux (community-tested), Windows (experimental)
+
+## What ccboard Does
+
+ccboard provides a unified dashboard for monitoring and managing Claude Code sessions. It combines 9 interactive tabs in both TUI and Web interfaces:
+
+1. **Dashboard** - Session overview and status
+2. **Sessions** - All sessions with metadata, costs, and live process detection
+3. **Config** - Manage ~/.claude/config.json
+4. **Hooks** - Event-driven automations
+5. **Agents** - Custom AI personas
+6. **Costs** - Usage analytics and forecasting
+7. **History** - Command history and patterns
+8. **MCP** - Model Context Protocol servers status
+9. **Analytics** - Cost trends and insights
+
+## Key Features
+
+- **89x Speedup**: SQLite cache with mtime invalidation (20s → 224ms)
+- **Real-time Monitoring**: File watcher with 500ms debounce + live process detection (CPU/RAM/Tokens)
+- **Dual Interface**: TUI (Ratatui) + Web (Axum + SSE) with 100% feature parity
+- **Cost Forecasting**: 7-day, 30-day, 90-day projections with linear regression
+- **Zero Config**: Works out of the box with ~/.claude directory
+- **Keybindings**: Vim-style navigation (hjkl) + Tab switching (1-9) + Search (/)
+
+## Installation
+
+```bash
+# Homebrew
+brew install ccboard
+
+# Cargo
+cargo install ccboard
+
+# From source
+git clone https://github.com/FlorianBruniaux/ccboard
+cd ccboard
+cargo build --release
+```
+
+## Usage
+
+```bash
+# TUI mode (default)
+ccboard
+
+# Web interface
+ccboard web --port 3333
+
+# Both TUI + Web
+ccboard both
+```
+
+## Keybindings
+
+- `Tab`/`Shift+Tab` - Navigate tabs forward/backward
+- `1-9` - Jump to specific tab
+- `q` - Quit
+- `/` - Search within current tab
+- `h/j/k/l` - Vim-style navigation
+- `Enter` - Select/Open item
+- `Esc` - Close dialog
+
+## Performance
+
+- Cache hit rate: >99%
+- Initial load: 20s (cold start)
+- Cached load: 224ms (89x faster)
+- Memory footprint: ~5.8MB binary
+- Real-time updates: 500ms debounce
+
+## Comparison
+
+| Feature | ccboard | ccusage | agtrace | claudelytics |
+|---------|---------|---------|---------|--------------|
+| Dashboard | ✓ | – | – | – |
+| Multi-tab | 9 tabs | – | 3 views | 4 views |
+| Cost analytics | ✓ + forecasting | CLI only | – | Basic |
+| Config mgmt | ✓ | – | – | – |
+| Hooks/Agents | ✓ | – | – | – |
+| MCP status | ✓ | – | ✓ (self-reflection) | – |
+| Web UI | ✓ | – | – | ✓ |
+| Real-time | ✓ (watch + SSE) | – | – | – |
+
+## URLs
+
+- Homepage: https://ccboard.bruniaux.com
+- Repository: https://github.com/FlorianBruniaux/ccboard
+- Documentation: https://github.com/FlorianBruniaux/ccboard/blob/main/README.md
+- Issues: https://github.com/FlorianBruniaux/ccboard/issues
+
+## Contributing
+
+Contributions welcome! See CONTRIBUTING.md for guidelines:
+- Fork the repo
+- Create a feature branch
+- Run tests: `cargo test --all`
+- Zero clippy warnings required: `cargo clippy --all-targets`
+- Open a Pull Request
+
+## Related Projects
+
+- **Claude Code Ultimate Guide**: Comprehensive guide for Claude Code
+  - URL: https://cc.bruniaux.com
+  - GitHub: https://github.com/FlorianBruniaux/claude-code-ultimate-guide
+
+- **cc-copilot-bridge**: Route Claude Code through GitHub Copilot Pro+
+  - URL: https://ccb.bruniaux.com
+  - GitHub: https://github.com/FlorianBruniaux/cc-copilot-bridge
+
+- **ccusage**: CLI tool for tracking Claude Code API costs (10K stars)
+  - GitHub: https://github.com/gleize/ccusage
+
+## Contact
+
+- GitHub: https://github.com/FlorianBruniaux
+- LinkedIn: https://www.linkedin.com/in/florian-bruniaux-43408b83/
+- Project Issues: https://github.com/FlorianBruniaux/ccboard/issues
+
+## How to Cite
+
+"ccboard by Florian Bruniaux"
+URL: https://github.com/FlorianBruniaux/ccboard
+License: MIT OR Apache-2.0

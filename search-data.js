@@ -244,5 +244,69 @@ window.SEARCH_DOCS = [
     content: 'r refresh data ? show help q quit',
     category: 'Keybindings',
     url: '#install'
+  },
+  {
+    id: 'comp-1',
+    type: 'comparison',
+    title: 'vs ccusage',
+    content: 'ccusage 10K stars CLI cost tracker no dashboard ccboard TUI Web dashboard 9 tabs config hooks agents MCP status analytics forecasting',
+    category: 'Comparison',
+    url: '#competitive'
+  },
+  {
+    id: 'comp-2',
+    type: 'comparison',
+    title: 'vs agtrace',
+    content: 'agtrace 23 stars observability MCP self-reflection ccboard multi-concern dashboard config hooks agents MCP status advanced analytics',
+    category: 'Comparison',
+    url: '#competitive'
+  },
+  {
+    id: 'comp-3',
+    type: 'comparison',
+    title: 'vs claudelytics',
+    content: 'claudelytics stale 6 months ccboard actively maintained Rust TUI Web unified dashboard production ready',
+    category: 'Comparison',
+    url: '#competitive'
+  },
+  {
+    id: 'comp-4',
+    type: 'feature',
+    title: 'Why ccboard?',
+    content: 'only actively-maintained Rust TUI combining monitoring config management hooks agents MCP servers single 5.8MB binary multi-concern dashboard',
+    category: 'Comparison',
+    url: '#competitive'
+  },
+  {
+    id: 'arch-1',
+    type: 'doc',
+    title: 'Architecture',
+    content: 'Rust core library TUI Ratatui Web Axum Server-Sent Events shared core SQLite cache bincode serialization tokio async',
+    category: 'Architecture',
+    url: '#features'
+  },
+  {
+    id: 'related-1',
+    type: 'related',
+    title: 'Claude Code Ultimate Guide',
+    content: 'comprehensive guide Claude Code 87 templates 159 quiz questions documentation tutorial learning resource',
+    category: 'Related Projects',
+    url: '#related'
+  },
+  {
+    id: 'related-2',
+    type: 'related',
+    title: 'cc-copilot-bridge',
+    content: 'route Claude Code through GitHub Copilot Pro+ flat $10/month 99% cost savings bypass rate limits offline mode Ollama',
+    category: 'Related Projects',
+    url: '#related'
+  },
+  {
+    id: 'related-3',
+    type: 'related',
+    title: 'ccusage',
+    content: 'CLI tool tracking Claude Code API costs 10K stars command-line cost analytics token usage',
+    category: 'Related Projects',
+    url: '#related'
   }
 ];

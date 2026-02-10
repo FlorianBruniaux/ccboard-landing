@@ -43,7 +43,7 @@ ccboard-landing/
 3. **Architecture** - ASCII diagram of stack (ccboard → tui/web → core)
 4. **Features Grid** - 9 cards (Dashboard, Sessions, Config, Hooks, Agents, Costs, History, MCP, Analytics)
 5. **Performance** - 89x speedup, 10K+ sessions, >99% cache hit rate
-6. **Screenshots Gallery** - 6 tabs (Dashboard, Sessions, Config, Costs, Analytics, More)
+6. **Screenshots Gallery** - 9 tabs (Dashboard, Sessions, Config, Hooks, Agents, Costs, History, MCP, Analytics)
 7. **Competitive Landscape** - Comparison table (ccboard vs agtrace vs claudelytics vs ccusage)
 8. **Install** - cargo install, launch commands, keybindings
 9. **FAQ** - 8 questions (What is ccboard?, How does cache work?, etc.)

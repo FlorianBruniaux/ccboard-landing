@@ -1,13 +1,103 @@
-# CLAUDE.md
+# Landing Site - ccboard
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## URLs
 
-## Project Overview
+| Environnement | URL |
+|---------------|-----|
+| **Production** | https://ccboard.bruniaux.com |
+| **GitHub Repo** | https://github.com/FlorianBruniaux/ccboard-landing |
+| **Main Project** | https://github.com/FlorianBruniaux/ccboard |
 
-Static landing page for [ccboard](https://github.com/FlorianBruniaux/ccboard) - TUI/Web dashboard for Claude Code.
+## Source de vérité
 
-**Live**: https://ccboard.bruniaux.com
-**Repository**: https://github.com/FlorianBruniaux/ccboard-landing
+**Ce site est SECONDAIRE**. La source de vérité est le projet principal ccboard:
+`https://github.com/FlorianBruniaux/ccboard`
+
+**Workflow obligatoire**:
+1. Modifier d'abord le projet ccboard principal (Cargo.toml, README, features)
+2. Puis synchroniser ici
+
+Ne JAMAIS modifier les stats ou métriques ici sans avoir d'abord mis à jour le projet principal.
+
+## Éléments synchronisés depuis ccboard
+
+| Élément | Source (ccboard repo) | Fichiers landing |
+|---------|----------------------|------------------|
+| Version | `Cargo.toml` version field | index.html (Schema.org line 58, footer) |
+| Tabs count | Feature cards in README | index.html (title, meta, hero stats, features section) |
+| Tests count | `cargo test` output | index.html (hero stats, meta description) |
+| Binary size | `target/release/ccboard` size | index.html (hero stats, meta description) |
+| Speedup metric | Benchmark results | index.html (hero stats, performance section) |
+| Screenshots | `assets/screenshots/*.png` | index.html (gallery section), copied to landing repo |
+
+## Valeurs actuelles (à maintenir synchronisées)
+
+| Métrique | Valeur | Source |
+|----------|--------|--------|
+| Version | `0.5.0` | Cargo.toml |
+| Tabs | `9` | Feature cards count (Dashboard, Sessions, Config, Hooks, Agents, Costs, History, MCP, Analytics) |
+| Tests | `234` | `cargo test --all` output |
+| Binary size | `5.8MB` | Release binary size |
+| Speedup | `89x` | Cache benchmark (20s → 224ms) |
+| Cache hit rate | `>99%` | Performance metrics |
+
+## Emplacements des stats dans index.html
+
+### Version (0.5.0)
+- Ligne 58: Schema.org `"softwareVersion": "0.5.0"`
+- Footer (ligne ~692): Version badge
+
+### Tabs count (9)
+- Ligne 6-7: `<title>` and meta description
+- Ligne 18: `og:description`
+- Ligne 25: `twitter:description`
+- Ligne 127: Hero stats section
+- Ligne 200+: Features grid (9 feature cards)
+
+### Tests count (234)
+- Ligne 7: Meta description
+- Ligne 18: `og:description`
+- Ligne 25: `twitter:description`
+- Ligne 127: Hero stats section
+
+### Binary size (5.8MB)
+- Ligne 7: Meta description
+- Ligne 127: Hero stats section
+
+### Speedup (89x)
+- Ligne 7: Meta description
+- Ligne 18: `og:description`
+- Ligne 25: `twitter:description`
+- Ligne 127: Hero stats section
+- Performance section: Details on 20s → 224ms improvement
+
+## Version Sync Policy
+
+**Quand mettre à jour la landing** :
+- Nouvelle version majeure/mineure de ccboard (0.5.0 → 0.6.0)
+- Ajout de nouvelles features (nouveau tab, nouvelle fonctionnalité)
+- Changements significatifs de performance (speedup, cache hit rate)
+- Nouvelles screenshots disponibles
+
+**Workflow de synchronisation** :
+```bash
+# 1. Vérifier la version actuelle dans ccboard
+cd /path/to/ccboard
+grep '^version' Cargo.toml
+
+# 2. Mettre à jour index.html
+# - Ligne 58: Schema.org softwareVersion
+# - Footer: Version badge
+# - Hero stats si métriques ont changé
+
+# 3. Copier nouveaux screenshots si disponibles
+cp /path/to/ccboard/assets/screenshots/*.png assets/screenshots/
+
+# 4. Commit et deploy
+git add .
+git commit -m "chore: sync with ccboard vX.Y.Z"
+git push origin main
+```
 
 ## Architecture
 
@@ -22,11 +112,12 @@ This is intentionally a **zero-build** project:
 
 | File | Purpose | Size | Critical Notes |
 |------|---------|------|----------------|
-| `index.html` | Single-page landing | ~1000 lines | Contains all 11 sections, Schema.org structured data, theme toggle |
+| `index.html` | Single-page landing | ~1000 lines | Contains all 11 sections, Schema.org structured data (SoftwareApplication + FAQPage), theme toggle |
 | `styles.css` | Complete stylesheet | ~1200 lines | Light/dark themes with CSS custom properties, transitions |
 | `search.js` | Search functionality | ~300 lines | Lazy loads MiniSearch on Cmd+K, manages modal UI |
 | `search-data.js` | Search index | ~200 lines | Defines `window.SEARCH_FEATURES`, `SEARCH_FAQ`, `SEARCH_DOCS` arrays |
 | `sitemap.xml` | SEO sitemap | 10 lines | Single URL, referenced in robots.txt |
+| `llms.txt` | AI discoverability | ~150 lines | For LLM consumption (ChatGPT, Claude, Perplexity, etc.) |
 | `assets/screenshots/` | 13 PNGs | ~2MB total | Copied from ccboard repo, referenced in gallery tabs |
 | `.github/workflows/static.yml` | GitHub Pages deploy | 44 lines | Automatic deployment on push to main |
 
@@ -92,36 +183,38 @@ git push origin main
 # → Deployed to https://ccboard.bruniaux.com in ~1 minute
 ```
 
-**Manual GitHub Pages Configuration** (if needed):
-```bash
-gh api repos/FlorianBruniaux/ccboard-landing/pages -X PUT \
-  -f cname=ccboard.bruniaux.com \
-  -f https_enforced=true
-```
-
-### DNS Verification
+### SEO Validation
 
 ```bash
-# Verify CNAME record propagation
-dig ccboard.bruniaux.com CNAME +short
-# Should return: florianbruniaux.github.io.
+# Validate Schema.org JSON-LD
+# Copy JSON-LD from index.html <script type="application/ld+json">
+# Paste to: https://validator.schema.org/
+
+# Test Open Graph tags
+# https://www.opengraph.xyz/ (paste URL)
+
+# Verify sitemap
+curl https://ccboard.bruniaux.com/sitemap.xml
+
+# Verify llms.txt
+curl https://ccboard.bruniaux.com/llms.txt
 ```
 
 ## Content Sections (11 Total)
 
 Understanding the section flow is critical for major edits:
 
-1. **Header** (sticky) - Logo, nav, search trigger (Cmd+K), GitHub star button
-2. **Hero** - Badges, title, tagline, stats (86 stars, 234 tests, 5.8MB), CTAs
+1. **Header** (sticky) - Logo, nav, theme toggle, search trigger (Cmd+K), GitHub star button
+2. **Hero** - Badges, title, tagline, stats (86 stars, 234 tests, 5.8MB, 89x speedup), CTAs
 3. **Architecture** - ASCII diagram showing ccboard stack (TUI/Web → core library)
 4. **Features Grid** - 9 cards matching ccboard tabs (Dashboard, Sessions, Config, Hooks, Agents, Costs, History, MCP, Analytics)
 5. **Performance** - 89x speedup stats, 10K+ sessions analyzed, >99% cache hit rate
-6. **Screenshots Gallery** - 6-tab carousel (Dashboard, Sessions, Config, Costs, Analytics, More)
+6. **Screenshots Gallery** - 9-tab carousel with all screenshots
 7. **Competitive Landscape** - Comparison table (ccboard vs agtrace vs claudelytics vs ccusage)
 8. **Install** - `cargo install ccboard`, launch commands, keybindings table
 9. **FAQ** - 8 questions (expandable accordion pattern)
 10. **Related Projects** - 3 cards (Claude Code Ultimate Guide, cc-copilot-bridge, ccusage)
-11. **Footer** - Brand, social links, license, copyright
+11. **Footer** - Brand, social links, license, copyright, version badge
 
 **Pattern**: Each section has `id="section-name"` for anchor links in nav.
 
@@ -139,15 +232,24 @@ Understanding the section flow is critical for major edits:
 
 ### SEO & Structured Data
 
-**Schema.org `SoftwareApplication` type** (lines 34-50 in index.html):
-- `name`: "ccboard"
-- `applicationCategory`: "DeveloperApplication"
-- `softwareVersion`: "0.5.0" ← **Update on new ccboard releases**
-- `license`: MIT OR Apache-2.0
+**Schema.org types** (lines 44-119 in index.html):
+1. **SoftwareApplication** (lines 44-60):
+   - `name`: "ccboard"
+   - `applicationCategory`: "DeveloperApplication"
+   - `softwareVersion`: "0.5.0" ← **Update on new ccboard releases**
+   - `license`: MIT OR Apache-2.0
+
+2. **FAQPage** (lines 61-119):
+   - 8 questions from FAQ section
+   - Structured for rich snippets in Google Search
 
 **Sitemap**: `sitemap.xml` at root (referenced in `robots.txt`)
 - Single URL: `https://ccboard.bruniaux.com/`
 - Update `<lastmod>` when making significant content changes
+
+**llms.txt**: AI discoverability file for LLM consumption
+- Optimized for ChatGPT, Claude, Perplexity, Gemini
+- Contains quick facts, features, installation, comparison table
 
 **Open Graph / Twitter Card**: Meta tags in `<head>` for social sharing previews.
 
@@ -157,46 +259,69 @@ Understanding the section flow is critical for major edits:
 |----------|--------|-----------|
 | **Base pattern** | cc-copilot-bridge landing | Simplest proven pattern, same dev audience |
 | **Build complexity** | Zero (pure static) | No maintenance burden, instant edits |
-| **i18n** | English only | Per boldguy rule: dev audience, avoid translation overhead |
+| **i18n** | English only | Dev audience, avoid translation overhead |
 | **Theme** | Light/dark toggle | OS preference + manual override, better accessibility |
 | **Accent color** | Orange/Rust | Rust language association, adjusted per theme (600 light / 500 dark) |
 | **Screenshots** | 13 PNGs (~2MB) | Copied from ccboard repo, avoid duplication |
+| **SEO Strategy** | Schema.org + llms.txt | Traditional search engines + AI discovery |
 
 ## Common Edit Patterns
 
-### Update Theme Colors
-
-**Light theme** (lines 7-30 in `styles.css`):
-```css
-:root {
-    --accent: #ea580c;  /* Change accent color */
-    --bg-primary: #fafbfc;  /* Change background */
-}
-```
-
-**Dark theme** (lines 52-75 in `styles.css`):
-```css
-[data-theme="dark"] {
-    --accent: #f97316;  /* Change accent color */
-    --bg-primary: #0d1117;  /* Change background */
-}
-```
-
-**Pattern**: Always update both themes for consistency. Test readability in both modes.
-
 ### Update ccboard Version
 
-1. Edit `index.html` line 48: `"softwareVersion": "X.Y.Z"`
-2. Update hero stats if relevant (stars, tests count)
-3. Commit: `git commit -m "chore: bump version to X.Y.Z"`
+**When**: New ccboard release published
+
+1. Check new version in ccboard repo: `grep '^version' Cargo.toml`
+2. Edit `index.html` line 58: `"softwareVersion": "X.Y.Z"`
+3. Update footer version badge if present
+4. Update hero stats if metrics changed (tests, binary size, speedup)
+5. Commit: `git commit -m "chore: bump version to X.Y.Z"`
+
+### Update Hero Stats
+
+**When**: Metrics change in ccboard (tests, binary size, speedup)
+
+Edit hero stats section (around line 127):
+```html
+<div class="hero-stats">
+  <div class="stat">
+    <span class="stat-value">234</span>
+    <span class="stat-label">Tests</span>
+  </div>
+  <div class="stat">
+    <span class="stat-value">5.8MB</span>
+    <span class="stat-label">Binary</span>
+  </div>
+  <div class="stat">
+    <span class="stat-value">89x</span>
+    <span class="stat-label">Speedup</span>
+  </div>
+</div>
+```
+
+Also update:
+- Meta description (line 7)
+- `og:description` (line 18)
+- `twitter:description` (line 25)
 
 ### Add New Screenshot
 
-1. Copy PNG to `assets/screenshots/`
+**When**: New feature added to ccboard with screenshot
+
+1. Copy PNG from ccboard repo: `cp /path/to/ccboard/assets/screenshots/new-feature.png assets/screenshots/`
 2. Add tab in Screenshots Gallery section (search for `<!-- Screenshots Gallery -->`)
-3. Reference image: `<img src="assets/screenshots/new-feature.png" alt="Description">`
+3. Reference image:
+```html
+<button class="gallery-tab" data-tab="new-feature">New Feature</button>
+<!-- ... -->
+<div class="gallery-content" data-content="new-feature">
+  <img src="assets/screenshots/new-feature.png" alt="New Feature Description" loading="lazy">
+</div>
+```
 
 ### Modify Search Index
+
+**When**: New searchable content added (features, FAQs, docs)
 
 Edit `search-data.js`:
 ```javascript
@@ -212,10 +337,22 @@ window.SEARCH_FEATURES.push({
 
 ### Update Competitive Comparison
 
+**When**: Competitor features change or new competitor emerges
+
 Edit comparison table in index.html (search for `<!-- Competitive Landscape -->`):
 - Add/remove rows for competitors
 - Update feature checkmarks (✓ / –)
 - Keep ccboard column first for prominence
+
+### Update FAQ
+
+**When**: Common questions change or new FAQ needed
+
+1. Edit HTML in FAQ section (lines ~609-665)
+2. Edit FAQPage Schema.org (lines ~61-119)
+3. Consider adding to search-data.js for searchability
+
+**Pattern**: Keep HTML and Schema.org in sync.
 
 ## Related Projects Context
 
@@ -225,3 +362,11 @@ This landing complements:
 - **cc-copilot-bridge**: https://github.com/FlorianBruniaux/cc-copilot-bridge (design pattern source)
 
 **Consistency requirements**: Keep branding, color scheme, and terminology aligned with main ccboard repo.
+
+## Fichiers critiques
+
+- **index.html**: Hero, badges, meta tags, FAQ (HTML + Schema.org), features grid, footer version
+- **search-data.js**: Searchable index for Cmd+K
+- **styles.css**: Light/dark themes, responsive design
+- **sitemap.xml**: SEO sitemap (auto-generated, commit to repo)
+- **llms.txt**: AI discoverability (update on major changes)
