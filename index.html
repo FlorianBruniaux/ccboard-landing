@@ -352,76 +352,74 @@
     <!-- Performance Section -->
     <section id="performance" class="performance">
       <div class="container">
-        <h2 class="section-title">Performance First</h2>
+        <h2 class="section-title">Instant Startup, Even With Thousands of Sessions</h2>
+
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 2.5rem; color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6;">
+          Claude Code stores every session as a JSONL file in <code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">~/.claude</code>. After a few months, you accumulate thousands of files and gigabytes of data. Parsing all of that on every launch would take 20+ seconds.<br><br>
+          ccboard solves this with a <strong>local SQLite cache</strong>: it scans your files once, then loads from cache on every subsequent launch. The result?
+        </p>
 
         <div class="performance-content">
           <div class="performance-stat">
-            <div class="stat-value">89x</div>
-            <div class="stat-label">Faster Startup</div>
-            <div class="stat-detail">Cold cache 20s → Warm cache 224ms (SQLite)</div>
+            <div class="stat-value">20s → 224ms</div>
+            <div class="stat-label">Startup Time</div>
+            <div class="stat-detail">89x faster after first launch thanks to SQLite cache</div>
           </div>
 
           <div class="performance-stat">
             <div class="stat-value">10K+</div>
-            <div class="stat-label">Sessions</div>
-            <div class="stat-detail">Handles effortlessly with warm cache</div>
+            <div class="stat-label">Sessions Supported</div>
+            <div class="stat-detail">Scales with your usage — no slowdown over time</div>
           </div>
 
           <div class="performance-stat">
             <div class="stat-value">&gt;99%</div>
             <div class="stat-label">Cache Hit Rate</div>
-            <div class="stat-detail">After first run</div>
+            <div class="stat-detail">Only changed files are re-parsed, the rest is instant</div>
           </div>
         </div>
 
-        <h3 class="subsection-title">Optimization Techniques</h3>
-
-        <div class="table-wrapper">
-          <table class="pricing-table">
-            <thead>
-              <tr>
-                <th>Metric</th>
-                <th>Before</th>
-                <th>After</th>
-                <th>Improvement</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Cold cache</td>
-                <td>20.08s</td>
-                <td>20.08s</td>
-                <td>Baseline (first run)</td>
-              </tr>
-              <tr class="highlight-row">
-                <td><strong>Warm cache</strong></td>
-                <td>20.08s</td>
-                <td><strong>224ms</strong></td>
-                <td><strong>89.67x faster</strong></td>
-              </tr>
-              <tr>
-                <td>Cache hit rate</td>
-                <td>0%</td>
-                <td>&gt;99%</td>
-                <td>After first run</td>
-              </tr>
-              <tr>
-                <td>Sessions handled</td>
-                <td>3,550</td>
-                <td>10,000+</td>
-                <td>Production-ready</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <ul class="optimization-list">
-          <li><strong>SQLite metadata cache</strong> with WAL mode</li>
-          <li><strong>mtime-based invalidation</strong> for efficient updates</li>
-          <li><strong>Lazy session content loading</strong> (metadata-only scan)</li>
-          <li><strong>Concurrent directory scanning</strong> with tokio::spawn</li>
-          <li><strong>bincode serialization</strong> for compact storage</li>
-        </ul>
+        <details style="max-width: 800px; margin: 2rem auto 0; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--bg-primary);">
+          <summary style="cursor: pointer; font-weight: 600; color: var(--accent); list-style: none;">
+            How it works under the hood →
+          </summary>
+          <div style="margin-top: 1.5rem;">
+            <div class="table-wrapper">
+              <table class="pricing-table">
+                <thead>
+                  <tr>
+                    <th>Scenario</th>
+                    <th>What happens</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>First launch</strong></td>
+                    <td>Scans all JSONL files, builds SQLite cache</td>
+                    <td>~20s (one-time)</td>
+                  </tr>
+                  <tr class="highlight-row">
+                    <td><strong>Every next launch</strong></td>
+                    <td>Loads from cache, re-parses only changed files</td>
+                    <td><strong>224ms</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>New session created</strong></td>
+                    <td>File watcher detects change, updates cache incrementally</td>
+                    <td>&lt;500ms</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <ul class="optimization-list" style="margin-top: 1rem;">
+              <li><strong>SQLite with WAL mode</strong> — concurrent reads while writing</li>
+              <li><strong>mtime-based invalidation</strong> — only re-parse files that actually changed</li>
+              <li><strong>Metadata-only scan</strong> — full session content loaded on-demand, not at startup</li>
+              <li><strong>Parallel directory scanning</strong> — multiple project folders scanned concurrently</li>
+            </ul>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -932,15 +930,34 @@ q          Quit</code></pre>
   <script src="search-data.js"></script>
   <script src="search.js"></script>
 
-  <!-- Screenshot Tabs -->
+  <!-- Interface & Screenshot Tabs -->
   <script>
+    // Interface tabs (TUI/Web)
+    document.querySelectorAll('.interface-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active from all interface tabs and contents
+        document.querySelectorAll('.interface-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.interface-content').forEach(c => c.classList.remove('active'));
+
+        // Activate clicked tab and its content
+        tab.classList.add('active');
+        document.getElementById('interface-' + tab.dataset.interface).classList.add('active');
+      });
+    });
+
+    // Screenshot tabs (within each interface)
     document.querySelectorAll('.screenshot-tab').forEach(tab => {
       tab.addEventListener('click', () => {
-        document.querySelectorAll('.screenshot-tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.screenshot-content').forEach(c => c.classList.remove('active'));
+        const interfaceType = tab.dataset.interface;
+        const interfaceContent = document.getElementById('interface-' + interfaceType);
 
+        // Remove active only within current interface
+        interfaceContent.querySelectorAll('.screenshot-tab').forEach(t => t.classList.remove('active'));
+        interfaceContent.querySelectorAll('.screenshot-content').forEach(c => c.classList.remove('active'));
+
+        // Activate clicked tab and its content
         tab.classList.add('active');
-        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+        document.getElementById('tab-' + interfaceType + '-' + tab.dataset.tab).classList.add('active');
       });
     });
 
