@@ -902,7 +902,7 @@
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">bash</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">📋 Copy</button>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code"></button>
             </div>
             <pre><code>brew tap FlorianBruniaux/tap
 brew install ccboard</code></pre>
@@ -917,7 +917,7 @@ brew install ccboard</code></pre>
             <div class="code-block" style="margin-top: 1rem;">
               <div class="code-header">
                 <span class="code-lang">bash</span>
-                <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">📋 Copy</button>
+                <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code"></button>
               </div>
               <pre><code>cargo install ccboard</code></pre>
             </div>
@@ -936,7 +936,7 @@ brew install ccboard</code></pre>
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">bash</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">📋 Copy</button>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code"></button>
             </div>
             <pre><code># TUI (default)
 ccboard
@@ -958,7 +958,7 @@ ccboard stats</code></pre>
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">bash</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">📋 Copy</button>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code"></button>
             </div>
             <pre><code># Session management
 ccboard search "query"       # Search sessions by content
@@ -981,7 +981,7 @@ ccboard clear-cache          # Clear SQLite cache (after upgrades)</code></pre>
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">bash</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">📋 Copy</button>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code"></button>
             </div>
             <pre><code># Navigation
 1-9        Jump to specific tab
@@ -1042,7 +1042,7 @@ q          Quit</code></pre>
           <div class="code-block" style="margin-top: 1rem;">
             <div class="code-header">
               <span class="code-lang">bash</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">📋 Copy</button>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code"></button>
             </div>
             <pre><code># CI/CD: JSON output without colors
 CCBOARD_NON_INTERACTIVE=1 CCBOARD_NO_COLOR=1 CCBOARD_FORMAT=json ccboard stats
@@ -1193,39 +1193,16 @@ brew install ccboard</code></pre>
             <p>Best practices for collaborating with AI coding assistants. Workflow patterns, prompt engineering, and team integration.</p>
           </a>
 
-          <a href="https://github.com/lilouartz/ccusage" class="related-card" target="_blank" rel="noopener">
-            <div class="related-icon">💰</div>
-            <h3>ccusage</h3>
-            <p>CLI cost tracker for Claude Code. The reference for API pricing (10K stars).</p>
-          </a>
         </div>
 
-        <!-- Complementary Tools Subsection -->
-        <div style="margin-top: 4rem;">
-          <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--text-primary);">Complementary Tools</h3>
-          <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: var(--text-secondary);">
-            ccboard focuses on <strong>analytics and monitoring</strong>. For workspace isolation, check out xlaude.
-          </p>
-
-          <div class="related-grid" style="max-width: 600px; margin: 0 auto;">
-            <a href="https://github.com/Xuanwo/xlaude" class="related-card" target="_blank" rel="noopener">
-              <div class="related-icon">🌳</div>
-              <h3>xlaude <span style="color: var(--text-secondary); font-size: 0.9rem; font-weight: normal;">171 ⭐</span></h3>
-              <p>Git worktree manager for Claude sessions. Isolates each session in dedicated branches with PTY process management.</p>
-              <div style="margin-top: 1rem; padding: 0.75rem; background: var(--bg-secondary); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 0.85rem;">
-                <p style="margin: 0;"><strong>Complementarity:</strong></p>
-                <ul style="margin: 0.5rem 0 0 1rem; padding: 0; list-style-position: inside;">
-                  <li><strong>xlaude:</strong> Workspace isolation (PTY sessions, branch management)</li>
-                  <li><strong>ccboard:</strong> Analytics & monitoring (cost tracking, history, forecasting)</li>
-                </ul>
-                <p style="margin: 0.75rem 0 0 0; color: var(--text-secondary);"><strong>Performance:</strong> ccboard 15x faster (4.8s vs 72s for 3000 sessions) thanks to lazy loading.</p>
-              </div>
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   </main>
+
+  <!-- Floating Feedback Button -->
+  <a href="https://github.com/FlorianBruniaux/ccboard/issues/new" target="_blank" rel="noopener" class="feedback-fab" aria-label="Submit an idea or issue">
+    💡 <span class="feedback-fab-text">Feedback</span>
+  </a>
 
   <!-- Footer -->
   <footer class="footer">
