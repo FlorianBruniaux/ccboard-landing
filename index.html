@@ -290,7 +290,7 @@
         </div>
 
         <!-- Title -->
-        <h1 class="hero-title">Stop Guessing Your Claude Code Costs</h1>
+        <h1 class="hero-title">The Dashboard Claude Code Deserves</h1>
 
         <!-- Problem Statement -->
         <p class="problem-statement">
@@ -465,15 +465,13 @@
           ccboard solves this with a <strong>local SQLite cache</strong>: it scans your files once, then loads from cache on every subsequent launch. The result?
         </p>
 
-        <!-- Metric Hero : 89x domination visuelle -->
-        <div class="metric-hero">
-          <div class="metric-value">89x</div>
-          <div class="metric-label">Faster Startup</div>
-          <div class="metric-detail">20s → 224ms with SQLite cache</div>
-        </div>
+        <div class="performance-content">
+          <div class="performance-stat">
+            <div class="stat-value">20s → 224ms</div>
+            <div class="stat-label">Startup Time</div>
+            <div class="stat-detail">89x faster after first launch thanks to SQLite cache</div>
+          </div>
 
-        <!-- Stats secondaires : Grid compact -->
-        <div class="performance-stats-grid">
           <div class="performance-stat">
             <div class="stat-value">10K+</div>
             <div class="stat-label">Sessions Supported</div>
@@ -485,71 +483,49 @@
             <div class="stat-label">Cache Hit Rate</div>
             <div class="stat-detail">Only changed files are re-parsed, the rest is instant</div>
           </div>
+        </div>
 
-          <div class="performance-stat">
-            <div class="stat-value">50x</div>
-            <div class="stat-label">Memory Reduction</div>
-            <div class="stat-detail">Arc migration from DashMap (v0.4.0)</div>
+        <details style="max-width: 800px; margin: 2rem auto 0; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--bg-primary);">
+          <summary style="cursor: pointer; font-weight: 600; color: var(--accent); list-style: none;">
+            How it works under the hood →
+          </summary>
+          <div style="margin-top: 1.5rem;">
+            <div class="table-wrapper">
+              <table class="pricing-table">
+                <thead>
+                  <tr>
+                    <th>Scenario</th>
+                    <th>What happens</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>First launch</strong></td>
+                    <td>Scans all JSONL files, builds SQLite cache</td>
+                    <td>~20s (one-time)</td>
+                  </tr>
+                  <tr class="highlight-row">
+                    <td><strong>Every next launch</strong></td>
+                    <td>Loads from cache, re-parses only changed files</td>
+                    <td><strong>224ms</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>New session created</strong></td>
+                    <td>File watcher detects change, updates cache incrementally</td>
+                    <td>&lt;500ms</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <ul class="optimization-list" style="margin-top: 1rem;">
+              <li><strong>SQLite with WAL mode</strong>: concurrent reads while writing</li>
+              <li><strong>mtime-based invalidation</strong>: only re-parse files that actually changed</li>
+              <li><strong>Metadata-only scan</strong>: full session content loaded on-demand, not at startup</li>
+              <li><strong>Parallel directory scanning</strong>: multiple project folders scanned concurrently</li>
+            </ul>
           </div>
-        </div>
-
-        <h3 class="subsection-title">Optimization Techniques</h3>
-
-        <div class="table-wrapper">
-          <table class="pricing-table">
-            <thead>
-              <tr>
-                <th>Metric</th>
-                <th>Before</th>
-                <th>After</th>
-                <th>Improvement</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Cold cache</td>
-                <td>20.08s</td>
-                <td>20.08s</td>
-                <td>Baseline (first run)</td>
-              </tr>
-              <tr class="highlight-row">
-                <td><strong>Warm cache</strong></td>
-                <td>20.08s</td>
-                <td><strong>224ms</strong></td>
-                <td><strong>89.67x faster</strong></td>
-              </tr>
-              <tr>
-                <td>Cache hit rate</td>
-                <td>0%</td>
-                <td>&gt;99%</td>
-                <td>After first run</td>
-              </tr>
-              <tr>
-                <td>Sessions handled</td>
-                <td>3,550</td>
-                <td>10,000+</td>
-                <td>Production-ready</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <ul class="optimization-list">
-          <li><strong>SQLite metadata cache</strong> with WAL mode</li>
-          <li><strong>mtime-based invalidation</strong> for efficient updates</li>
-          <li><strong>Lazy session content loading</strong> (metadata-only scan)</li>
-          <li><strong>Concurrent directory scanning</strong> with tokio::spawn</li>
-          <li><strong>bincode serialization</strong> for compact storage</li>
-        </ul>
-
-        <!-- CTA after Performance -->
-        <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, var(--accent) 0%, #d97706 100%); border-radius: 12px;">
-          <h3 style="color: white; margin-bottom: 1rem; font-size: 1.5rem;">Ready to experience 89x speedup?</h3>
-          <p style="color: rgba(255,255,255,0.9); margin-bottom: 1.5rem;">Join developers monitoring 10K+ Claude Code sessions with instant cache hits.</p>
-          <a href="#install" class="btn" style="background: white; color: var(--accent); font-weight: 600; padding: 0.75rem 2rem; text-decoration: none; border-radius: 6px; display: inline-block; transition: transform 0.2s;">
-            Install ccboard now →
-          </a>
-        </div>
+        </details>
       </div>
     </section>
 
@@ -564,49 +540,124 @@
           <button class="interface-tab" data-interface="web">🌐 Web</button>
         </div>
 
-        <div class="screenshot-content active" id="tab-dashboard">
-          <img src="assets/screenshots/tui/tui-01-dashboard.png" alt="Dashboard - Key metrics, model usage, MCP servers, and 7-day activity sparklines" loading="lazy">
-          <p class="screenshot-caption">Dashboard with overview stats and 7-day activity (v0.5.0)</p>
+        <!-- TUI Interface -->
+        <div class="interface-content active" id="interface-tui">
+          <div class="screenshots-tabs">
+            <button class="screenshot-tab active" data-interface="tui" data-tab="dashboard">Dashboard</button>
+            <button class="screenshot-tab" data-interface="tui" data-tab="sessions">Sessions</button>
+            <button class="screenshot-tab" data-interface="tui" data-tab="config">Config</button>
+            <button class="screenshot-tab" data-interface="tui" data-tab="hooks">Hooks</button>
+            <button class="screenshot-tab" data-interface="tui" data-tab="agents">Agents</button>
+            <button class="screenshot-tab" data-interface="tui" data-tab="costs">Costs</button>
+            <button class="screenshot-tab" data-interface="tui" data-tab="history">History</button>
+            <button class="screenshot-tab" data-interface="tui" data-tab="mcp">MCP</button>
+            <button class="screenshot-tab" data-interface="tui" data-tab="analytics">Analytics</button>
+          </div>
+
+          <div class="screenshot-content active" id="tab-tui-dashboard">
+            <img src="assets/screenshots/tui/tui-01-dashboard.png" alt="TUI Dashboard - Key Metrics & Model Usage" loading="lazy">
+            <p class="screenshot-caption">Dashboard with overview stats and 7-day activity</p>
+          </div>
+
+          <div class="screenshot-content" id="tab-tui-sessions">
+            <img src="assets/screenshots/tui/tui-02-sessions-live.png" alt="TUI Sessions Browser with live process monitoring" loading="lazy">
+            <p class="screenshot-caption">Sessions browser with live CPU/RAM/Tokens monitoring</p>
+          </div>
+
+          <div class="screenshot-content" id="tab-tui-config">
+            <img src="assets/screenshots/tui/tui-03-config.png" alt="TUI Configuration Viewer" loading="lazy">
+            <p class="screenshot-caption">Configuration viewer with 4-column diff</p>
+          </div>
+
+          <div class="screenshot-content" id="tab-tui-hooks">
+            <img src="assets/screenshots/tui/tui-04-hooks.png" alt="TUI Hooks Management" loading="lazy">
+            <p class="screenshot-caption">Hooks management with syntax highlighting</p>
+          </div>
+
+          <div class="screenshot-content" id="tab-tui-agents">
+            <img src="assets/screenshots/tui/tui-05-agents.png" alt="TUI Agents Manager" loading="lazy">
+            <p class="screenshot-caption">Agents manager with custom persona configurations</p>
+          </div>
+
+          <div class="screenshot-content" id="tab-tui-costs">
+            <img src="assets/screenshots/tui/tui-06-costs-billing-blocks.png" alt="TUI Cost Analytics" loading="lazy">
+            <p class="screenshot-caption">Cost analytics with billing blocks and token breakdown</p>
+          </div>
+
+          <div class="screenshot-content" id="tab-tui-history">
+            <img src="assets/screenshots/tui/tui-07-history.png" alt="TUI History Search" loading="lazy">
+            <p class="screenshot-caption">History search with temporal patterns</p>
+          </div>
+
+          <div class="screenshot-content" id="tab-tui-mcp">
+            <img src="assets/screenshots/tui/tui-08-mcp.png" alt="TUI MCP Servers Status" loading="lazy">
+            <p class="screenshot-caption">MCP servers status with environment variables</p>
+          </div>
+
+          <div class="screenshot-content" id="tab-tui-analytics">
+            <img src="assets/screenshots/tui/tui-09-analytics-overview.png" alt="TUI Analytics with budget tracking and trends" loading="lazy">
+            <p class="screenshot-caption">Advanced analytics with budget tracking and trends</p>
+          </div>
         </div>
 
-        <div class="screenshot-content" id="tab-sessions">
-          <img src="assets/screenshots/tui/tui-02-sessions-live.png" alt="Sessions browser with live Claude processes showing CPU/RAM/Tokens monitoring" loading="lazy">
-          <p class="screenshot-caption">Sessions with live process monitoring (CPU/RAM/Tokens) - NEW in v0.4.0</p>
-        </div>
+        <!-- Web Interface -->
+        <div class="interface-content" id="interface-web">
+          <div class="screenshots-tabs">
+            <button class="screenshot-tab active" data-interface="web" data-tab="dashboard">Dashboard</button>
+            <button class="screenshot-tab" data-interface="web" data-tab="sessions">Sessions</button>
+            <button class="screenshot-tab" data-interface="web" data-tab="config">Config</button>
+            <button class="screenshot-tab" data-interface="web" data-tab="hooks">Hooks</button>
+            <button class="screenshot-tab" data-interface="web" data-tab="agents">Agents</button>
+            <button class="screenshot-tab" data-interface="web" data-tab="costs">Costs</button>
+            <button class="screenshot-tab" data-interface="web" data-tab="history">History</button>
+            <button class="screenshot-tab" data-interface="web" data-tab="mcp">MCP</button>
+            <button class="screenshot-tab" data-interface="web" data-tab="analytics">Analytics</button>
+          </div>
 
-        <div class="screenshot-content" id="tab-config">
-          <img src="assets/screenshots/tui/tui-03-config.png" alt="Configuration viewer with 4-column diff (global/project/local/merged)" loading="lazy">
-          <p class="screenshot-caption">Configuration viewer with 4-column diff showing cascading settings</p>
-        </div>
+          <div class="screenshot-content active" id="tab-web-dashboard">
+            <img src="assets/screenshots/web/web-01-dashboard.png" alt="Web Dashboard - Real-time Metrics" loading="lazy">
+            <p class="screenshot-caption">Web dashboard with interactive charts and live stats</p>
+          </div>
 
-        <div class="screenshot-content" id="tab-hooks">
-          <img src="assets/screenshots/tui/tui-04-hooks.png" alt="Hooks management with event-based triggers and bash syntax highlighting" loading="lazy">
-          <p class="screenshot-caption">Hooks management with syntax highlighting and test mode</p>
-        </div>
+          <div class="screenshot-content" id="tab-web-sessions">
+            <img src="assets/screenshots/web/web-02-sessions-list.png" alt="Web Sessions List" loading="lazy">
+            <p class="screenshot-caption">Browse sessions with search, filters, and pagination</p>
+          </div>
 
-        <div class="screenshot-content" id="tab-agents">
-          <img src="assets/screenshots/tui/tui-05-agents.png" alt="Agents manager with frontmatter YAML parsing and invocation stats" loading="lazy">
-          <p class="screenshot-caption">Agents manager with invocation stats and custom persona configurations</p>
-        </div>
+          <div class="screenshot-content" id="tab-web-config">
+            <img src="assets/screenshots/web/web-03-config.png" alt="Web Configuration Panel" loading="lazy">
+            <p class="screenshot-caption">Visual configuration editor with live validation</p>
+          </div>
 
-        <div class="screenshot-content" id="tab-costs">
-          <img src="assets/screenshots/tui/tui-06-costs-billing-blocks.png" alt="Cost analytics showing billing blocks with token breakdown by time period" loading="lazy">
-          <p class="screenshot-caption">Costs tab - Billing Blocks view with token analytics</p>
-        </div>
+          <div class="screenshot-content" id="tab-web-hooks">
+            <img src="assets/screenshots/web/web-04-hooks.png" alt="Web Hooks Manager" loading="lazy">
+            <p class="screenshot-caption">Hook editor with syntax highlighting and test runner</p>
+          </div>
 
-        <div class="screenshot-content" id="tab-history">
-          <img src="assets/screenshots/tui/tui-07-history.png" alt="History search with full-text search across sessions and temporal filters" loading="lazy">
-          <p class="screenshot-caption">History search with temporal patterns and CSV/JSON export</p>
-        </div>
+          <div class="screenshot-content" id="tab-web-agents">
+            <img src="assets/screenshots/web/web-05-agents.png" alt="Web Agents Browser" loading="lazy">
+            <p class="screenshot-caption">Browse and configure custom AI personas</p>
+          </div>
 
-        <div class="screenshot-content" id="tab-mcp">
-          <img src="assets/screenshots/tui/tui-08-mcp.png" alt="MCP servers management with status detection and environment variables display" loading="lazy">
-          <p class="screenshot-caption">MCP servers status with auto-detection and env vars</p>
-        </div>
+          <div class="screenshot-content" id="tab-web-costs">
+            <img src="assets/screenshots/web/web-06-costs-overview.png" alt="Web Cost Dashboard" loading="lazy">
+            <p class="screenshot-caption">Interactive cost analytics with charts and breakdowns</p>
+          </div>
 
-        <div class="screenshot-content" id="tab-analytics">
-          <img src="assets/screenshots/tui/tui-09-analytics-overview.png" alt="Analytics tab with budget tracking, trends, patterns, and insights" loading="lazy">
-          <p class="screenshot-caption">Advanced analytics with budget tracking and trends (NEW tab v0.5.0)</p>
+          <div class="screenshot-content" id="tab-web-history">
+            <img src="assets/screenshots/web/web-07-history.png" alt="Web History Timeline" loading="lazy">
+            <p class="screenshot-caption">Timeline view of all Claude Code activities</p>
+          </div>
+
+          <div class="screenshot-content" id="tab-web-mcp">
+            <img src="assets/screenshots/web/web-08-mcp.png" alt="Web MCP Status" loading="lazy">
+            <p class="screenshot-caption">MCP server monitoring with real-time status</p>
+          </div>
+
+          <div class="screenshot-content" id="tab-web-analytics">
+            <img src="assets/screenshots/web/web-09-analytics-overview.png" alt="Web Analytics Dashboard" loading="lazy">
+            <p class="screenshot-caption">Advanced analytics with forecasting and insights</p>
+          </div>
         </div>
       </div>
     </section>
