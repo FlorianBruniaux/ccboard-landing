@@ -34,41 +34,48 @@ Ne JAMAIS modifier les stats ou métriques ici sans avoir d'abord mis à jour le
 
 | Métrique | Valeur | Source |
 |----------|--------|--------|
-| Version | `0.5.0` | Cargo.toml |
+| Version | `0.5.2` | Cargo.toml |
 | Tabs | `9` | Feature cards count (Dashboard, Sessions, Config, Hooks, Agents, Costs, History, MCP, Analytics) |
-| Tests | `234` | `cargo test --all` output |
-| Binary size | `5.8MB` | Release binary size |
+| Tests | `281` | `cargo test --all` output |
+| Binary size | `4.2MB` | Release binary size |
 | Speedup | `89x` | Cache benchmark (20s → 224ms) |
 | Cache hit rate | `>99%` | Performance metrics |
 
 ## Emplacements des stats dans index.html
 
-### Version (0.5.0)
-- Ligne 58: Schema.org `"softwareVersion": "0.5.0"`
-- Footer (ligne ~692): Version badge
+### Version (0.5.2)
+- Ligne 94: Schema.org `"softwareVersion": "0.5.2"`
+- Footer: Version badge (cheatsheet/index.html)
 
 ### Tabs count (9)
 - Ligne 6-7: `<title>` and meta description
-- Ligne 18: `og:description`
-- Ligne 25: `twitter:description`
-- Ligne 127: Hero stats section
-- Ligne 200+: Features grid (9 feature cards)
+- Ligne 22: `og:description`
+- Ligne 32: `twitter:description`
+- Hero stats section
+- Features grid (9 feature cards)
 
-### Tests count (234)
-- Ligne 7: Meta description
-- Ligne 18: `og:description`
-- Ligne 25: `twitter:description`
-- Ligne 127: Hero stats section
+### Tests count (281)
+- Ligne 22: `og:description`
+- Ligne 32: `twitter:description`
+- Hero stats section
+- cheatsheet/index.html
 
-### Binary size (5.8MB)
+### Binary size (4.2MB)
 - Ligne 7: Meta description
-- Ligne 127: Hero stats section
+- Ligne 32: `twitter:description`
+- Ligne 65: Schema.org description
+- Ligne 120: FAQ answer (Schema.org)
+- Ligne 317: Hero stats section
+- Ligne 760: Competitive landscape text
+- Ligne 868: Comparison table
+- Ligne 1070: FAQ section HTML
+- cheatsheet/index.html
 
 ### Speedup (89x)
 - Ligne 7: Meta description
-- Ligne 18: `og:description`
-- Ligne 25: `twitter:description`
-- Ligne 127: Hero stats section
+- Ligne 22: `og:description`
+- Ligne 32: `twitter:description`
+- Hero stats section
 - Performance section: Details on 20s → 224ms improvement
 
 ## Version Sync Policy
