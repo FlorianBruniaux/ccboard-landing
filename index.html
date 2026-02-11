@@ -324,7 +324,7 @@
           <div class="feature-card">
             <div class="feature-icon">🤖</div>
             <h3 class="feature-title">Agents</h3>
-            <p class="feature-desc">Browse agents, commands, and skills with frontmatter YAML parsing.</p>
+            <p class="feature-desc">Browse agents, commands, and skills with frontmatter YAML parsing and invocation stats.</p>
           </div>
 
           <div class="feature-card">
@@ -336,7 +336,7 @@
           <div class="feature-card">
             <div class="feature-icon">🕐</div>
             <h3 class="feature-title">History</h3>
-            <p class="feature-desc">Full-text search across sessions with temporal patterns and filters.</p>
+            <p class="feature-desc">Full-text search across sessions with temporal patterns, filters, and CSV/JSON export.</p>
           </div>
 
           <div class="feature-card">
@@ -376,6 +376,12 @@
             <div class="stat-value">&gt;99%</div>
             <div class="stat-label">Cache Hit Rate</div>
             <div class="stat-detail">After first run</div>
+          </div>
+
+          <div class="performance-stat">
+            <div class="stat-value">50x</div>
+            <div class="stat-label">Memory Reduction</div>
+            <div class="stat-detail">Arc migration from DashMap (v0.4.0)</div>
           </div>
         </div>
 
@@ -448,48 +454,48 @@
         </div>
 
         <div class="screenshot-content active" id="tab-dashboard">
-          <img src="assets/screenshots/dashboard.png" alt="Dashboard - Key Metrics & Model Usage" loading="lazy">
-          <p class="screenshot-caption">Dashboard with overview stats and 7-day activity</p>
+          <img src="assets/screenshots/tui/tui-01-dashboard.png" alt="Dashboard - Key metrics, model usage, MCP servers, and 7-day activity sparklines" loading="lazy">
+          <p class="screenshot-caption">Dashboard with overview stats and 7-day activity (v0.5.0)</p>
         </div>
 
         <div class="screenshot-content" id="tab-sessions">
-          <img src="assets/screenshots/sessions.png" alt="Sessions Browser" loading="lazy">
-          <p class="screenshot-caption">Sessions browser with project tree and search</p>
+          <img src="assets/screenshots/tui/tui-02-sessions-live.png" alt="Sessions browser with live Claude processes showing CPU/RAM/Tokens monitoring" loading="lazy">
+          <p class="screenshot-caption">Sessions with live process monitoring (CPU/RAM/Tokens) - NEW in v0.4.0</p>
         </div>
 
         <div class="screenshot-content" id="tab-config">
-          <img src="assets/screenshots/config.png" alt="Configuration Viewer" loading="lazy">
-          <p class="screenshot-caption">Configuration viewer with 4-column diff</p>
+          <img src="assets/screenshots/tui/tui-03-config.png" alt="Configuration viewer with 4-column diff (global/project/local/merged)" loading="lazy">
+          <p class="screenshot-caption">Configuration viewer with 4-column diff showing cascading settings</p>
         </div>
 
         <div class="screenshot-content" id="tab-hooks">
-          <img src="assets/screenshots/hooks.png" alt="Hooks Management" loading="lazy">
-          <p class="screenshot-caption">Hooks management with syntax highlighting</p>
+          <img src="assets/screenshots/tui/tui-04-hooks.png" alt="Hooks management with event-based triggers and bash syntax highlighting" loading="lazy">
+          <p class="screenshot-caption">Hooks management with syntax highlighting and test mode</p>
         </div>
 
         <div class="screenshot-content" id="tab-agents">
-          <img src="assets/screenshots/agents.png" alt="Agents Manager" loading="lazy">
-          <p class="screenshot-caption">Agents manager with custom persona configurations</p>
+          <img src="assets/screenshots/tui/tui-05-agents.png" alt="Agents manager with frontmatter YAML parsing and invocation stats" loading="lazy">
+          <p class="screenshot-caption">Agents manager with invocation stats and custom persona configurations</p>
         </div>
 
         <div class="screenshot-content" id="tab-costs">
-          <img src="assets/screenshots/costs.png" alt="Cost Analytics" loading="lazy">
-          <p class="screenshot-caption">Cost analytics with token breakdown</p>
+          <img src="assets/screenshots/tui/tui-06-costs-billing-blocks.png" alt="Cost analytics showing billing blocks with token breakdown by time period" loading="lazy">
+          <p class="screenshot-caption">Costs tab - Billing Blocks view with token analytics</p>
         </div>
 
         <div class="screenshot-content" id="tab-history">
-          <img src="assets/screenshots/history.png" alt="History Search" loading="lazy">
-          <p class="screenshot-caption">History search with temporal patterns</p>
+          <img src="assets/screenshots/tui/tui-07-history.png" alt="History search with full-text search across sessions and temporal filters" loading="lazy">
+          <p class="screenshot-caption">History search with temporal patterns and CSV/JSON export</p>
         </div>
 
         <div class="screenshot-content" id="tab-mcp">
-          <img src="assets/screenshots/mcp.png" alt="MCP Servers Status" loading="lazy">
-          <p class="screenshot-caption">MCP servers status with environment variables</p>
+          <img src="assets/screenshots/tui/tui-08-mcp.png" alt="MCP servers management with status detection and environment variables display" loading="lazy">
+          <p class="screenshot-caption">MCP servers status with auto-detection and env vars</p>
         </div>
 
         <div class="screenshot-content" id="tab-analytics">
-          <img src="assets/screenshots/aide.png" alt="Analytics Insights" loading="lazy">
-          <p class="screenshot-caption">Advanced analytics with budget tracking and trends</p>
+          <img src="assets/screenshots/tui/tui-09-analytics-overview.png" alt="Analytics tab with budget tracking, trends, patterns, and insights" loading="lazy">
+          <p class="screenshot-caption">Advanced analytics with budget tracking and trends (NEW tab v0.5.0)</p>
         </div>
       </div>
     </section>
@@ -641,21 +647,34 @@
         <div class="install-hero">
           <p class="install-intro">Get started in 30 seconds:</p>
 
-          <h3 style="margin-top: 2rem;">Recommended: cargo install</h3>
+          <h3 style="margin-top: 2rem;">Recommended: Homebrew</h3>
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">bash</span>
               <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">📋 Copy</button>
             </div>
-            <pre><code>cargo install ccboard</code></pre>
+            <pre><code>brew tap FlorianBruniaux/tap
+brew install ccboard</code></pre>
           </div>
 
           <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-secondary);">
-            <strong>Requirements:</strong> Rust 1.85+ (Claude Code users already have Rust installed)
+            <strong>macOS & Linux users:</strong> Fastest installation method with automatic updates
           </p>
 
+          <details style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+            <summary style="cursor: pointer; font-weight: 600; color: var(--accent);">Alternative: cargo install</summary>
+            <div class="code-block" style="margin-top: 1rem;">
+              <div class="code-header">
+                <span class="code-lang">bash</span>
+                <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">📋 Copy</button>
+              </div>
+              <pre><code>cargo install ccboard</code></pre>
+            </div>
+            <p style="margin-top: 0.5rem;"><strong>Requirements:</strong> Rust 1.85+ (Claude Code users already have Rust installed)</p>
+          </details>
+
           <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
-            <strong>Alternative:</strong> Pre-built binaries available from
+            <strong>Pre-built binaries:</strong> Available from
             <a href="https://github.com/FlorianBruniaux/ccboard/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>
           </p>
         </div>
@@ -680,6 +699,29 @@ ccboard both --port 3333
 # Stats summary
 ccboard stats</code></pre>
           </div>
+        </div>
+
+        <div class="install-cli">
+          <h3>CLI Commands <span style="font-size: 0.8rem; color: var(--accent); font-weight: normal;">(v0.4.0+)</span></h3>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">📋 Copy</button>
+            </div>
+            <pre><code># Session management
+ccboard search "query"       # Search sessions by content
+ccboard recent 10            # Show 10 most recent sessions
+ccboard info &lt;session-id&gt;    # Display detailed session metadata
+ccboard resume &lt;session-id&gt;  # Resume session in Claude CLI
+
+# Maintenance
+ccboard clear-cache          # Clear SQLite cache (after upgrades)</code></pre>
+          </div>
+
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+            All commands support JSON output: <code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">ccboard recent 10 --json</code>
+          </p>
         </div>
 
         <div class="install-usage">
