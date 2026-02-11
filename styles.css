@@ -72,9 +72,9 @@
     --text-secondary: #c0c0c0; /* Augmenté de #9ca3af pour WCAG */
     --text-muted: #8b949e;
 
-    /* Accent: Orange/Rust */
-    --accent: #f97316;           /* Orange 500 */
-    --accent-hover: #fb923c;     /* Orange 400 */
+    /* Accent: Orange/Rust désaturé pour dark mode */
+    --accent: hsl(25, 65%, 58%);        /* Orange désaturé */
+    --accent-hover: hsl(25, 70%, 63%);
     --accent-secondary: #ea580c; /* Orange 600 */
     --accent-secondary-hover: #f97316; /* Orange 500 */
 
@@ -659,7 +659,7 @@ section {
 }
 
 .stat-label {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: var(--space-xs);
@@ -863,6 +863,47 @@ section {
     background-color: var(--bg-secondary);
 }
 
+/* Interface Tabs (TUI/Web) */
+.interface-tabs {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.interface-tab {
+    padding: var(--space-md) var(--space-lg);
+    background: none;
+    border: 2px solid var(--border);
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.interface-tab:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background-color: var(--accent-highlight-bg);
+}
+
+.interface-tab.active {
+    border-color: var(--accent);
+    color: var(--bg-primary);
+    background-color: var(--accent);
+}
+
+.interface-content {
+    display: none;
+}
+
+.interface-content.active {
+    display: block;
+}
+
+/* Screenshot Tabs (within interface) */
 .screenshots-tabs {
     display: flex;
     justify-content: center;
@@ -1336,6 +1377,7 @@ body,
 .performance-stat,
 .code-block,
 .pricing-table tr,
+.interface-tab,
 .screenshot-tab,
 .search-modal-content,
 .search-trigger,
@@ -1355,6 +1397,7 @@ body,
     .performance-stat,
     .code-block,
     .pricing-table tr,
+    .interface-tab,
     .screenshot-tab,
     .search-modal-content,
     .search-trigger,

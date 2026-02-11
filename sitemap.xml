@@ -47,4 +47,10 @@
       <image:title>ccboard Analytics - Budget tracking, trends, and insights</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://ccboard.bruniaux.com/cheatsheet/</loc>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

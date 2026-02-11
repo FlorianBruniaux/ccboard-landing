@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ccboard - The Dashboard Claude Code Deserves</title>
-  <meta name="description" content="Monitor sessions, analyze costs, manage config — 9 interactive tabs in a 5.8MB binary. 89x faster with SQLite cache.">
+  <meta name="description" content="Monitor sessions, analyze costs, manage config. 9 interactive tabs in a 5.8MB binary. 89x faster with SQLite cache.">
 
   <!-- SEO -->
   <link rel="canonical" href="https://ccboard.bruniaux.com/">
@@ -23,7 +23,7 @@
   <meta property="og:description" content="Monitor sessions, analyze costs, manage config with 9 interactive tabs. Rust TUI + Web, 89x speedup, 281 tests.">
   <meta property="og:url" content="https://ccboard.bruniaux.com/">
   <meta property="og:site_name" content="ccboard">
-  <meta property="og:image" content="https://ccboard.bruniaux.com/assets/screenshots/dashboard.png">
+  <meta property="og:image" content="https://ccboard.bruniaux.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
@@ -31,7 +31,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ccboard - TUI/Web Dashboard for Claude Code">
   <meta name="twitter:description" content="9 tabs, 89x speedup, 281 tests, 5.8MB binary.">
-  <meta name="twitter:image" content="https://ccboard.bruniaux.com/assets/screenshots/dashboard.png">
+  <meta name="twitter:image" content="https://ccboard.bruniaux.com/og-image.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -56,96 +56,127 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "ccboard",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "macOS, Linux, Windows",
-    "description": "TUI/Web dashboard for Claude Code management. Monitor sessions, analyze costs, manage config with 9 interactive tabs.",
-    "url": "https://github.com/FlorianBruniaux/ccboard",
-    "author": {
-      "@type": "Person",
-      "name": "Florian Bruniaux"
-    },
-    "license": "https://opensource.org/licenses/MIT",
-    "softwareVersion": "0.5.2",
-    "datePublished": "2025-01-15",
-    "dateModified": "2026-02-11",
-    "potentialAction": {
-      "@type": "DownloadAction",
-      "target": "https://github.com/FlorianBruniaux/ccboard/releases/latest"
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "datePublished": "2025-01-15",
-    "dateModified": "2026-02-11",
-    "mainEntity": [
+    "@graph": [
       {
-        "@type": "Question",
-        "name": "What is ccboard?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ccboard is a unified TUI/Web dashboard for Claude Code management. It provides 9 interactive tabs for monitoring sessions, analyzing costs, managing config, hooks, agents, and MCP servers. Built in Rust with a 5.8MB binary."
+        "@type": "WebPage",
+        "@id": "https://ccboard.bruniaux.com/#webpage",
+        "url": "https://ccboard.bruniaux.com/",
+        "name": "ccboard - The Dashboard Claude Code Deserves",
+        "description": "Monitor sessions, analyze costs, manage config. 9 interactive tabs in a 5.8MB binary. 89x faster with SQLite cache.",
+        "isPartOf": { "@id": "https://ccboard.bruniaux.com/#website" },
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [".hero-title", ".hero-tagline", ".faq-answer"]
         }
       },
       {
-        "@type": "Question",
-        "name": "How does the cache work?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ccboard uses SQLite to cache session metadata with mtime-based invalidation. This provides an 89x speedup (20s → 224ms) after the first run, with >99% cache hit rate. The cache only stores metadata; full session content is loaded on-demand."
+        "@type": "SoftwareApplication",
+        "@id": "https://ccboard.bruniaux.com/#software",
+        "name": "ccboard",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "macOS, Linux, Windows",
+        "description": "TUI/Web dashboard for Claude Code management. Monitor sessions, analyze costs, manage config with 9 interactive tabs.",
+        "url": "https://github.com/FlorianBruniaux/ccboard",
+        "downloadUrl": "https://crates.io/crates/ccboard",
+        "screenshot": "https://ccboard.bruniaux.com/assets/screenshots/tui/tui-01-dashboard.png",
+        "author": {
+          "@type": "Person",
+          "name": "Florian Bruniaux",
+          "url": "https://github.com/FlorianBruniaux"
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Florian Bruniaux",
+          "url": "https://github.com/FlorianBruniaux"
+        },
+        "datePublished": "2025-01-15",
+        "dateModified": "2026-02-11",
+        "license": "https://opensource.org/licenses/MIT",
+        "softwareVersion": "0.5.2",
+        "mainEntityOfPage": { "@id": "https://ccboard.bruniaux.com/#webpage" },
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Developers using Claude Code"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "potentialAction": {
+          "@type": "DownloadAction",
+          "target": "https://github.com/FlorianBruniaux/ccboard/releases/latest"
         }
       },
       {
-        "@type": "Question",
-        "name": "Does it work on Linux/Windows?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes! ccboard supports macOS (fully tested), Linux (community-tested), and Windows (experimental). Platform-specific features like file manager integration are cross-platform compatible."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How much does it cost?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ccboard is free and open-source, licensed under MIT OR Apache-2.0. No subscription, no hidden costs. The cost analytics features help you track your Claude API usage."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I use the web interface?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes! Run ccboard web --port 3333 for the web UI, or ccboard both to run TUI + Web simultaneously. The web interface has 100% feature parity with the TUI (9 pages)."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does it support real-time monitoring?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes! ccboard includes a file watcher that monitors ~/.claude changes with 500ms debounce. Live updates appear in both TUI and Web (via Server-Sent Events). The Sessions tab also detects live Claude processes with CPU/RAM/Token metrics."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What's the difference with ccusage/agtrace?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ccusage (10K stars) is a CLI cost tracker (no dashboard). agtrace (23 stars) focuses on observability with MCP self-reflection. ccboard is the only multi-concern dashboard combining config, hooks, agents, MCP status, and advanced analytics with forecasting in a single TUI+Web binary."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I contribute?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Contributions welcome! See CONTRIBUTING.md for guidelines. Fork the repo, create a feature branch, run tests (cargo test --all), and open a Pull Request. Zero clippy warnings required."
-        }
+        "@type": "FAQPage",
+        "@id": "https://ccboard.bruniaux.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is ccboard?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ccboard is a unified TUI/Web dashboard for Claude Code management. It provides 9 interactive tabs for monitoring sessions, analyzing costs, managing config, hooks, agents, and MCP servers. Built in Rust with a 5.8MB binary."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the cache work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ccboard uses SQLite to cache session metadata with mtime-based invalidation. This provides an 89x speedup (20s → 224ms) after the first run, with >99% cache hit rate. The cache only stores metadata; full session content is loaded on-demand."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it work on Linux/Windows?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! ccboard supports macOS (fully tested), Linux (community-tested), and Windows (experimental). Platform-specific features like file manager integration are cross-platform compatible."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does it cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ccboard is free and open-source, licensed under MIT OR Apache-2.0. No subscription, no hidden costs. The cost analytics features help you track your Claude API usage."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use the web interface?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Run ccboard web --port 3333 for the web UI, or ccboard both to run TUI + Web simultaneously. The web interface has 100% feature parity with the TUI (9 pages)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it support real-time monitoring?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! ccboard includes a file watcher that monitors ~/.claude changes with 500ms debounce. Live updates appear in both TUI and Web (via Server-Sent Events). The Sessions tab also detects live Claude processes with CPU/RAM/Token metrics."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What's the difference with ccusage/agtrace?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ccusage (10K stars) is a CLI cost tracker (no dashboard). agtrace (23 stars) focuses on observability with MCP self-reflection. ccboard is the only multi-concern dashboard combining config, hooks, agents, MCP status, and advanced analytics with forecasting in a single TUI+Web binary."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I contribute?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Contributions welcome! See CONTRIBUTING.md for guidelines. Fork the repo, create a feature branch, run tests (cargo test --all), and open a Pull Request. Zero clippy warnings required."
+            }
+          }
+        ]
       }
     ]
   }
@@ -427,7 +458,12 @@
     <!-- Performance Section -->
     <section id="performance" class="performance">
       <div class="container">
-        <h2 class="section-title">Performance First</h2>
+        <h2 class="section-title">Instant Startup, Even With Thousands of Sessions</h2>
+
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 2.5rem; color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6;">
+          Claude Code stores every session as a JSONL file in <code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">~/.claude</code>. After a few months, you accumulate thousands of files and gigabytes of data. Parsing all of that on every launch would take 20+ seconds.<br><br>
+          ccboard solves this with a <strong>local SQLite cache</strong>: it scans your files once, then loads from cache on every subsequent launch. The result?
+        </p>
 
         <!-- Metric Hero : 89x domination visuelle -->
         <div class="metric-hero">
@@ -440,14 +476,14 @@
         <div class="performance-stats-grid">
           <div class="performance-stat">
             <div class="stat-value">10K+</div>
-            <div class="stat-label">Sessions</div>
-            <div class="stat-detail">Handles effortlessly with warm cache</div>
+            <div class="stat-label">Sessions Supported</div>
+            <div class="stat-detail">Scales with your usage, no slowdown over time</div>
           </div>
 
           <div class="performance-stat">
             <div class="stat-value">&gt;99%</div>
             <div class="stat-label">Cache Hit Rate</div>
-            <div class="stat-detail">After first run</div>
+            <div class="stat-detail">Only changed files are re-parsed, the rest is instant</div>
           </div>
 
           <div class="performance-stat">
@@ -522,16 +558,10 @@
       <div class="container">
         <h2 class="section-title">See It In Action</h2>
 
-        <div class="screenshots-tabs">
-          <button class="screenshot-tab active" data-tab="dashboard">Dashboard</button>
-          <button class="screenshot-tab" data-tab="sessions">Sessions</button>
-          <button class="screenshot-tab" data-tab="config">Config</button>
-          <button class="screenshot-tab" data-tab="hooks">Hooks</button>
-          <button class="screenshot-tab" data-tab="agents">Agents</button>
-          <button class="screenshot-tab" data-tab="costs">Costs</button>
-          <button class="screenshot-tab" data-tab="history">History</button>
-          <button class="screenshot-tab" data-tab="mcp">MCP</button>
-          <button class="screenshot-tab" data-tab="analytics">Analytics</button>
+        <!-- Interface Tabs (TUI/Web) -->
+        <div class="interface-tabs">
+          <button class="interface-tab active" data-interface="tui">🖥️ TUI (Terminal)</button>
+          <button class="interface-tab" data-interface="web">🌐 Web</button>
         </div>
 
         <div class="screenshot-content active" id="tab-dashboard">
@@ -1159,6 +1189,7 @@ brew install ccboard</code></pre>
         </div>
 
         <nav class="footer-links" aria-label="Footer navigation">
+          <a href="https://florian.bruniaux.com/" target="_blank" rel="noopener">Portfolio</a>
           <a href="https://github.com/FlorianBruniaux/ccboard" target="_blank" rel="noopener">GitHub</a>
           <a href="#features">Features</a>
           <a href="#install">Install</a>
@@ -1209,15 +1240,34 @@ brew install ccboard</code></pre>
   <script src="search-data.js"></script>
   <script src="search.js"></script>
 
-  <!-- Screenshot Tabs -->
+  <!-- Interface & Screenshot Tabs -->
   <script>
+    // Interface tabs (TUI/Web)
+    document.querySelectorAll('.interface-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active from all interface tabs and contents
+        document.querySelectorAll('.interface-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.interface-content').forEach(c => c.classList.remove('active'));
+
+        // Activate clicked tab and its content
+        tab.classList.add('active');
+        document.getElementById('interface-' + tab.dataset.interface).classList.add('active');
+      });
+    });
+
+    // Screenshot tabs (within each interface)
     document.querySelectorAll('.screenshot-tab').forEach(tab => {
       tab.addEventListener('click', () => {
-        document.querySelectorAll('.screenshot-tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.screenshot-content').forEach(c => c.classList.remove('active'));
+        const interfaceType = tab.dataset.interface;
+        const interfaceContent = document.getElementById('interface-' + interfaceType);
 
+        // Remove active only within current interface
+        interfaceContent.querySelectorAll('.screenshot-tab').forEach(t => t.classList.remove('active'));
+        interfaceContent.querySelectorAll('.screenshot-content').forEach(c => c.classList.remove('active'));
+
+        // Activate clicked tab and its content
         tab.classList.add('active');
-        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+        document.getElementById('tab-' + interfaceType + '-' + tab.dataset.tab).classList.add('active');
       });
     });
 
