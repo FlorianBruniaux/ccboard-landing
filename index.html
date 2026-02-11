@@ -236,16 +236,11 @@
         </div>
 
         <!-- Title -->
-        <h1 class="hero-title">The Dashboard Claude Code Deserves</h1>
+        <h1 class="hero-title">Stop Guessing Your Claude Code Costs</h1>
 
-        <!-- Subtitle with TUI/Web emphasis -->
-        <p class="hero-subtitle" style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 0.5rem; font-weight: 500;">
-          <span style="color: var(--accent);">TUI + Web</span> • 100% Feature Parity • Real-time Monitoring
-        </p>
-
-        <!-- Tagline -->
-        <p class="hero-tagline">
-          Monitor sessions, analyze costs, manage config — 9 interactive tabs in a 5.8MB binary. 89x faster with SQLite cache.
+        <!-- Problem Statement -->
+        <p class="problem-statement">
+          Real-time monitoring • Budget alerts • 30-day forecasting
         </p>
 
         <!-- Demo GIF -->
@@ -253,28 +248,28 @@
           <img src="assets/demo.gif" alt="ccboard TUI demo showing session monitoring, live stats, and navigation" style="width: 100%; max-width: 800px; display: block; margin: 0 auto;">
         </div>
 
-        <!-- Stats -->
-        <div class="hero-stats">
+        <!-- Social Proof -->
+        <p class="social-proof">Trusted by developers monitoring 10,000+ sessions</p>
+
+        <!-- Single Primary CTA -->
+        <a href="#install" class="btn-primary-xl">Install with Homebrew</a>
+        <p class="secondary-cta">or <a href="https://github.com/FlorianBruniaux/ccboard" target="_blank" rel="noopener" onclick="gtag('event', 'github_click', {'project': 'ccboard', 'link_type': 'hero_cta'})">view on GitHub</a></p>
+
+        <!-- Stats (kept for reference) -->
+        <div class="hero-stats" style="margin-top: 2rem;">
           <span class="stat"><strong>9</strong> tabs</span>
           <span class="stat"><strong>281</strong> tests</span>
           <span class="stat"><strong>89x</strong> speedup</span>
           <span class="stat"><strong>5.8MB</strong> binary</span>
         </div>
 
-        <!-- CTAs -->
-        <div class="hero-ctas">
-          <a href="#install" class="btn btn-primary">Quick Install</a>
-          <a href="https://github.com/FlorianBruniaux/ccboard" class="btn btn-secondary" target="_blank" rel="noopener" onclick="gtag('event', 'github_click', {'project': 'ccboard', 'link_type': 'hero_cta'})">View on GitHub</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Architecture Section -->
-    <section id="architecture" class="architecture">
-      <div class="container">
-        <h2 class="section-title">How It Works</h2>
-        <div class="architecture-diagram">
-          <pre class="ascii-diagram">
+        <!-- Architecture : Collapsible for progressive disclosure -->
+        <details class="hero-architecture" style="margin-top: 2rem;">
+          <summary style="cursor: pointer; color: var(--accent); font-weight: 600; text-align: center; padding: 1rem; border: 1px dashed var(--border); border-radius: 8px; transition: background 0.2s;">
+            📐 View Architecture Diagram
+          </summary>
+          <div style="margin-top: 1.5rem;">
+            <pre class="ascii-diagram" style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem;">
 ┌─────────────────────────────────────────────────┐
 │                  ccboard                        │
 │              (Binary CLI)                       │
@@ -295,71 +290,114 @@
         │  (Data layer +     │
         │   SQLite cache)    │
         └────────────────────┘
-          </pre>
-        </div>
+            </pre>
+          </div>
+        </details>
       </div>
     </section>
+
+    <!-- Architecture Section : NOW IN HERO (collapsible) - Removed standalone section to reduce cognitive load -->
 
     <!-- Features Section -->
     <section id="features" class="features">
       <div class="container">
-        <h2 class="section-title">9 Interactive Tabs</h2>
+        <h2 class="section-title">Everything You Need to Monitor Claude Code</h2>
 
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h3 class="feature-title">Dashboard</h3>
-            <p class="feature-desc">Overview stats, model usage, MCP servers, 7-day activity, API usage estimation with plan budgets.</p>
+        <!-- Features regroupées en 3 workflows -->
+        <div class="features-workflows">
+          <div class="workflow-card">
+            <div class="workflow-icon">💰</div>
+            <h3>Cost Tracking</h3>
+            <p>Budget alerts, 30-day forecasting, billing blocks</p>
+            <ul class="workflow-tabs">
+              <li>Costs</li>
+              <li>Analytics</li>
+              <li>History</li>
+            </ul>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">🔍</div>
-            <h3 class="feature-title">Sessions</h3>
-            <p class="feature-desc">Browse all sessions with search, live Claude processes with CPU/RAM/Tokens, detail view.</p>
+          <div class="workflow-card">
+            <div class="workflow-icon">🔍</div>
+            <h3>Session Monitoring</h3>
+            <p>Live processes (CPU/RAM/Tokens), search, detail view</p>
+            <ul class="workflow-tabs">
+              <li>Sessions</li>
+              <li>Dashboard</li>
+            </ul>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">⚙️</div>
-            <h3 class="feature-title">Config</h3>
-            <p class="feature-desc">Cascading configuration editor (global/project/local) with 4-column diff view.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">🔗</div>
-            <h3 class="feature-title">Hooks</h3>
-            <p class="feature-desc">Event-based hook management with bash syntax highlighting and test mode.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">🤖</div>
-            <h3 class="feature-title">Agents</h3>
-            <p class="feature-desc">Browse agents, commands, and skills with frontmatter YAML parsing and invocation stats.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">💰</div>
-            <h3 class="feature-title">Costs</h3>
-            <p class="feature-desc">Token analytics with 4 tabs: Overview, By Model, Daily costs, Billing Blocks.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">🕐</div>
-            <h3 class="feature-title">History</h3>
-            <p class="feature-desc">Full-text search across sessions with temporal patterns, filters, and CSV/JSON export.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">🔌</div>
-            <h3 class="feature-title">MCP</h3>
-            <p class="feature-desc">Server management with status detection and env vars display.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">📈</div>
-            <h3 class="feature-title">Analytics</h3>
-            <p class="feature-desc">Advanced analytics with 4 sub-views: Budget tracking, Trends, Patterns, Insights.</p>
+          <div class="workflow-card">
+            <div class="workflow-icon">⚙️</div>
+            <h3>Config Management</h3>
+            <p>3-level merge, hooks, agents, MCP servers</p>
+            <ul class="workflow-tabs">
+              <li>Config</li>
+              <li>Hooks</li>
+              <li>Agents</li>
+              <li>MCP</li>
+            </ul>
           </div>
         </div>
+
+        <!-- Details collapsible : "View all 9 tabs" -->
+        <details class="features-all-tabs">
+          <summary>View all 9 tabs in detail →</summary>
+          <div class="features-grid" style="margin-top: 2rem;">
+            <div class="feature-card">
+              <div class="feature-icon">📊</div>
+              <h3 class="feature-title">Dashboard</h3>
+              <p class="feature-desc">Overview stats, model usage, MCP servers, 7-day activity, API usage estimation with plan budgets.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔍</div>
+              <h3 class="feature-title">Sessions</h3>
+              <p class="feature-desc">Browse all sessions with search, live Claude processes with CPU/RAM/Tokens, detail view.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">⚙️</div>
+              <h3 class="feature-title">Config</h3>
+              <p class="feature-desc">Cascading configuration editor (global/project/local) with 4-column diff view.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔗</div>
+              <h3 class="feature-title">Hooks</h3>
+              <p class="feature-desc">Event-based hook management with bash syntax highlighting and test mode.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🤖</div>
+              <h3 class="feature-title">Agents</h3>
+              <p class="feature-desc">Browse agents, commands, and skills with frontmatter YAML parsing and invocation stats.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">💰</div>
+              <h3 class="feature-title">Costs</h3>
+              <p class="feature-desc">Token analytics with 4 tabs: Overview, By Model, Daily costs, Billing Blocks.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🕐</div>
+              <h3 class="feature-title">History</h3>
+              <p class="feature-desc">Full-text search across sessions with temporal patterns, filters, and CSV/JSON export.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔌</div>
+              <h3 class="feature-title">MCP</h3>
+              <p class="feature-desc">Server management with status detection and env vars display.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">📈</div>
+              <h3 class="feature-title">Analytics</h3>
+              <p class="feature-desc">Advanced analytics with 4 sub-views: Budget tracking, Trends, Patterns, Insights.</p>
+            </div>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -368,13 +406,15 @@
       <div class="container">
         <h2 class="section-title">Performance First</h2>
 
-        <div class="performance-content">
-          <div class="performance-stat">
-            <div class="stat-value">89x</div>
-            <div class="stat-label">Faster Startup</div>
-            <div class="stat-detail">20s → 224ms with SQLite cache</div>
-          </div>
+        <!-- Metric Hero : 89x domination visuelle -->
+        <div class="metric-hero">
+          <div class="metric-value">89x</div>
+          <div class="metric-label">Faster Startup</div>
+          <div class="metric-detail">20s → 224ms with SQLite cache</div>
+        </div>
 
+        <!-- Stats secondaires : Grid compact -->
+        <div class="performance-stats-grid">
           <div class="performance-stat">
             <div class="stat-value">10K+</div>
             <div class="stat-label">Sessions</div>
@@ -1164,10 +1204,8 @@ brew install ccboard</code></pre>
 
       try {
         await navigator.clipboard.writeText(code);
-        button.textContent = '✓ Copied!';
-        setTimeout(() => {
-          button.textContent = '📋 Copy';
-        }, 2000);
+        button.classList.add('copied');
+        setTimeout(() => button.classList.remove('copied'), 2000);
       } catch (err) {
         console.error('Copy failed:', err);
       }
