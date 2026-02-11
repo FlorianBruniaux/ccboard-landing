@@ -1,10 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://ccboard.bruniaux.com/</loc>
     <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://ccboard.bruniaux.com/assets/demo.gif</image:loc>
+      <image:title>ccboard TUI demo - session monitoring, live stats, navigation</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ccboard.bruniaux.com/assets/screenshots/tui/tui-01-dashboard.png</image:loc>
+      <image:title>ccboard Dashboard - Key metrics, model usage, 7-day activity</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ccboard.bruniaux.com/assets/screenshots/tui/tui-02-sessions-live.png</image:loc>
+      <image:title>ccboard Sessions - Live Claude processes with CPU/RAM/Tokens</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ccboard.bruniaux.com/assets/screenshots/tui/tui-03-config.png</image:loc>
+      <image:title>ccboard Config - 4-column diff view for cascading settings</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ccboard.bruniaux.com/assets/screenshots/tui/tui-04-hooks.png</image:loc>
+      <image:title>ccboard Hooks - Event-based triggers with syntax highlighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ccboard.bruniaux.com/assets/screenshots/tui/tui-05-agents.png</image:loc>
+      <image:title>ccboard Agents - Frontmatter YAML parsing and invocation stats</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ccboard.bruniaux.com/assets/screenshots/tui/tui-06-costs-billing-blocks.png</image:loc>
+      <image:title>ccboard Costs - Billing blocks with token breakdown</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ccboard.bruniaux.com/assets/screenshots/tui/tui-07-history.png</image:loc>
+      <image:title>ccboard History - Full-text search with temporal filters</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ccboard.bruniaux.com/assets/screenshots/tui/tui-08-mcp.png</image:loc>
+      <image:title>ccboard MCP - Server status detection and environment variables</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ccboard.bruniaux.com/assets/screenshots/tui/tui-09-analytics-overview.png</image:loc>
+      <image:title>ccboard Analytics - Budget tracking, trends, and insights</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ccboard.bruniaux.com/cheatsheet/</loc>

@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
+Crawl-delay: 1
+
+Host: https://ccboard.bruniaux.com/
 
 # AI Crawlers - Explicit Allow
 User-agent: GPTBot

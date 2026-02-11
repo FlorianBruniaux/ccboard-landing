@@ -6,7 +6,9 @@
 
 - Title: ccboard
 - Author: Florian Bruniaux (Founding Engineer @ Méthode Aristote)
-- Version: 0.5.0
+- Version: 0.5.2
+- Category: Developer Tools, CLI Dashboard, Monitoring, Analytics
+- Available: Globally via GitHub, Homebrew, Cargo (crates.io)
 - License: MIT OR Apache-2.0 (free, open source)
 - Language: Rust
 - Binary Size: 5.8MB

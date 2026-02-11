@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
   <link rel="canonical" href="https://ccboard.bruniaux.com/">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta name="author" content="Florian Bruniaux">
-  <meta name="keywords" content="Claude Code, TUI, dashboard, Rust, monitoring, analytics, sessions, costs">
+  <meta name="keywords" content="Claude Code, TUI, CLI dashboard, session management, cost tracking, Rust, monitoring, analytics, budget alerts, MCP servers, hooks, agents, live process monitoring, SQLite cache, web interface, Homebrew">
 
   <!-- Preconnect / DNS Prefetch -->
   <link rel="preconnect" href="https://img.shields.io" crossorigin>
@@ -20,7 +20,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="ccboard - The Dashboard Claude Code Deserves">
-  <meta property="og:description" content="Monitor sessions, analyze costs, manage config with 9 interactive tabs. Free, open-source Rust TUI + Web. Zero config, handles 10K+ sessions.">
+  <meta property="og:description" content="Monitor sessions, analyze costs, manage config with 9 interactive tabs. Rust TUI + Web, 89x speedup, 281 tests.">
   <meta property="og:url" content="https://ccboard.bruniaux.com/">
   <meta property="og:site_name" content="ccboard">
   <meta property="og:image" content="https://ccboard.bruniaux.com/og-image.png">
@@ -30,7 +30,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ccboard - TUI/Web Dashboard for Claude Code">
-  <meta name="twitter:description" content="9 tabs, zero config, 10K+ sessions, 5.8MB binary. Free &amp; open-source.">
+  <meta name="twitter:description" content="9 tabs, 89x speedup, 281 tests, 5.8MB binary.">
   <meta name="twitter:image" content="https://ccboard.bruniaux.com/og-image.png">
 
   <!-- Favicon -->
@@ -78,7 +78,7 @@
         "description": "TUI/Web dashboard for Claude Code management. Monitor sessions, analyze costs, manage config with 9 interactive tabs.",
         "url": "https://github.com/FlorianBruniaux/ccboard",
         "downloadUrl": "https://crates.io/crates/ccboard",
-        "screenshot": "https://ccboard.bruniaux.com/assets/screenshots/dashboard.png",
+        "screenshot": "https://ccboard.bruniaux.com/assets/screenshots/tui/tui-01-dashboard.png",
         "author": {
           "@type": "Person",
           "name": "Florian Bruniaux",
@@ -89,10 +89,10 @@
           "name": "Florian Bruniaux",
           "url": "https://github.com/FlorianBruniaux"
         },
-        "datePublished": "2025-06-01",
+        "datePublished": "2025-01-15",
         "dateModified": "2026-02-11",
         "license": "https://opensource.org/licenses/MIT",
-        "softwareVersion": "0.5.0",
+        "softwareVersion": "0.5.2",
         "mainEntityOfPage": { "@id": "https://ccboard.bruniaux.com/#webpage" },
         "audience": {
           "@type": "Audience",
@@ -102,6 +102,10 @@
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD"
+        },
+        "potentialAction": {
+          "@type": "DownloadAction",
+          "target": "https://github.com/FlorianBruniaux/ccboard/releases/latest"
         }
       },
       {
@@ -174,6 +178,21 @@
           }
         ]
       }
+    ]
+  }
+  </script>
+
+  <!-- Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Florian Bruniaux",
+    "url": "https://florian.bruniaux.com",
+    "logo": "https://ccboard.bruniaux.com/favicon.svg",
+    "sameAs": [
+      "https://github.com/FlorianBruniaux",
+      "https://www.linkedin.com/in/florianbruniaux/"
     ]
   }
   </script>
@@ -261,41 +280,50 @@
           <img src="https://img.shields.io/badge/Rust-1.85%2B-orange?logo=rust" alt="Rust 1.85+">
         </div>
 
+        <!-- Latest Release Badge -->
+        <div style="margin-top: 1rem; margin-bottom: 1rem;">
+          <a href="https://github.com/FlorianBruniaux/ccboard/releases/latest" target="_blank" rel="noopener" style="text-decoration: none;">
+            <span style="display: inline-block; background: linear-gradient(135deg, var(--accent) 0%, #d97706 100%); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3);">
+              🎉 Latest Release: v0.5.2 - SEO, Homebrew & UX Improvements
+            </span>
+          </a>
+        </div>
+
         <!-- Title -->
         <h1 class="hero-title">The Dashboard Claude Code Deserves</h1>
 
-        <!-- Subtitle with TUI/Web emphasis -->
-        <p class="hero-subtitle" style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 0.5rem; font-weight: 500;">
-          <span style="color: var(--accent);">TUI + Web</span> • 100% Feature Parity • Real-time Monitoring
+        <!-- Problem Statement -->
+        <p class="problem-statement">
+          Real-time monitoring • Budget alerts • 30-day forecasting
         </p>
 
-        <!-- Tagline -->
-        <p class="hero-tagline">
-          Monitor sessions, analyze costs, manage config. 9 interactive tabs in a 5.8MB binary. 89x faster with SQLite cache.
-        </p>
+        <!-- Demo GIF -->
+        <div class="hero-demo" style="margin: 2rem 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);">
+          <img src="assets/demo.gif" alt="ccboard TUI demo showing session monitoring, live stats, and navigation" style="width: 100%; max-width: 800px; display: block; margin: 0 auto;">
+        </div>
 
-        <!-- Stats -->
-        <div class="hero-stats">
+        <!-- Social Proof -->
+        <p class="social-proof">Trusted by developers monitoring 10,000+ sessions</p>
+
+        <!-- Single Primary CTA -->
+        <a href="#install" class="btn-primary-xl">Install with Homebrew</a>
+        <p class="secondary-cta">or <a href="https://github.com/FlorianBruniaux/ccboard" target="_blank" rel="noopener" onclick="gtag('event', 'github_click', {'project': 'ccboard', 'link_type': 'hero_cta'})">view on GitHub</a></p>
+
+        <!-- Stats (kept for reference) -->
+        <div class="hero-stats" style="margin-top: 2rem;">
           <span class="stat"><strong>9</strong> tabs</span>
-          <span class="stat"><strong>Zero</strong> config</span>
-          <span class="stat"><strong>10K+</strong> sessions</span>
+          <span class="stat"><strong>281</strong> tests</span>
+          <span class="stat"><strong>89x</strong> speedup</span>
           <span class="stat"><strong>5.8MB</strong> binary</span>
         </div>
 
-        <!-- CTAs -->
-        <div class="hero-ctas">
-          <a href="#install" class="btn btn-primary">Quick Install</a>
-          <a href="https://github.com/FlorianBruniaux/ccboard" class="btn btn-secondary" target="_blank" rel="noopener" onclick="gtag('event', 'github_click', {'project': 'ccboard', 'link_type': 'hero_cta'})">View on GitHub</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Architecture Section -->
-    <section id="architecture" class="architecture">
-      <div class="container">
-        <h2 class="section-title">How It Works</h2>
-        <div class="architecture-diagram">
-          <pre class="ascii-diagram">
+        <!-- Architecture : Collapsible for progressive disclosure -->
+        <details class="hero-architecture" style="margin-top: 2rem;">
+          <summary style="cursor: pointer; color: var(--accent); font-weight: 600; text-align: center; padding: 1rem; border: 1px dashed var(--border); border-radius: 8px; transition: background 0.2s;">
+            📐 View Architecture Diagram
+          </summary>
+          <div style="margin-top: 1.5rem;">
+            <pre class="ascii-diagram">
 ┌─────────────────────────────────────────────────┐
 │                  ccboard                        │
 │              (Binary CLI)                       │
@@ -316,71 +344,114 @@
         │  (Data layer +     │
         │   SQLite cache)    │
         └────────────────────┘
-          </pre>
-        </div>
+            </pre>
+          </div>
+        </details>
       </div>
     </section>
+
+    <!-- Architecture Section : NOW IN HERO (collapsible) - Removed standalone section to reduce cognitive load -->
 
     <!-- Features Section -->
     <section id="features" class="features">
       <div class="container">
-        <h2 class="section-title">9 Interactive Tabs</h2>
+        <h2 class="section-title">Everything You Need to Monitor Claude Code</h2>
 
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h3 class="feature-title">Dashboard</h3>
-            <p class="feature-desc">Overview stats, model usage, MCP servers, 7-day activity, API usage estimation with plan budgets.</p>
+        <!-- Features regroupées en 3 workflows -->
+        <div class="features-workflows">
+          <div class="workflow-card">
+            <div class="workflow-icon">💰</div>
+            <h3>Cost Tracking</h3>
+            <p>Budget alerts, 30-day forecasting, billing blocks</p>
+            <ul class="workflow-tabs">
+              <li>Costs</li>
+              <li>Analytics</li>
+              <li>History</li>
+            </ul>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">🔍</div>
-            <h3 class="feature-title">Sessions</h3>
-            <p class="feature-desc">Browse all sessions with search, live Claude processes with CPU/RAM/Tokens, detail view.</p>
+          <div class="workflow-card">
+            <div class="workflow-icon">🔍</div>
+            <h3>Session Monitoring</h3>
+            <p>Live processes (CPU/RAM/Tokens), search, detail view</p>
+            <ul class="workflow-tabs">
+              <li>Sessions</li>
+              <li>Dashboard</li>
+            </ul>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">⚙️</div>
-            <h3 class="feature-title">Config</h3>
-            <p class="feature-desc">Cascading configuration editor (global/project/local) with 4-column diff view.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">🔗</div>
-            <h3 class="feature-title">Hooks</h3>
-            <p class="feature-desc">Event-based hook management with bash syntax highlighting and test mode.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">🤖</div>
-            <h3 class="feature-title">Agents</h3>
-            <p class="feature-desc">Browse agents, commands, and skills with frontmatter YAML parsing.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">💰</div>
-            <h3 class="feature-title">Costs</h3>
-            <p class="feature-desc">Token analytics with 4 tabs: Overview, By Model, Daily costs, Billing Blocks.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">🕐</div>
-            <h3 class="feature-title">History</h3>
-            <p class="feature-desc">Full-text search across sessions with temporal patterns and filters.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">🔌</div>
-            <h3 class="feature-title">MCP</h3>
-            <p class="feature-desc">Server management with status detection and env vars display.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">📈</div>
-            <h3 class="feature-title">Analytics</h3>
-            <p class="feature-desc">Advanced analytics with 4 sub-views: Budget tracking, Trends, Patterns, Insights.</p>
+          <div class="workflow-card">
+            <div class="workflow-icon">⚙️</div>
+            <h3>Config Management</h3>
+            <p>3-level merge, hooks, agents, MCP servers</p>
+            <ul class="workflow-tabs">
+              <li>Config</li>
+              <li>Hooks</li>
+              <li>Agents</li>
+              <li>MCP</li>
+            </ul>
           </div>
         </div>
+
+        <!-- Details collapsible : "View all 9 tabs" -->
+        <details class="features-all-tabs">
+          <summary>View all 9 tabs in detail →</summary>
+          <div class="features-grid" style="margin-top: 2rem;">
+            <div class="feature-card">
+              <div class="feature-icon">📊</div>
+              <h3 class="feature-title">Dashboard</h3>
+              <p class="feature-desc">Overview stats, model usage, MCP servers, 7-day activity, API usage estimation with plan budgets.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔍</div>
+              <h3 class="feature-title">Sessions</h3>
+              <p class="feature-desc">Browse all sessions with search, live Claude processes with CPU/RAM/Tokens, detail view.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">⚙️</div>
+              <h3 class="feature-title">Config</h3>
+              <p class="feature-desc">Cascading configuration editor (global/project/local) with 4-column diff view.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔗</div>
+              <h3 class="feature-title">Hooks</h3>
+              <p class="feature-desc">Event-based hook management with bash syntax highlighting and test mode.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🤖</div>
+              <h3 class="feature-title">Agents</h3>
+              <p class="feature-desc">Browse agents, commands, and skills with frontmatter YAML parsing and invocation stats.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">💰</div>
+              <h3 class="feature-title">Costs</h3>
+              <p class="feature-desc">Token analytics with 4 tabs: Overview, By Model, Daily costs, Billing Blocks.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🕐</div>
+              <h3 class="feature-title">History</h3>
+              <p class="feature-desc">Full-text search across sessions with temporal patterns, filters, and CSV/JSON export.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔌</div>
+              <h3 class="feature-title">MCP</h3>
+              <p class="feature-desc">Server management with status detection and env vars display.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">📈</div>
+              <h3 class="feature-title">Analytics</h3>
+              <p class="feature-desc">Advanced analytics with 4 sub-views: Budget tracking, Trends, Patterns, Insights.</p>
+            </div>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -484,47 +555,47 @@
           </div>
 
           <div class="screenshot-content active" id="tab-tui-dashboard">
-            <img src="assets/screenshots/tui/dashboard.png" alt="TUI Dashboard - Key Metrics & Model Usage" loading="lazy">
+            <img src="assets/screenshots/tui/tui-01-dashboard.png" alt="TUI Dashboard - Key Metrics & Model Usage" loading="lazy">
             <p class="screenshot-caption">Dashboard with overview stats and 7-day activity</p>
           </div>
 
           <div class="screenshot-content" id="tab-tui-sessions">
-            <img src="assets/screenshots/tui/sessions.png" alt="TUI Sessions Browser" loading="lazy">
-            <p class="screenshot-caption">Sessions browser with project tree and search</p>
+            <img src="assets/screenshots/tui/tui-02-sessions-live.png" alt="TUI Sessions Browser with live process monitoring" loading="lazy">
+            <p class="screenshot-caption">Sessions browser with live CPU/RAM/Tokens monitoring</p>
           </div>
 
           <div class="screenshot-content" id="tab-tui-config">
-            <img src="assets/screenshots/tui/config.png" alt="TUI Configuration Viewer" loading="lazy">
+            <img src="assets/screenshots/tui/tui-03-config.png" alt="TUI Configuration Viewer" loading="lazy">
             <p class="screenshot-caption">Configuration viewer with 4-column diff</p>
           </div>
 
           <div class="screenshot-content" id="tab-tui-hooks">
-            <img src="assets/screenshots/tui/hooks.png" alt="TUI Hooks Management" loading="lazy">
+            <img src="assets/screenshots/tui/tui-04-hooks.png" alt="TUI Hooks Management" loading="lazy">
             <p class="screenshot-caption">Hooks management with syntax highlighting</p>
           </div>
 
           <div class="screenshot-content" id="tab-tui-agents">
-            <img src="assets/screenshots/tui/agents.png" alt="TUI Agents Manager" loading="lazy">
+            <img src="assets/screenshots/tui/tui-05-agents.png" alt="TUI Agents Manager" loading="lazy">
             <p class="screenshot-caption">Agents manager with custom persona configurations</p>
           </div>
 
           <div class="screenshot-content" id="tab-tui-costs">
-            <img src="assets/screenshots/tui/costs.png" alt="TUI Cost Analytics" loading="lazy">
-            <p class="screenshot-caption">Cost analytics with token breakdown</p>
+            <img src="assets/screenshots/tui/tui-06-costs-billing-blocks.png" alt="TUI Cost Analytics" loading="lazy">
+            <p class="screenshot-caption">Cost analytics with billing blocks and token breakdown</p>
           </div>
 
           <div class="screenshot-content" id="tab-tui-history">
-            <img src="assets/screenshots/tui/history.png" alt="TUI History Search" loading="lazy">
+            <img src="assets/screenshots/tui/tui-07-history.png" alt="TUI History Search" loading="lazy">
             <p class="screenshot-caption">History search with temporal patterns</p>
           </div>
 
           <div class="screenshot-content" id="tab-tui-mcp">
-            <img src="assets/screenshots/tui/mcp.png" alt="TUI MCP Servers Status" loading="lazy">
+            <img src="assets/screenshots/tui/tui-08-mcp.png" alt="TUI MCP Servers Status" loading="lazy">
             <p class="screenshot-caption">MCP servers status with environment variables</p>
           </div>
 
           <div class="screenshot-content" id="tab-tui-analytics">
-            <img src="assets/screenshots/tui/aide.png" alt="TUI Analytics Insights" loading="lazy">
+            <img src="assets/screenshots/tui/tui-09-analytics-overview.png" alt="TUI Analytics with budget tracking and trends" loading="lazy">
             <p class="screenshot-caption">Advanced analytics with budget tracking and trends</p>
           </div>
         </div>
@@ -587,6 +658,95 @@
             <img src="assets/screenshots/web/web-09-analytics-overview.png" alt="Web Analytics Dashboard" loading="lazy">
             <p class="screenshot-caption">Advanced analytics with forecasting and insights</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning Paths Section -->
+    <section id="learning-paths" class="learning-paths" style="background: var(--bg-secondary); padding: 4rem 0;">
+      <div class="container">
+        <h2 class="section-title">Learning Paths</h2>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto 2rem; color: var(--text-secondary);">
+          Choose your path based on your needs and available time
+        </p>
+
+        <div style="max-width: 900px; margin: 0 auto;">
+          <!-- Quick Start (5 min) -->
+          <details class="learning-path" style="margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--bg-primary);">
+            <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; color: var(--accent); list-style: none;">
+              ⚡ Quick Start (5 min) - Get running immediately
+            </summary>
+            <div style="margin-top: 1rem; padding-left: 1rem; border-left: 3px solid var(--accent);">
+              <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-primary);">
+                <li style="margin-bottom: 0.5rem;"><strong>Install:</strong> <code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">brew tap FlorianBruniaux/tap && brew install ccboard</code></li>
+                <li style="margin-bottom: 0.5rem;"><strong>Launch TUI:</strong> <code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">ccboard</code></li>
+                <li style="margin-bottom: 0.5rem;"><strong>Navigate:</strong> Use <kbd>1-9</kbd> to jump between tabs, <kbd>Tab</kbd> to cycle</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Explore:</strong> Dashboard (tab 1) for overview, Sessions (tab 2) for recent activity</li>
+              </ol>
+              <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                <strong>Goal:</strong> See your Claude Code stats and sessions in under 5 minutes
+              </p>
+            </div>
+          </details>
+
+          <!-- Monitoring (10 min) -->
+          <details class="learning-path" style="margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--bg-primary);">
+            <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; color: var(--accent); list-style: none;">
+              📊 Session Monitoring (10 min) - Track live Claude processes
+            </summary>
+            <div style="margin-top: 1rem; padding-left: 1rem; border-left: 3px solid var(--accent);">
+              <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-primary);">
+                <li style="margin-bottom: 0.5rem;"><strong>Sessions tab (2):</strong> See all your sessions with live process monitoring</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Live processes:</strong> Active Claude sessions show CPU/RAM/Tokens in real-time</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Search:</strong> Press <kbd>/</kbd> to search sessions by content or project</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Detail view:</strong> Press <kbd>Enter</kbd> for full session metadata (17 fields)</li>
+                <li style="margin-bottom: 0.5rem;"><strong>CLI search:</strong> <code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">ccboard search "bug fix"</code></li>
+              </ol>
+              <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                <strong>Goal:</strong> Monitor active sessions and search historical activity
+              </p>
+            </div>
+          </details>
+
+          <!-- Configuration (15 min) -->
+          <details class="learning-path" style="margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--bg-primary);">
+            <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; color: var(--accent); list-style: none;">
+              ⚙️ Configuration & Budget (15 min) - Customize your setup
+            </summary>
+            <div style="margin-top: 1rem; padding-left: 1rem; border-left: 3px solid var(--accent);">
+              <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-primary);">
+                <li style="margin-bottom: 0.5rem;"><strong>Config tab (3):</strong> See 4-column diff (global/project/local/merged)</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Set plan:</strong> Edit <code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">~/.claude/settings.json</code> → <code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">{"subscriptionPlan": "max20x"}</code></li>
+                <li style="margin-bottom: 0.5rem;"><strong>Budget alerts:</strong> Add <code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">{"budget": {"monthlyBudgetUsd": 50.0, "alertThresholdPct": 80.0}}</code></li>
+                <li style="margin-bottom: 0.5rem;"><strong>Analytics tab (9):</strong> See budget status with visual warnings (green/yellow/red)</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Hooks tab (4):</strong> Test your hooks with syntax highlighting</li>
+              </ol>
+              <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                <strong>Goal:</strong> Configure subscription plan and set up budget alerts
+              </p>
+            </div>
+          </details>
+
+          <!-- Power Users (30 min) -->
+          <details class="learning-path" style="margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--bg-primary);">
+            <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; color: var(--accent); list-style: none;">
+              🚀 Power Users (30 min) - Master advanced features
+            </summary>
+            <div style="margin-top: 1rem; padding-left: 1rem; border-left: 3px solid var(--accent);">
+              <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-primary);">
+                <li style="margin-bottom: 0.5rem;"><strong>CLI workflow:</strong> Use <code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">ccboard recent 10 --json</code> for scripting</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Resume sessions:</strong> <code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">ccboard resume &lt;id&gt;</code> to continue work seamlessly</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Analytics (tab 9):</strong> 30-day forecasting, usage patterns, session duration stats</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Export data:</strong> History tab → CSV/JSON export for analysis</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Web interface:</strong> <code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">ccboard web --port 3333</code> for browser access</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Dual mode:</strong> <code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">ccboard both --port 3333</code> runs TUI + Web simultaneously</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Env vars:</strong> <code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">CCBOARD_FORMAT=json ccboard stats</code> for CI/CD integration</li>
+              </ol>
+              <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                <strong>Goal:</strong> Integrate ccboard into your workflow with CLI, web interface, and automation
+              </p>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -738,21 +898,34 @@
         <div class="install-hero">
           <p class="install-intro">Get started in 30 seconds:</p>
 
-          <h3 style="margin-top: 2rem;">Recommended: cargo install</h3>
+          <h3 style="margin-top: 2rem;">Recommended: Homebrew</h3>
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">bash</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">📋 Copy</button>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code"></button>
             </div>
-            <pre><code>cargo install ccboard</code></pre>
+            <pre><code>brew tap FlorianBruniaux/tap
+brew install ccboard</code></pre>
           </div>
 
           <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-secondary);">
-            <strong>Requirements:</strong> Rust 1.85+ (Claude Code users already have Rust installed)
+            <strong>macOS & Linux users:</strong> Fastest installation method with automatic updates
           </p>
 
+          <details style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+            <summary style="cursor: pointer; font-weight: 600; color: var(--accent);">Alternative: cargo install</summary>
+            <div class="code-block" style="margin-top: 1rem;">
+              <div class="code-header">
+                <span class="code-lang">bash</span>
+                <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code"></button>
+              </div>
+              <pre><code>cargo install ccboard</code></pre>
+            </div>
+            <p style="margin-top: 0.5rem;"><strong>Requirements:</strong> Rust 1.85+ (Claude Code users already have Rust installed)</p>
+          </details>
+
           <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
-            <strong>Alternative:</strong> Pre-built binaries available from
+            <strong>Pre-built binaries:</strong> Available from
             <a href="https://github.com/FlorianBruniaux/ccboard/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>
           </p>
         </div>
@@ -763,7 +936,7 @@
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">bash</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">📋 Copy</button>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code"></button>
             </div>
             <pre><code># TUI (default)
 ccboard
@@ -779,13 +952,36 @@ ccboard stats</code></pre>
           </div>
         </div>
 
+        <div class="install-cli">
+          <h3>CLI Commands <span style="font-size: 0.8rem; color: var(--accent); font-weight: normal;">(v0.4.0+)</span></h3>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code"></button>
+            </div>
+            <pre><code># Session management
+ccboard search "query"       # Search sessions by content
+ccboard recent 10            # Show 10 most recent sessions
+ccboard info &lt;session-id&gt;    # Display detailed session metadata
+ccboard resume &lt;session-id&gt;  # Resume session in Claude CLI
+
+# Maintenance
+ccboard clear-cache          # Clear SQLite cache (after upgrades)</code></pre>
+          </div>
+
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+            All commands support JSON output: <code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">ccboard recent 10 --json</code>
+          </p>
+        </div>
+
         <div class="install-usage">
           <h3>Keybindings</h3>
 
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">bash</span>
-              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">📋 Copy</button>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code"></button>
             </div>
             <pre><code># Navigation
 1-9        Jump to specific tab
@@ -802,6 +998,57 @@ o          Reveal in file manager
 r          Refresh data
 ?          Show help
 q          Quit</code></pre>
+          </div>
+        </div>
+
+        <div class="install-env" style="margin-top: 3rem;">
+          <h3>Environment Variables</h3>
+          <p style="margin-bottom: 1rem; color: var(--text-secondary);">For automation and CI/CD workflows:</p>
+
+          <div class="table-wrapper">
+            <table class="pricing-table" style="font-size: 0.9rem;">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Description</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">CCBOARD_CLAUDE_HOME</code></td>
+                  <td>Override Claude home directory</td>
+                  <td><code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px; font-size: 0.85rem;">CCBOARD_CLAUDE_HOME=/custom/path ccboard</code></td>
+                </tr>
+                <tr>
+                  <td><code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">CCBOARD_NON_INTERACTIVE</code></td>
+                  <td>Disable interactive prompts (CI/CD mode)</td>
+                  <td><code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px; font-size: 0.85rem;">CCBOARD_NON_INTERACTIVE=1 ccboard stats</code></td>
+                </tr>
+                <tr>
+                  <td><code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">CCBOARD_FORMAT</code></td>
+                  <td>Force output format: <code style="background: var(--code-bg); padding: 2px 4px; border-radius: 3px;">json</code> or <code style="background: var(--code-bg); padding: 2px 4px; border-radius: 3px;">table</code></td>
+                  <td><code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px; font-size: 0.85rem;">CCBOARD_FORMAT=json ccboard recent 10</code></td>
+                </tr>
+                <tr>
+                  <td><code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px;">CCBOARD_NO_COLOR</code></td>
+                  <td>Disable ANSI colors (log-friendly)</td>
+                  <td><code style="background: var(--code-bg); padding: 2px 6px; border-radius: 3px; font-size: 0.85rem;">CCBOARD_NO_COLOR=1 ccboard search "bug"</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="code-block" style="margin-top: 1rem;">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code"></button>
+            </div>
+            <pre><code># CI/CD: JSON output without colors
+CCBOARD_NON_INTERACTIVE=1 CCBOARD_NO_COLOR=1 CCBOARD_FORMAT=json ccboard stats
+
+# Log-friendly: No colors for file redirects
+CCBOARD_NO_COLOR=1 ccboard recent 50 > sessions.log</code></pre>
           </div>
         </div>
 
@@ -867,6 +1114,46 @@ q          Quit</code></pre>
           </details>
 
           <details class="faq-item">
+            <summary class="faq-question">What's new in v0.5.0?</summary>
+            <div class="faq-answer">
+              <p><strong>Sprint 1 UX/UI improvements</strong> with 60% visual enhancement:</p>
+              <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                <li><strong>Visual Design System:</strong> 4-level elevation shadows, improved contrast (+16 luminosity), semantic border radius</li>
+                <li><strong>Config Page:</strong> Real-time search with highlighting, one-click JSON copy, fullscreen modal viewer</li>
+                <li><strong>Dashboard:</strong> Clickable KPI cards for navigation, session preview tooltips on hover</li>
+                <li><strong>Bug Fixes:</strong> Cost calculation now shows accurate Anthropic pricing (was $0.00), fixed "model unknown" in History</li>
+              </ul>
+              <p style="margin-top: 0.5rem;">714 additions across 7 files. See <a href="https://github.com/FlorianBruniaux/ccboard/blob/main/CHANGELOG.md#050---2026-02-10" target="_blank" rel="noopener">full changelog</a>.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">How do I track my budget?</summary>
+            <div class="faq-answer">
+              <p>Configure custom monthly budgets with automatic alerts in the <strong>Analytics tab</strong> (Tab 9):</p>
+              <ol style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                <li>Edit <code>~/.claude/settings.json</code></li>
+                <li>Add: <code>{"budget": {"monthlyBudgetUsd": 50.0, "alertThresholdPct": 80.0}}</code></li>
+                <li>Launch ccboard and go to Analytics tab (press <kbd>9</kbd>)</li>
+                <li>See budget status with visual warnings (🟢 safe / 🟡 caution / 🔴 warning)</li>
+              </ol>
+              <p style="margin-top: 0.5rem;"><strong>Alert types:</strong> Budget warning (≥80%), projected overage (forecast), usage spike (anomaly detection).</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Does it support Homebrew?</summary>
+            <div class="faq-answer">
+              <p><strong>Yes!</strong> Homebrew is the <strong>recommended installation method</strong> for macOS and Linux users:</p>
+              <div class="code-block" style="margin-top: 0.5rem;">
+                <pre><code>brew tap FlorianBruniaux/tap
+brew install ccboard</code></pre>
+              </div>
+              <p style="margin-top: 0.5rem;"><strong>Benefits:</strong> Automatic updates via <code>brew upgrade</code>, clean uninstall with <code>brew uninstall ccboard</code>, no Rust toolchain required. Added in v0.5.1.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
             <summary class="faq-question">How do I contribute?</summary>
             <div class="faq-answer">
               <p>Contributions welcome! See <a href="https://github.com/FlorianBruniaux/ccboard/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md</a> for guidelines. Fork the repo, create a feature branch, run tests (<code>cargo test --all</code>), and open a Pull Request. Zero clippy warnings required.</p>
@@ -894,15 +1181,28 @@ q          Quit</code></pre>
             <p>Multi-provider router for Claude Code. Switch between Anthropic, Copilot, or Ollama.</p>
           </a>
 
-          <a href="https://github.com/lilouartz/ccusage" class="related-card" target="_blank" rel="noopener">
-            <div class="related-icon">💰</div>
-            <h3>ccusage</h3>
-            <p>CLI cost tracker for Claude Code. The reference for API pricing (10K stars).</p>
+          <a href="https://github.com/FlorianBruniaux/rtk" class="related-card" target="_blank" rel="noopener">
+            <div class="related-icon">⚡</div>
+            <h3>RTK - Rust Token Killer</h3>
+            <p>CLI proxy that reduces token consumption by 60-90% on dev operations. Optimized for Claude Code workflows.</p>
           </a>
+
+          <a href="https://github.com/FlorianBruniaux/cowork-guide" class="related-card" target="_blank" rel="noopener">
+            <div class="related-icon">🤝</div>
+            <h3>Cowork Guide</h3>
+            <p>Best practices for collaborating with AI coding assistants. Workflow patterns, prompt engineering, and team integration.</p>
+          </a>
+
         </div>
+
       </div>
     </section>
   </main>
+
+  <!-- Floating Feedback Button -->
+  <a href="https://github.com/FlorianBruniaux/ccboard/issues/new" target="_blank" rel="noopener" class="feedback-fab" aria-label="Submit an idea or issue">
+    💡 <span class="feedback-fab-text">Feedback</span>
+  </a>
 
   <!-- Footer -->
   <footer class="footer">
@@ -923,11 +1223,13 @@ q          Quit</code></pre>
           <a href="#install">Install</a>
           <a href="#faq">FAQ</a>
           <a href="https://github.com/FlorianBruniaux/ccboard/blob/main/README.md" target="_blank" rel="noopener">Docs</a>
+          <a href="https://github.com/FlorianBruniaux/ccboard/blob/main/SECURITY.md" target="_blank" rel="noopener">Security</a>
+          <a href="https://github.com/FlorianBruniaux/ccboard/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a>
         </nav>
 
         <div class="footer-meta">
           <span>MIT OR Apache-2.0</span>
-          <span>v0.5.0</span>
+          <span>v0.5.2</span>
         </div>
       </div>
 
@@ -1003,10 +1305,8 @@ q          Quit</code></pre>
 
       try {
         await navigator.clipboard.writeText(code);
-        button.textContent = '✓ Copied!';
-        setTimeout(() => {
-          button.textContent = '📋 Copy';
-        }, 2000);
+        button.classList.add('copied');
+        setTimeout(() => button.classList.remove('copied'), 2000);
       } catch (err) {
         console.error('Copy failed:', err);
       }
