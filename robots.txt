@@ -1,4 +1,29 @@
 User-agent: *
 Allow: /
 
+# AI Crawlers - Explicit Allow
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic-ai
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Brave
+Allow: /
+
 Sitemap: https://ccboard.bruniaux.com/sitemap.xml
