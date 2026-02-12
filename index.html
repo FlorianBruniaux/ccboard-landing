@@ -322,29 +322,8 @@
           <summary style="cursor: pointer; color: var(--accent); font-weight: 600; text-align: center; padding: 1rem; border: 1px dashed var(--border); border-radius: 8px; transition: background 0.2s;">
             📐 View Architecture Diagram
           </summary>
-          <div style="margin-top: 1.5rem;">
-            <pre class="ascii-diagram">
-┌─────────────────────────────────────────────────┐
-│                  ccboard                        │
-│              (Binary CLI)                       │
-└─────────────────┬───────────────────────────────┘
-                  │
-        ┌─────────┴──────────┐
-        │                    │
-┌───────▼────────┐  ┌────────▼────────┐
-│  ccboard-tui   │  │  ccboard-web    │
-│  (Ratatui 9    │  │  (Axum API +    │
-│   tabs)        │  │   Leptos UI)    │
-└───────┬────────┘  └────────┬────────┘
-        │                    │
-        └─────────┬──────────┘
-                  │
-        ┌─────────▼──────────┐
-        │   ccboard-core     │
-        │  (Data layer +     │
-        │   SQLite cache)    │
-        └────────────────────┘
-            </pre>
+          <div style="margin-top: 1.5rem; text-align: center;">
+            <img src="assets/architecture-diagram.svg" alt="ccboard Architecture Diagram" style="max-width: 100%; height: auto; border-radius: 8px;" loading="lazy">
           </div>
         </details>
       </div>
