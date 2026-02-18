@@ -133,7 +133,7 @@ gh api repos/FlorianBruniaux/ccboard-landing/pages -X PUT \
 
 - **Canonical URL**: https://ccboard.bruniaux.com/
 - **Title**: "ccboard - The Dashboard Claude Code Deserves"
-- **Description**: "Monitor sessions, analyze costs, manage config — 9 interactive tabs in a 4.2MB binary. 89x faster with SQLite cache."
+- **Description**: "Monitor sessions, analyze costs, manage config: 9 interactive tabs in a 4.2MB binary. 89x faster with SQLite cache."
 - **Schema.org**: `SoftwareApplication` type with version 0.5.2
 - **OG Image**: TODO (1200x630, dashboard screenshot + branding)
 

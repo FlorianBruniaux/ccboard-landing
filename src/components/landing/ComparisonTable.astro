@@ -1,0 +1,81 @@
+---
+// Competitive landscape: comparison table + unique features
+const rows = [
+  { feature: 'Status', ccboard: '✅ Active', agtrace: '✅ Active', claudelytics: '🔴 Stale 6m', ccusage: '✅ Active' },
+  { feature: 'Stars', ccboard: '0', agtrace: '23', claudelytics: '62', ccusage: '10,361' },
+  { feature: 'Language', ccboard: 'Rust', agtrace: 'Rust', claudelytics: 'Rust', ccusage: 'TypeScript' },
+  { feature: 'Type', ccboard: 'TUI+Web', agtrace: 'TUI', claudelytics: 'TUI', ccusage: 'CLI' },
+  { feature: 'TUI Dashboard', ccboard: '✅ 9 tabs', agtrace: '✅ Single view', claudelytics: '✅ 8 tabs', ccusage: '❌', highlight: true },
+  { feature: 'Config Viewer (3-level)', ccboard: '✅', agtrace: '❌', claudelytics: '❌', ccusage: '❌', highlight: true },
+  { feature: 'Hooks Viewer + Test', ccboard: '✅', agtrace: '❌', claudelytics: '❌', ccusage: '❌', highlight: true },
+  { feature: 'Agents Browser', ccboard: '✅', agtrace: '❌', claudelytics: '❌', ccusage: '❌', highlight: true },
+  { feature: 'MCP Status Detection', ccboard: '✅', agtrace: '❌', claudelytics: '❌', ccusage: '❌', highlight: true },
+  { feature: 'SQLite Cache (89x)', ccboard: '✅', agtrace: '✅ Pointer', claudelytics: '❌', ccusage: '❌', highlight: true },
+  { feature: 'Export CSV/JSON', ccboard: '✅', agtrace: '❌', claudelytics: '✅', ccusage: '✅ JSON' },
+  { feature: 'Live File Watcher', ccboard: '✅', agtrace: '✅ Poll 1s', claudelytics: '❌', ccusage: '❌' },
+  { feature: 'Advanced Analytics', ccboard: '✅ 4 views', agtrace: '❌', claudelytics: '⚠️ Burn rate', ccusage: '❌' },
+  { feature: 'Single Binary', ccboard: '✅ 5.8MB', agtrace: '✅ Rust', claudelytics: '✅ Rust', ccusage: '❌ npm' },
+]
+
+const uniqueFeatures = [
+  'Only <strong>multi-concern dashboard</strong> (config + hooks + agents + MCP + analytics)',
+  'Config <strong>3-level merge viewer</strong> (global/project/local)',
+  'Hooks syntax highlighting + <strong>test mode</strong>',
+  'Agents/Commands/Skills browser with <strong>invocation stats</strong>',
+  'MCP server <strong>status detection</strong>',
+  'SQLite metadata cache (<strong>89x faster</strong> startup)',
+  '<strong>Advanced Analytics</strong>: 30-day forecasting, budget alerts, session duration stats',
+  'Dual TUI + Web in <strong>single binary</strong>',
+]
+---
+
+<section id="competitive" class="py-16 md:py-20">
+  <div class="mx-auto max-w-content px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-text-primary text-center mb-6">
+      Why ccboard?
+    </h2>
+
+    <p class="text-center max-w-2xl mx-auto mb-8 text-text-secondary">
+      The only actively-maintained Rust TUI combining Claude Code monitoring, config management, hooks, agents, and MCP servers in a single 5.8MB binary.
+    </p>
+
+    <!-- Comparison Table -->
+    <div class="overflow-x-auto mb-8">
+      <table class="w-full text-sm border-collapse min-w-[600px]">
+        <thead>
+          <tr class="border-b-2 border-border">
+            <th class="text-left p-2.5 text-text-primary font-semibold">Feature</th>
+            <th class="text-left p-2.5 text-accent font-bold">ccboard</th>
+            <th class="text-left p-2.5 text-text-secondary font-medium">agtrace</th>
+            <th class="text-left p-2.5 text-text-secondary font-medium">claudelytics</th>
+            <th class="text-left p-2.5 text-text-secondary font-medium">ccusage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr class:list={['border-b border-border-light', row.highlight && 'bg-background-tertiary']}>
+              <td class="p-2.5 text-text-primary font-medium">{row.feature}</td>
+              <td class="p-2.5 font-medium" set:html={row.ccboard} />
+              <td class="p-2.5 text-text-secondary" set:html={row.agtrace} />
+              <td class="p-2.5 text-text-secondary" set:html={row.claudelytics} />
+              <td class="p-2.5 text-text-secondary" set:html={row.ccusage} />
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Unique Features -->
+    <div class="max-w-2xl mx-auto bg-background-secondary border border-border rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-text-primary mb-3">Unique to ccboard</h3>
+      <ul class="space-y-2 text-sm text-text-secondary">
+        {uniqueFeatures.map((f) => (
+          <li class="flex items-start gap-2">
+            <span class="text-accent mt-0.5">•</span>
+            <span set:html={f} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

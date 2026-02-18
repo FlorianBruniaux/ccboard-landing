@@ -1,0 +1,89 @@
+---
+// Learning paths: 4 collapsible guides
+
+const paths = [
+  {
+    icon: '⚡', title: 'Quick Start (5 min)', subtitle: 'Get running immediately',
+    steps: [
+      { label: 'Install:', code: 'brew tap FlorianBruniaux/tap && brew install ccboard' },
+      { label: 'Launch TUI:', code: 'ccboard' },
+      { label: 'Navigate:', text: 'Use 1-9 to jump between tabs, Tab to cycle' },
+      { label: 'Explore:', text: 'Dashboard (tab 1) for overview, Sessions (tab 2) for recent activity' },
+    ],
+    goal: 'See your Claude Code stats and sessions in under 5 minutes',
+  },
+  {
+    icon: '📊', title: 'Session Monitoring (10 min)', subtitle: 'Track live Claude processes',
+    steps: [
+      { label: 'Sessions tab (2):', text: 'See all your sessions with live process monitoring' },
+      { label: 'Live processes:', text: 'Active Claude sessions show CPU/RAM/Tokens in real-time' },
+      { label: 'Search:', text: 'Press / to search sessions by content or project' },
+      { label: 'Detail view:', text: 'Press Enter for full session metadata (17 fields)' },
+      { label: 'CLI search:', code: 'ccboard search "bug fix"' },
+    ],
+    goal: 'Monitor active sessions and search historical activity',
+  },
+  {
+    icon: '⚙️', title: 'Configuration & Budget (15 min)', subtitle: 'Customize your setup',
+    steps: [
+      { label: 'Config tab (3):', text: 'See 4-column diff (global/project/local/merged)' },
+      { label: 'Set plan:', code: '{"subscriptionPlan": "max20x"}' },
+      { label: 'Budget alerts:', code: '{"budget": {"monthlyBudgetUsd": 50.0, "alertThresholdPct": 80.0}}' },
+      { label: 'Analytics tab (9):', text: 'See budget status with visual warnings (green/yellow/red)' },
+      { label: 'Hooks tab (4):', text: 'Test your hooks with syntax highlighting' },
+    ],
+    goal: 'Configure subscription plan and set up budget alerts',
+  },
+  {
+    icon: '🚀', title: 'Power Users (30 min)', subtitle: 'Master advanced features',
+    steps: [
+      { label: 'CLI workflow:', code: 'ccboard recent 10 --json' },
+      { label: 'Resume sessions:', code: 'ccboard resume <id>' },
+      { label: 'Analytics (tab 9):', text: '30-day forecasting, usage patterns, session duration stats' },
+      { label: 'Export data:', text: 'History tab → CSV/JSON export for analysis' },
+      { label: 'Web interface:', code: 'ccboard web --port 3333' },
+      { label: 'Dual mode:', code: 'ccboard both --port 3333' },
+      { label: 'Env vars:', code: 'CCBOARD_FORMAT=json ccboard stats' },
+    ],
+    goal: 'Integrate ccboard into your workflow with CLI, web interface, and automation',
+  },
+]
+---
+
+<section id="learning-paths" class="py-16 md:py-20 bg-background-secondary">
+  <div class="mx-auto max-w-content px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-text-primary text-center mb-3">
+      Learning Paths
+    </h2>
+    <p class="text-center max-w-xl mx-auto mb-8 text-text-secondary">
+      Choose your path based on your needs and available time
+    </p>
+
+    <div class="max-w-3xl mx-auto space-y-3">
+      {paths.map((path) => (
+        <details class="border border-border rounded-lg p-4 bg-background">
+          <summary class="cursor-pointer font-semibold text-lg text-accent">
+            {path.icon} {path.title} - {path.subtitle}
+          </summary>
+          <div class="mt-4 pl-4 border-l-3 border-accent">
+            <ol class="space-y-2 list-decimal list-inside text-text-primary">
+              {path.steps.map((step) => (
+                <li>
+                  <strong>{step.label}</strong>{' '}
+                  {step.code ? (
+                    <code class="bg-background-tertiary px-1.5 py-0.5 rounded text-sm font-mono">{step.code}</code>
+                  ) : (
+                    <span class="text-text-secondary">{step.text}</span>
+                  )}
+                </li>
+              ))}
+            </ol>
+            <p class="mt-3 text-sm text-text-muted">
+              <strong>Goal:</strong> {path.goal}
+            </p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

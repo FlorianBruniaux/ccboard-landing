@@ -1,0 +1,58 @@
+---
+// Related projects: 4 cards
+const projects = [
+  {
+    icon: '📖',
+    title: 'Claude Code Ultimate Guide',
+    desc: 'Complete documentation, tips, and best practices for Claude Code CLI.',
+    url: 'https://cc.bruniaux.com/',
+  },
+  {
+    icon: '🔌',
+    title: 'cc-copilot-bridge',
+    desc: 'Multi-provider router for Claude Code. Switch between Anthropic, Copilot, or Ollama.',
+    url: 'https://ccbridge.bruniaux.com/',
+  },
+  {
+    icon: '⚡',
+    title: 'RTK - Rust Token Killer',
+    desc: 'CLI proxy that reduces token consumption by 60-90% on dev operations.',
+    url: 'https://www.rtk-ai.app/',
+  },
+  {
+    icon: '🤝',
+    title: 'Cowork Guide',
+    desc: 'Best practices for collaborating with AI coding assistants.',
+    url: 'https://cowork.bruniaux.com/',
+  },
+]
+---
+
+<section id="related" class="py-16 md:py-20 bg-background-secondary">
+  <div class="mx-auto max-w-content px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-text-primary text-center mb-8">
+      Related Projects
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+      {projects.map((p) => (
+        <a
+          href={p.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block bg-background border border-border rounded-lg p-5 hover:border-accent hover:-translate-y-1 transition-all no-underline group"
+        >
+          <div class="text-2xl mb-3">{p.icon}</div>
+          <h3 class="text-base font-semibold text-text-primary mb-2 group-hover:text-accent transition-colors">{p.title}</h3>
+          <p class="text-sm text-text-muted">{p.desc}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  a.no-underline::after {
+    display: none;
+  }
+</style>

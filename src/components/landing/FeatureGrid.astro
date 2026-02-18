@@ -1,0 +1,61 @@
+---
+// Features section: 3 workflow cards + 9 tabs detail (collapsible)
+
+const workflows = [
+  { icon: '💰', title: 'Cost Tracking', desc: 'Budget alerts, 30-day forecasting, billing blocks', tabs: ['Costs', 'Analytics', 'History'] },
+  { icon: '🔍', title: 'Session Monitoring', desc: 'Live processes (CPU/RAM/Tokens), search, detail view', tabs: ['Sessions', 'Dashboard'] },
+  { icon: '⚙️', title: 'Config Management', desc: '3-level merge, hooks, agents, MCP servers', tabs: ['Config', 'Hooks', 'Agents', 'MCP'] },
+]
+
+const features = [
+  { icon: '📊', title: 'Dashboard', desc: 'Overview stats, model usage, MCP servers, 7-day activity, API usage estimation with plan budgets.' },
+  { icon: '🔍', title: 'Sessions', desc: 'Browse all sessions with search, live Claude processes with CPU/RAM/Tokens, detail view.' },
+  { icon: '⚙️', title: 'Config', desc: 'Cascading configuration editor (global/project/local) with 4-column diff view.' },
+  { icon: '🔗', title: 'Hooks', desc: 'Event-based hook management with bash syntax highlighting and test mode.' },
+  { icon: '🤖', title: 'Agents', desc: 'Browse agents, commands, and skills with frontmatter YAML parsing and invocation stats.' },
+  { icon: '💰', title: 'Costs', desc: 'Token analytics with 4 tabs: Overview, By Model, Daily costs, Billing Blocks.' },
+  { icon: '🕐', title: 'History', desc: 'Full-text search across sessions with temporal patterns, filters, and CSV/JSON export.' },
+  { icon: '🔌', title: 'MCP', desc: 'Server management with status detection and env vars display.' },
+  { icon: '📈', title: 'Analytics', desc: 'Advanced analytics with 4 sub-views: Budget tracking, Trends, Patterns, Insights.' },
+]
+---
+
+<section id="features" class="py-16 md:py-20">
+  <div class="mx-auto max-w-content px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-text-primary text-center mb-12">
+      Everything You Need to Monitor Claude Code
+    </h2>
+
+    <!-- 3 Workflow Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      {workflows.map((w) => (
+        <div class="bg-background-secondary border border-border rounded-lg p-6 hover:border-accent hover:-translate-y-1 transition-all">
+          <div class="text-3xl mb-3">{w.icon}</div>
+          <h3 class="text-lg font-semibold text-text-primary mb-2">{w.title}</h3>
+          <p class="text-sm text-text-secondary mb-3">{w.desc}</p>
+          <div class="flex flex-wrap gap-1.5">
+            {w.tabs.map((tab) => (
+              <span class="text-xs px-2 py-0.5 rounded-full bg-background-tertiary text-accent font-medium">{tab}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- All 9 Tabs Detail (collapsible) -->
+    <details class="border border-border rounded-lg">
+      <summary class="cursor-pointer font-semibold text-accent p-4 hover:bg-background-secondary transition-colors text-center">
+        View all 9 tabs in detail →
+      </summary>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4 pt-2">
+        {features.map((f) => (
+          <div class="bg-background border border-border rounded-lg p-4 hover:border-accent transition-colors">
+            <div class="text-2xl mb-2">{f.icon}</div>
+            <h3 class="text-base font-semibold text-text-primary mb-1">{f.title}</h3>
+            <p class="text-sm text-text-secondary">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </details>
+  </div>
+</section>

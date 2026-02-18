@@ -1,0 +1,64 @@
+---
+// FAQ accordion with 12 items
+const faqItems = [
+  { q: 'What is ccboard?', a: 'ccboard is a unified TUI/Web dashboard for Claude Code management. It provides 9 interactive tabs for monitoring sessions, analyzing costs, managing config, hooks, agents, and MCP servers. Built in Rust with a 5.8MB binary.' },
+  { q: 'How does the cache work?', a: 'ccboard uses SQLite to cache session metadata with mtime-based invalidation. This provides an 89x speedup (20s → 224ms) after the first run, with >99% cache hit rate. The cache only stores metadata; full session content is loaded on-demand.' },
+  { q: 'Does it work on Linux/Windows?', a: 'Yes! ccboard supports macOS (fully tested), Linux (community-tested), and Windows (experimental). Platform-specific features like file manager integration are cross-platform compatible.' },
+  { q: 'How much does it cost?', a: 'ccboard is <strong>free and open-source</strong>, licensed under MIT OR Apache-2.0. No subscription, no hidden costs. The cost analytics features help you track <em>your</em> Claude API usage.' },
+  { q: 'Can I use the web interface?', a: 'Yes! Run <code>ccboard web --port 3333</code> for the web UI, or <code>ccboard both</code> to run TUI + Web simultaneously. The web interface has 100% feature parity with the TUI (9 pages).' },
+  { q: 'Does it support real-time monitoring?', a: 'Yes! ccboard includes a file watcher that monitors <code>~/.claude</code> changes with 500ms debounce. Live updates appear in both TUI and Web (via Server-Sent Events). The Sessions tab also detects live Claude processes with CPU/RAM/Token metrics.' },
+  { q: "What's the difference with ccusage/agtrace?", a: '<strong>ccusage</strong> (10K stars) is a CLI cost tracker (no dashboard). <strong>agtrace</strong> (23 stars) focuses on observability with MCP self-reflection. <strong>ccboard</strong> is the only multi-concern dashboard combining config, hooks, agents, MCP status, and advanced analytics with forecasting in a single TUI+Web binary.' },
+  { q: "What's new in v0.8.0?", a: '<strong>Budget Tracking & Quota Management</strong>: month-to-date cost calculation with intelligent token-based prorata, monthly projection, 4-level alert system (safe/warning/critical/exceeded), quota gauge in the Costs tab, and REST API endpoint <code>/api/quota</code>.' },
+  { q: 'How do I track my budget?', a: 'Configure custom monthly budgets with automatic alerts in the <strong>Analytics tab</strong> (Tab 9). Edit <code>~/.claude/settings.json</code>, add <code>{"budget": {"monthlyBudgetUsd": 50.0, "alertThresholdPct": 80.0}}</code>, then see budget status with visual warnings.' },
+  { q: 'Does it support Homebrew?', a: '<strong>Yes!</strong> Homebrew is the recommended installation method: <code>brew tap FlorianBruniaux/tap && brew install ccboard</code>. Benefits: automatic updates, clean uninstall, no Rust toolchain required.' },
+  { q: 'How do I contribute?', a: 'Contributions welcome! See <a href="https://github.com/FlorianBruniaux/ccboard/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md</a> for guidelines. Fork the repo, create a feature branch, run tests (<code>cargo test --all</code>), and open a Pull Request. Zero clippy warnings required.' },
+]
+---
+
+<section id="faq" class="py-16 md:py-20">
+  <div class="mx-auto max-w-content px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-text-primary text-center mb-8">
+      FAQ
+    </h2>
+
+    <div class="max-w-3xl mx-auto space-y-2">
+      {faqItems.map((item) => (
+        <details class="faq-item border border-border rounded-lg group" data-pagefind-body>
+          <summary class="cursor-pointer p-4 font-semibold text-text-primary hover:text-accent transition-colors flex items-center justify-between">
+            <span>{item.q}</span>
+            <svg class="w-4 h-4 text-text-muted transition-transform group-open:rotate-180 flex-shrink-0 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="faq-answer px-4 pb-4 text-sm text-text-secondary leading-relaxed" set:html={item.a} />
+        </details>
+      ))}
+    </div>
+
+    <div class="max-w-3xl mx-auto mt-6 text-center">
+      <a href="/faq/" class="inline-flex items-center gap-1.5 text-sm text-accent hover:text-accent-hover transition-colors font-medium">
+        See all questions
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-item code {
+    background: var(--bg-tertiary);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: var(--font-mono);
+  }
+
+  .faq-answer a {
+    color: var(--accent);
+  }
+  .faq-answer a:hover {
+    color: var(--accent-hover);
+  }
+</style>

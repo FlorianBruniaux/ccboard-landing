@@ -1,0 +1,158 @@
+---
+import '../styles/global.css'
+import '../styles/components.css'
+import Header from '../components/global/Header.astro'
+import Footer from '../components/global/Footer.astro'
+import SearchModal from '../components/global/SearchModal.astro'
+
+interface Props {
+  title: string
+  description?: string
+  image?: string
+  ogType?: 'website' | 'article'
+  noIndex?: boolean
+  jsonLd?: Record<string, any>[]
+  preloadImages?: string[]
+}
+
+const {
+  title,
+  description = 'Monitor sessions, analyze costs, manage config. 9 interactive tabs in a 5.8MB binary. 89x faster with SQLite cache.',
+  image = '/og-image.png',
+  ogType = 'website',
+  noIndex = false,
+  jsonLd,
+  preloadImages = [],
+} = Astro.props
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const ogImageURL = new URL(image, Astro.site)
+const gaId = 'G-WH1C8CM79E'
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href={canonicalURL} />
+
+    {preloadImages.map((imgSrc) => (
+      <link rel="preload" as="image" href={imgSrc} />
+    ))}
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Florian Bruniaux" />
+    <meta name="robots" content={noIndex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
+    <meta name="keywords" content="Claude Code, TUI, CLI dashboard, session management, cost tracking, Rust, monitoring, analytics, budget alerts, MCP servers, hooks, agents, live process monitoring, SQLite cache, web interface, Homebrew" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="ccboard" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://img.shields.io" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+
+    <!-- Anti-FOUC: dark mode default for developer audience -->
+    <script is:inline>
+      (function() {
+        var stored = localStorage.getItem('theme');
+        var theme = stored || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
+    <!-- JSON-LD: WebSite + BreadcrumbList (@graph) -->
+    <script type="application/ld+json" set:html={JSON.stringify((() => {
+      const pathSegments = Astro.url.pathname.split('/').filter(Boolean)
+      const breadcrumbs = [
+        { "@type": "ListItem", position: 1, name: "Home", item: String(Astro.site) }
+      ]
+      let currentPath = String(Astro.site).replace(/\/$/, '')
+      pathSegments.forEach((segment, index) => {
+        currentPath += `/${segment}`
+        const name = segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' ')
+        breadcrumbs.push({
+          "@type": "ListItem",
+          position: index + 2,
+          name,
+          item: currentPath,
+        })
+      })
+
+      return {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://ccboard.bruniaux.com/#website",
+            name: "ccboard",
+            url: Astro.site,
+            description: "The Dashboard Claude Code Deserves",
+            author: {
+              "@type": "Person",
+              name: "Florian Bruniaux",
+              url: "https://florian.bruniaux.com",
+              sameAs: [
+                "https://github.com/FlorianBruniaux",
+                "https://www.linkedin.com/in/florian-bruniaux-43408b83/",
+              ],
+            },
+            speakable: {
+              "@type": "SpeakableSpecification",
+              cssSelector: ["h1", "h2", "[class*='hero']", ".faq-answer"],
+            },
+          },
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: breadcrumbs,
+          },
+        ],
+      }
+    })())} />
+
+    <!-- Additional JSON-LD schemas (page-specific) -->
+    {jsonLd?.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+
+    <!-- Google Analytics 4 via Partytown -->
+    <script type="text/partytown" src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+    <script type="text/partytown" define:vars={{ gaId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', gaId);
+    </script>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-to-content">
+      Skip to main content
+    </a>
+    <Header />
+    <main id="main-content" class="pt-14">
+      <slot />
+    </main>
+    <Footer />
+    <SearchModal />
+  </body>
+</html>

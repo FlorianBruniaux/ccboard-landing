@@ -1,0 +1,91 @@
+---
+import { fetchStats, formatNumber } from '../../utils/stats'
+
+const stats = await fetchStats()
+---
+
+<section class="pt-28 pb-16 md:pt-32 md:pb-20">
+  <div class="mx-auto max-w-content px-4 text-center">
+    <!-- Badges -->
+    <div class="flex flex-wrap justify-center gap-2 mb-4">
+      <img src="https://img.shields.io/badge/Interface-TUI-orange?style=flat-square&logo=terminal" alt="TUI Interface" loading="lazy" />
+      <img src="https://img.shields.io/badge/Interface-Web-blue?style=flat-square&logo=firefox" alt="Web Interface" loading="lazy" />
+      <img src="https://img.shields.io/badge/License-MIT_OR_Apache--2.0-blue.svg" alt="MIT OR Apache-2.0 License" loading="lazy" />
+      <img src="https://img.shields.io/crates/v/ccboard?logo=rust" alt="Version" loading="lazy" />
+      <img src="https://img.shields.io/badge/Platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey" alt="Platform" loading="lazy" />
+      <img src="https://img.shields.io/badge/Rust-1.85%2B-orange?logo=rust" alt="Rust 1.85+" loading="lazy" />
+    </div>
+
+    <!-- Latest Release Badge -->
+    <div class="mb-6">
+      <a href="https://github.com/FlorianBruniaux/ccboard/releases/latest" target="_blank" rel="noopener" class="inline-block no-underline">
+        <span class="inline-block bg-accent text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+          Latest Release: v0.8.0 - Budget Tracking & Quota Management
+        </span>
+      </a>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-4 leading-tight">
+      The Dashboard <span class="text-accent">Claude Code</span> Deserves
+    </h1>
+
+    <!-- Problem Statement -->
+    <p class="text-lg md:text-xl text-text-secondary mb-8 max-w-2xl mx-auto">
+      Real-time monitoring &bull; Budget alerts &bull; 30-day forecasting
+    </p>
+
+    <!-- Demo GIF -->
+    <div class="mb-8 rounded-lg overflow-hidden shadow-2xl max-w-3xl mx-auto">
+      <img
+        src="/assets/demo.gif"
+        alt="ccboard TUI demo showing session monitoring, live stats, and navigation"
+        class="w-full block"
+        loading="eager"
+      />
+    </div>
+
+    <!-- CTA -->
+    <div class="mb-6">
+      <a
+        href="#install"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-accent-secondary text-white font-semibold rounded-lg hover:bg-accent transition-all hover:-translate-y-0.5 active:scale-[0.98] no-underline"
+      >
+        Install with Homebrew
+      </a>
+      <p class="mt-3 text-sm text-text-muted">
+        or <a href="https://github.com/FlorianBruniaux/ccboard" target="_blank" rel="noopener" class="text-accent hover:text-accent-hover">view on GitHub</a>
+      </p>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="flex flex-wrap justify-center gap-4 md:gap-6 mt-8">
+      {stats.stars !== null && (
+        <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">{formatNumber(stats.stars)}</strong> stars</span>
+      )}
+      {stats.totalDownloads !== null && (
+        <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">{formatNumber(stats.totalDownloads)}</strong> downloads</span>
+      )}
+      <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">9</strong> tabs</span>
+      <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">344</strong> tests</span>
+      <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">89x</strong> speedup</span>
+      <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">5.8MB</strong> binary</span>
+    </div>
+
+    <!-- Architecture Diagram (collapsible) -->
+    <details class="mt-8 max-w-3xl mx-auto">
+      <summary class="cursor-pointer text-accent font-semibold text-center p-4 border border-dashed border-border rounded-lg hover:bg-background-secondary transition-colors">
+        View Architecture Diagram
+      </summary>
+      <div class="mt-4 text-center">
+        <img src="/assets/architecture-diagram.svg" alt="ccboard Architecture Diagram" class="max-w-full h-auto rounded-lg" loading="lazy" />
+      </div>
+    </details>
+  </div>
+</section>
+
+<style>
+  a.no-underline::after {
+    display: none;
+  }
+</style>

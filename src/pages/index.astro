@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro'
+import HeroBanner from '../components/landing/HeroBanner.astro'
+import FeatureGrid from '../components/landing/FeatureGrid.astro'
+import PerformanceStats from '../components/landing/PerformanceStats.astro'
+import ScreenshotGallery from '../components/landing/ScreenshotGallery.astro'
+import LearningPaths from '../components/landing/LearningPaths.astro'
+import ComparisonTable from '../components/landing/ComparisonTable.astro'
+import InstallSection from '../components/landing/InstallSection.astro'
+import FaqAccordion from '../components/landing/FaqAccordion.astro'
+import RelatedProjects from '../components/landing/RelatedProjects.astro'
+import TerminalDemo from '../components/landing/TerminalDemo.astro'
+import DiveDeeper from '../components/landing/DiveDeeper.astro'
+
+// Page-specific JSON-LD schemas
+const softwareApp = {
+  "@type": "SoftwareApplication",
+  "@id": "https://ccboard.bruniaux.com/#software",
+  name: "ccboard",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "macOS, Linux, Windows",
+  description: "TUI/Web dashboard for Claude Code management. Monitor sessions, analyze costs, manage config with 9 interactive tabs.",
+  url: "https://github.com/FlorianBruniaux/ccboard",
+  downloadUrl: "https://crates.io/crates/ccboard",
+  screenshot: "https://ccboard.bruniaux.com/assets/screenshots/tui/tui-01-dashboard.png",
+  author: { "@type": "Person", name: "Florian Bruniaux", url: "https://github.com/FlorianBruniaux" },
+  publisher: { "@type": "Person", name: "Florian Bruniaux", url: "https://github.com/FlorianBruniaux" },
+  datePublished: "2025-01-15",
+  dateModified: "2026-02-11",
+  license: "https://opensource.org/licenses/MIT",
+  softwareVersion: "0.8.0",
+  audience: { "@type": "Audience", audienceType: "Developers using Claude Code" },
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  potentialAction: { "@type": "DownloadAction", target: "https://github.com/FlorianBruniaux/ccboard/releases/latest" },
+}
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "@id": "https://ccboard.bruniaux.com/#faq",
+  mainEntity: [
+    { "@type": "Question", name: "What is ccboard?", acceptedAnswer: { "@type": "Answer", text: "ccboard is a unified TUI/Web dashboard for Claude Code management. It provides 9 interactive tabs for monitoring sessions, analyzing costs, managing config, hooks, agents, and MCP servers. Built in Rust with a 5.8MB binary." } },
+    { "@type": "Question", name: "How does the cache work?", acceptedAnswer: { "@type": "Answer", text: "ccboard uses SQLite to cache session metadata with mtime-based invalidation. This provides an 89x speedup (20s → 224ms) after the first run, with >99% cache hit rate." } },
+    { "@type": "Question", name: "Does it work on Linux/Windows?", acceptedAnswer: { "@type": "Answer", text: "Yes! ccboard supports macOS (fully tested), Linux (community-tested), and Windows (experimental)." } },
+    { "@type": "Question", name: "How much does it cost?", acceptedAnswer: { "@type": "Answer", text: "ccboard is free and open-source, licensed under MIT OR Apache-2.0. No subscription, no hidden costs." } },
+    { "@type": "Question", name: "Can I use the web interface?", acceptedAnswer: { "@type": "Answer", text: "Yes! Run ccboard web --port 3333 for the web UI, or ccboard both to run TUI + Web simultaneously. The web interface has 100% feature parity with the TUI." } },
+    { "@type": "Question", name: "Does it support real-time monitoring?", acceptedAnswer: { "@type": "Answer", text: "Yes! ccboard includes a file watcher that monitors ~/.claude changes with 500ms debounce. Live updates appear in both TUI and Web via Server-Sent Events." } },
+    { "@type": "Question", name: "What's the difference with ccusage/agtrace?", acceptedAnswer: { "@type": "Answer", text: "ccusage (10K stars) is a CLI cost tracker (no dashboard). agtrace focuses on observability. ccboard is the only multi-concern dashboard combining config, hooks, agents, MCP status, and advanced analytics in a single TUI+Web binary." } },
+    { "@type": "Question", name: "How do I contribute?", acceptedAnswer: { "@type": "Answer", text: "Contributions welcome! See CONTRIBUTING.md for guidelines. Fork the repo, create a feature branch, run tests (cargo test --all), and open a Pull Request." } },
+  ],
+}
+---
+
+<Layout
+  title="ccboard - The Dashboard Claude Code Deserves"
+  description="Monitor sessions, analyze costs, manage config. 9 interactive tabs in a 5.8MB binary. 89x faster with SQLite cache."
+  jsonLd={[softwareApp, faqSchema]}
+  preloadImages={['/assets/demo.gif']}
+>
+  <HeroBanner />
+  <TerminalDemo />
+  <FeatureGrid />
+  <PerformanceStats />
+  <ScreenshotGallery />
+  <LearningPaths />
+  <ComparisonTable />
+  <DiveDeeper />
+  <InstallSection />
+  <FaqAccordion />
+  <RelatedProjects />
+
+  <!-- Floating Feedback Button -->
+  <a
+    href="https://github.com/FlorianBruniaux/ccboard/issues/new"
+    target="_blank"
+    rel="noopener"
+    class="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-2.5 bg-accent text-white rounded-full shadow-lg hover:bg-accent-hover hover:-translate-y-0.5 transition-all text-sm font-medium no-underline"
+    aria-label="Submit an idea or issue"
+  >
+    <span>Feedback</span>
+  </a>
+</Layout>
+
+<style>
+  a.no-underline::after {
+    display: none;
+  }
+</style>

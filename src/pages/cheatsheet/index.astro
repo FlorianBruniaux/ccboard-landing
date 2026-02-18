@@ -1,0 +1,366 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+const installMethods = [
+  { method: 'Homebrew', command: 'brew tap FlorianBruniaux/tap && brew install ccboard' },
+  { method: 'Cargo', command: 'cargo install ccboard' },
+  { method: 'From source', command: 'git clone && cargo build --release' },
+]
+
+const launchCommands = [
+  { cmd: 'ccboard', desc: 'Launch TUI (default)' },
+  { cmd: 'ccboard web', desc: 'Launch web interface (port 3333)' },
+  { cmd: 'ccboard both', desc: 'Launch TUI + Web simultaneously' },
+  { cmd: 'ccboard stats', desc: 'Print summary and exit' },
+  { cmd: 'ccboard web --port 8080', desc: 'Web interface on custom port' },
+]
+
+const tabNav = [
+  { key: '1-9', desc: 'Jump to specific tab' },
+  { key: 'Tab', desc: 'Next tab' },
+  { key: 'Shift+Tab', desc: 'Previous tab' },
+]
+
+const listNav = [
+  { key: 'j / ↓', desc: 'Move down' },
+  { key: 'k / ↑', desc: 'Move up' },
+  { key: 'h / ←', desc: 'Move left (in tables)' },
+  { key: 'l / →', desc: 'Move right (in tables)' },
+  { key: 'Enter', desc: 'Select / Open item' },
+]
+
+const actions = [
+  { key: '/', desc: 'Search in current tab' },
+  { key: ':', desc: 'Command palette' },
+  { key: 'r', desc: 'Refresh data' },
+  { key: 'e', desc: 'Edit file in $EDITOR' },
+  { key: 'o', desc: 'Reveal in file manager' },
+  { key: '?', desc: 'Show help' },
+  { key: 'q', desc: 'Quit' },
+  { key: 'Esc', desc: 'Close dialog / Cancel' },
+]
+
+const tabs = [
+  { num: '1. Dashboard', purpose: 'Key metrics, model usage, 7-day activity' },
+  { num: '2. Sessions', purpose: 'Browse sessions, live process detection' },
+  { num: '3. Config', purpose: 'Cascading config viewer (global/project/local)' },
+  { num: '4. Hooks', purpose: 'Event-based hook management' },
+  { num: '5. Agents', purpose: 'Custom AI personas and commands' },
+  { num: '6. Costs', purpose: 'Token analytics with 4 sub-tabs' },
+  { num: '7. History', purpose: 'Full-text search with temporal patterns' },
+  { num: '8. MCP', purpose: 'Server management with status detection' },
+  { num: '9. Analytics', purpose: 'Budget tracking, trends, insights, forecasting' },
+]
+
+const troubleshooting = [
+  { issue: 'Slow startup', solution: 'First run builds cache (~20s), then 224ms' },
+  { issue: 'Data not updating', solution: 'Press r to force refresh' },
+  { issue: 'Web port in use', solution: 'Use --port 8080 (or any free port)' },
+  { issue: 'Cache issues', solution: 'ccboard clear-cache' },
+]
+
+const techArticle = {
+  "@type": "TechArticle",
+  "@id": "https://ccboard.bruniaux.com/cheatsheet/#article",
+  name: "ccboard Cheatsheet",
+  headline: "ccboard Cheatsheet: Commands & Shortcuts",
+  description: "Complete command reference for ccboard dashboard",
+  url: "https://ccboard.bruniaux.com/cheatsheet/",
+  author: { "@type": "Person", name: "Florian Bruniaux", url: "https://github.com/FlorianBruniaux" },
+  publisher: { "@type": "Person", name: "Florian Bruniaux", url: "https://github.com/FlorianBruniaux" },
+  datePublished: "2026-02-10",
+  dateModified: "2026-02-14",
+  inLanguage: "en",
+  isPartOf: { "@id": "https://ccboard.bruniaux.com/#website" },
+  audience: { "@type": "Audience", audienceType: "Developers using Claude Code" },
+}
+---
+
+<Layout
+  title="ccboard Cheatsheet: Commands & Shortcuts | Quick Reference"
+  description="Free printable ccboard cheatsheet. Essential commands, keyboard shortcuts, 9 tabs overview, and workflows for Claude Code monitoring."
+  jsonLd={[techArticle]}
+>
+  <!-- Hero -->
+  <section class="py-8 md:py-12 border-b border-border text-center">
+    <div class="mx-auto max-w-content px-4">
+      <h1 class="text-3xl md:text-4xl font-bold text-text-primary mb-2">
+        <span class="text-accent">ccboard</span> Cheatsheet
+      </h1>
+      <p class="text-text-secondary mb-4">Quick reference for commands, keybindings, and workflows</p>
+      <div class="flex justify-center gap-4 flex-wrap text-sm text-text-secondary">
+        <span>Version 0.8.0</span>
+        <span class="hidden sm:inline">•</span>
+        <span>9 Interactive Tabs</span>
+        <span class="hidden sm:inline">•</span>
+        <a href="https://github.com/FlorianBruniaux/ccboard" target="_blank" rel="noopener" class="text-accent hover:text-accent-hover">View on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="mx-auto max-w-content px-4 py-8 md:py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Installation -->
+      <div class="cs-card">
+        <h2 class="cs-title">Installation</h2>
+        <table class="cs-table">
+          <thead><tr><th>Method</th><th>Command</th></tr></thead>
+          <tbody>
+            {installMethods.map(m => (
+              <tr><td>{m.method}</td><td><code>{m.command}</code></td></tr>
+            ))}
+          </tbody>
+        </table>
+        <div class="cs-tip">Homebrew recommended. Requires Rust 1.85+ for cargo.</div>
+      </div>
+
+      <!-- Launch Commands -->
+      <div class="cs-card">
+        <h2 class="cs-title">Launch Commands</h2>
+        <table class="cs-table">
+          <thead><tr><th>Command</th><th>Description</th></tr></thead>
+          <tbody>
+            {launchCommands.map(c => (
+              <tr><td>{c.cmd}</td><td>{c.desc}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Keybindings -->
+      <div class="cs-card">
+        <h2 class="cs-title">Keybindings</h2>
+        <h3 class="text-sm font-semibold text-text-primary mt-3 mb-1">Tab Navigation</h3>
+        <table class="cs-table">
+          <tbody>{tabNav.map(k => <tr><td>{k.key}</td><td>{k.desc}</td></tr>)}</tbody>
+        </table>
+        <h3 class="text-sm font-semibold text-text-primary mt-3 mb-1">List Navigation</h3>
+        <table class="cs-table">
+          <tbody>{listNav.map(k => <tr><td>{k.key}</td><td>{k.desc}</td></tr>)}</tbody>
+        </table>
+        <h3 class="text-sm font-semibold text-text-primary mt-3 mb-1">Actions</h3>
+        <table class="cs-table">
+          <tbody>{actions.map(k => <tr><td>{k.key}</td><td>{k.desc}</td></tr>)}</tbody>
+        </table>
+      </div>
+
+      <!-- 9 Tabs Overview -->
+      <div class="cs-card">
+        <h2 class="cs-title">9 Tabs Overview</h2>
+        <table class="cs-table">
+          <thead><tr><th>Tab</th><th>Purpose</th></tr></thead>
+          <tbody>
+            {tabs.map(t => (
+              <tr><td>{t.num}</td><td>{t.purpose}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Performance -->
+      <div class="cs-card">
+        <h2 class="cs-title">Performance</h2>
+        <ul class="cs-list">
+          <li><strong>89x faster</strong> startup with warm cache (20s → 224ms)</li>
+          <li><strong>>99% cache hit rate</strong> after first run</li>
+          <li><strong>10K+ sessions</strong> handled effortlessly</li>
+        </ul>
+        <h3 class="text-sm font-semibold text-text-primary mt-3 mb-1">Cache Management</h3>
+        <table class="cs-table">
+          <tbody>
+            <tr><td>Location</td><td><code>~/.cache/ccboard/</code></td></tr>
+            <tr><td>Clear cache</td><td><code>ccboard clear-cache</code></td></tr>
+            <tr><td>Invalidation</td><td>Automatic (mtime-based)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Web Interface -->
+      <div class="cs-card">
+        <h2 class="cs-title">Web Interface</h2>
+        <ul class="cs-list">
+          <li>100% feature parity with TUI</li>
+          <li>Real-time updates via Server-Sent Events</li>
+          <li>9 pages matching TUI tabs</li>
+          <li>Responsive design (mobile, tablet, desktop)</li>
+        </ul>
+        <h3 class="text-sm font-semibold text-text-primary mt-3 mb-1">Access</h3>
+        <table class="cs-table">
+          <tbody>
+            <tr><td>Default URL</td><td><code>http://localhost:3333</code></td></tr>
+            <tr><td>Custom port</td><td><code>ccboard web --port 8080</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Configuration -->
+      <div class="cs-card">
+        <h2 class="cs-title">Configuration</h2>
+        <h3 class="text-sm font-semibold text-text-primary mb-1">Claude Code Directory</h3>
+        <table class="cs-table">
+          <tbody>
+            <tr><td>Location</td><td><code>~/.claude/</code></td></tr>
+            <tr><td>Sessions</td><td><code>~/.claude/sessions/</code></td></tr>
+            <tr><td>Config</td><td><code>~/.claude/config.json</code></td></tr>
+            <tr><td>Hooks</td><td><code>~/.claude/hooks/</code></td></tr>
+          </tbody>
+        </table>
+        <div class="cs-tip">ccboard automatically detects changes with 500ms debounce</div>
+      </div>
+
+      <!-- Quick Tips -->
+      <div class="cs-card">
+        <h2 class="cs-title">Quick Tips</h2>
+        <ul class="cs-list">
+          <li>Press <code>r</code> to force refresh if data seems stale</li>
+          <li>Use <code>/</code> for fuzzy search within tabs</li>
+          <li>Press <code>1-9</code> to jump directly to any tab</li>
+          <li>Sessions tab detects live Claude processes (CPU/RAM/Tokens)</li>
+          <li>Analytics tab includes 7/30/90-day cost forecasting</li>
+          <li>Config tab shows cascading (global → project → local)</li>
+          <li>Use <code>ccboard both</code> for simultaneous TUI + Web access</li>
+        </ul>
+      </div>
+
+      <!-- Troubleshooting -->
+      <div class="cs-card">
+        <h2 class="cs-title">Troubleshooting</h2>
+        <table class="cs-table">
+          <thead><tr><th>Issue</th><th>Solution</th></tr></thead>
+          <tbody>
+            {troubleshooting.map(t => (
+              <tr><td>{t.issue}</td><td>{t.solution}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Resources -->
+      <div class="cs-card">
+        <h2 class="cs-title">Resources</h2>
+        <ul class="cs-list">
+          <li><a href="https://github.com/FlorianBruniaux/ccboard" target="_blank" rel="noopener" class="text-accent hover:text-accent-hover">GitHub Repository</a></li>
+          <li><a href="https://github.com/FlorianBruniaux/ccboard/blob/main/README.md" target="_blank" rel="noopener" class="text-accent hover:text-accent-hover">Full Documentation</a></li>
+          <li><a href="https://github.com/FlorianBruniaux/ccboard/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" class="text-accent hover:text-accent-hover">Contributing Guide</a></li>
+          <li><a href="https://cc.bruniaux.com" target="_blank" rel="noopener" class="text-accent hover:text-accent-hover">Claude Code Ultimate Guide</a></li>
+        </ul>
+      </div>
+
+      <!-- Architecture -->
+      <div class="cs-card">
+        <h2 class="cs-title">Architecture</h2>
+        <pre class="bg-background-tertiary border border-border rounded-md p-3 text-xs font-mono text-text-primary overflow-x-auto my-2"><code>ccboard
+├── TUI (Ratatui)
+├── Web (Axum + SSE)
+└── Core Library
+    ├── SQLite cache
+    ├── File watcher
+    └── Session parser</code></pre>
+        <p class="text-xs text-text-secondary mt-2">
+          <strong>Binary size:</strong> 5.8MB &bull;
+          <strong>Language:</strong> Rust &bull;
+          <strong>License:</strong> MIT OR Apache-2.0 &bull;
+          <strong>Tests:</strong> 344
+        </p>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .cs-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+  }
+
+  .cs-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.75rem;
+  }
+
+  .cs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+  }
+
+  .cs-table th {
+    padding: 0.375rem 0.5rem;
+    text-align: left;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cs-table td {
+    padding: 0.375rem 0.5rem;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+  }
+
+  .cs-table td:first-child {
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    color: var(--accent);
+    font-size: 0.78rem;
+  }
+
+  .cs-table code {
+    background: var(--bg-tertiary);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.78rem;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  }
+
+  .cs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.85rem;
+  }
+
+  .cs-list li {
+    padding: 0.25rem 0;
+    color: var(--text-secondary);
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .cs-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .cs-list code {
+    background: var(--bg-tertiary);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  }
+
+  .cs-tip {
+    background: rgba(249, 115, 22, 0.1);
+    border-left: 3px solid var(--accent);
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    border-radius: 0 4px 4px 0;
+    color: var(--text-secondary);
+  }
+</style>

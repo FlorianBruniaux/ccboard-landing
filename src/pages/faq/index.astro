@@ -1,0 +1,364 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+const title = 'ccboard FAQ: Installation, Cache, Features, Cost & More'
+const description = 'Answers to the most common questions about ccboard: installation, how the SQLite cache works, TUI vs Web, real-time monitoring, cost tracking, and contributing.'
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "@id": "https://ccboard.bruniaux.com/faq/#faq",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is ccboard?",
+      acceptedAnswer: { "@type": "Answer", text: "ccboard is a unified TUI/Web dashboard for Claude Code management. It provides 9 interactive tabs for monitoring sessions, analyzing costs, managing config, hooks, agents, and MCP servers. Built in Rust with a 5.8MB binary." }
+    },
+    {
+      "@type": "Question",
+      name: "How do I install ccboard?",
+      acceptedAnswer: { "@type": "Answer", text: "The recommended method is Homebrew: brew tap FlorianBruniaux/tap && brew install ccboard. Alternatively, install from crates.io with cargo install ccboard (requires Rust toolchain). Homebrew is preferred for automatic updates and clean uninstall." }
+    },
+    {
+      "@type": "Question",
+      name: "Does ccboard work on Linux and Windows?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. ccboard supports macOS (fully tested), Linux (community-tested), and Windows (experimental). Platform-specific features like file manager integration are cross-platform compatible." }
+    },
+    {
+      "@type": "Question",
+      name: "How does the SQLite cache work?",
+      acceptedAnswer: { "@type": "Answer", text: "ccboard uses SQLite to cache session metadata with mtime-based invalidation. This provides an 89x speedup (20s → 224ms) after the first run, with a >99% cache hit rate. The cache only stores metadata; full session content is loaded on-demand." }
+    },
+    {
+      "@type": "Question",
+      name: "Can I use the web interface instead of the TUI?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. Run ccboard web --port 3333 for the web UI, or ccboard both to run TUI + Web simultaneously. The web interface has 100% feature parity with the TUI (9 pages)." }
+    },
+    {
+      "@type": "Question",
+      name: "Does ccboard support real-time monitoring?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. ccboard includes a file watcher that monitors ~/.claude changes with 500ms debounce. Live updates appear in both TUI and Web via Server-Sent Events. The Sessions tab also detects live Claude processes with CPU/RAM/Token metrics." }
+    },
+    {
+      "@type": "Question",
+      name: "How much does ccboard cost?",
+      acceptedAnswer: { "@type": "Answer", text: "ccboard is free and open-source, licensed under MIT OR Apache-2.0. No subscription, no hidden costs. The cost analytics features help you track your own Claude API usage." }
+    },
+    {
+      "@type": "Question",
+      name: "How do I track my Claude API budget?",
+      acceptedAnswer: { "@type": "Answer", text: "Configure custom monthly budgets with automatic alerts in the Analytics tab (Tab 9). Edit ~/.claude/settings.json, add {\"budget\": {\"monthlyBudgetUsd\": 50.0, \"alertThresholdPct\": 80.0}}, then see budget status with visual warnings directly in the dashboard." }
+    },
+    {
+      "@type": "Question",
+      name: "What's the difference between ccboard, ccusage, and agtrace?",
+      acceptedAnswer: { "@type": "Answer", text: "ccusage (10K stars) is a CLI cost tracker with no dashboard. agtrace focuses on observability via MCP self-reflection. ccboard is the only multi-concern dashboard combining config, hooks, agents, MCP status, and advanced analytics with forecasting in a single TUI+Web binary." }
+    },
+    {
+      "@type": "Question",
+      name: "What's new in v0.8.x?",
+      acceptedAnswer: { "@type": "Answer", text: "v0.8.0 added Budget Tracking & Quota Management: month-to-date cost calculation with intelligent token-based prorata, monthly projection with 4-level alert system (safe/warning/critical/exceeded), budget configuration in settings.json, quota gauge in Costs tab, and REST API endpoint /api/quota. See the full CHANGELOG for details." }
+    },
+    {
+      "@type": "Question",
+      name: "How do I contribute to ccboard?",
+      acceptedAnswer: { "@type": "Answer", text: "Contributions are welcome. See CONTRIBUTING.md for guidelines. Fork the repo, create a feature branch, run tests with cargo test --all, and open a Pull Request. Zero clippy warnings are required." }
+    },
+  ],
+}
+---
+
+<Layout
+  title={title}
+  description={description}
+  jsonLd={[faqSchema]}
+>
+  <header class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">ccboard</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">FAQ</span>
+      </nav>
+      <h1>Frequently Asked Questions</h1>
+      <p class="tagline">Everything you need to know about ccboard: installation, features, performance, and contributing.</p>
+    </div>
+  </header>
+
+  <div class="faq-page container">
+
+    <!-- Getting Started -->
+    <section class="faq-section">
+      <h2 class="faq-section-title">Getting Started</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What is ccboard?</summary>
+          <p>ccboard is a unified TUI/Web dashboard for Claude Code management. It provides <strong>9 interactive tabs</strong> covering sessions, costs, config, hooks, agents, MCP servers, and analytics. Built in Rust — single binary, 5.8MB, no external runtime required.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How do I install ccboard?</summary>
+          <p>The recommended method is <strong>Homebrew</strong> (no Rust toolchain needed):</p>
+          <p><code>brew tap FlorianBruniaux/tap && brew install ccboard</code></p>
+          <p>Or install from crates.io: <code>cargo install ccboard</code>. Then launch with <code>ccboard</code> (TUI), <code>ccboard web</code> (Web UI), or <code>ccboard both</code> (TUI + Web simultaneously).</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does ccboard work on Linux and Windows?</summary>
+          <p>Yes. <strong>macOS</strong> is fully tested. <strong>Linux</strong> is community-tested and works well. <strong>Windows</strong> is experimental — core features work, some platform-specific integrations may vary.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Performance & Cache -->
+    <section class="faq-section">
+      <h2 class="faq-section-title">Performance & Cache</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>How does the SQLite cache work?</summary>
+          <p>ccboard uses <strong>SQLite</strong> to cache session metadata with mtime-based invalidation. On first run it indexes your sessions (can take ~20s for large histories). Subsequent runs hit the cache at &gt;99% hit rate, dropping load time to ~224ms — an <strong>89x speedup</strong>. The cache stores only metadata; full session content is loaded on-demand.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does it support real-time monitoring?</summary>
+          <p>Yes. A file watcher monitors <code>~/.claude</code> changes with a 500ms debounce. Live updates stream to both TUI and Web via <strong>Server-Sent Events</strong>. The Sessions tab detects running Claude processes and shows live CPU, RAM, and token metrics.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="faq-section">
+      <h2 class="faq-section-title">Features</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Can I use the web interface instead of the TUI?</summary>
+          <p>Yes. Run <code>ccboard web --port 3333</code> for the web UI only. Run <code>ccboard both</code> to run TUI and Web simultaneously. The web interface has <strong>100% feature parity</strong> with the TUI — all 9 tabs, real-time updates, and full search.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How do I track my Claude API budget?</summary>
+          <p>Open the <strong>Analytics tab</strong> (Tab 9). In <code>~/.claude/settings.json</code>, add a <code>budget</code> object with <code>monthlyBudgetUsd</code> and <code>alertThresholdPct</code> fields. ccboard then displays budget status with visual warnings and spend forecasting based on your usage trend.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does it support Homebrew?</summary>
+          <p>Yes — Homebrew is the <strong>recommended</strong> installation method. Benefits: automatic updates (<code>brew upgrade ccboard</code>), clean uninstall, no Rust toolchain required. Tap: <code>FlorianBruniaux/tap</code>.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Pricing & Cost -->
+    <section class="faq-section">
+      <h2 class="faq-section-title">Pricing</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>How much does ccboard cost?</summary>
+          <p>ccboard is <strong>free and open-source</strong>, licensed under MIT OR Apache-2.0. No subscription, no hidden costs, no telemetry. The cost analytics features help you track your own Claude API spending.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="faq-section">
+      <h2 class="faq-section-title">Comparison</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What's the difference between ccboard, ccusage, and agtrace?</summary>
+          <p><strong>ccusage</strong> (~10K stars) is a CLI cost tracker — no dashboard, no config management, no live monitoring. <strong>agtrace</strong> focuses on observability via MCP self-reflection. <strong>ccboard</strong> is the only multi-concern dashboard combining config, hooks, agents, MCP status, cost analytics, and live session monitoring in a single TUI+Web binary.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Changelog -->
+    <section class="faq-section">
+      <h2 class="faq-section-title">Releases</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What's new in v0.8.x?</summary>
+          <p><strong>v0.8.0</strong> added Budget Tracking & Quota Management: month-to-date cost calculation with intelligent token-based prorata, monthly projection, 4-level alert system (safe/warning/critical/exceeded), quota gauge in the Costs tab, and REST API endpoint <code>/api/quota</code>. See the full <a href="https://github.com/FlorianBruniaux/ccboard/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG</a> on GitHub.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Contributing -->
+    <section class="faq-section">
+      <h2 class="faq-section-title">Contributing</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>How do I contribute to ccboard?</summary>
+          <p>Contributions are welcome. See <a href="https://github.com/FlorianBruniaux/ccboard/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md</a> for guidelines. Fork the repo, create a feature branch, run <code>cargo test --all</code>, and open a Pull Request. Zero clippy warnings required. Bug reports and feature requests via <a href="https://github.com/FlorianBruniaux/ccboard/issues" target="_blank" rel="noopener">GitHub Issues</a> are also very helpful.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="faq-footer">
+      <p>Still have questions? <a href="https://github.com/FlorianBruniaux/ccboard/issues/new" target="_blank" rel="noopener">Open an issue on GitHub</a> or check the <a href="/docs/getting-started/">documentation</a>.</p>
+      <a href="/" class="back-link">← Back to ccboard</a>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-secondary);
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.75rem;
+  }
+
+  .tagline {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 600px;
+  }
+
+  .faq-page {
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .faq-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .faq-section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .faq-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+
+  .faq-item[open] {
+    border-color: var(--accent);
+  }
+
+  .faq-item summary {
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-primary);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: color 0.15s;
+  }
+
+  .faq-item summary:hover {
+    color: var(--accent);
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  .faq-item[open] summary::after {
+    content: '−';
+  }
+
+  .faq-item[open] summary {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-item p {
+    padding: 0.75rem 1.25rem;
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .faq-item p + p {
+    padding-top: 0;
+  }
+
+  .faq-item code {
+    background: var(--bg-tertiary);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+    font-size: 0.875em;
+    font-family: var(--font-mono);
+  }
+
+  .faq-item a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .faq-item a:hover {
+    text-decoration: underline;
+  }
+
+  .faq-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-footer p {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+  }
+
+  .faq-footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .faq-footer a:hover {
+    text-decoration: underline;
+  }
+
+  .back-link {
+    font-size: 0.875rem;
+    color: var(--text-muted) !important;
+  }
+</style>

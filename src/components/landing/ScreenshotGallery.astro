@@ -1,0 +1,172 @@
+---
+// Screenshots gallery: TUI/Web toggle with 9 tabs each
+
+const tabs = ['Dashboard', 'Sessions', 'Config', 'Hooks', 'Agents', 'Costs', 'History', 'MCP', 'Analytics']
+
+const tuiScreenshots: Record<string, { src: string; alt: string; caption: string }> = {
+  dashboard: { src: '/assets/screenshots/tui/tui-01-dashboard.png', alt: 'TUI Dashboard - Key Metrics & Model Usage', caption: 'Dashboard with overview stats and 7-day activity' },
+  sessions: { src: '/assets/screenshots/tui/tui-02-sessions-live.png', alt: 'TUI Sessions Browser with live process monitoring', caption: 'Sessions browser with live CPU/RAM/Tokens monitoring' },
+  config: { src: '/assets/screenshots/tui/tui-03-config.png', alt: 'TUI Configuration Viewer', caption: 'Configuration viewer with 4-column diff' },
+  hooks: { src: '/assets/screenshots/tui/tui-04-hooks.png', alt: 'TUI Hooks Management', caption: 'Hooks management with syntax highlighting' },
+  agents: { src: '/assets/screenshots/tui/tui-05-agents.png', alt: 'TUI Agents Manager', caption: 'Agents manager with custom persona configurations' },
+  costs: { src: '/assets/screenshots/tui/tui-06-costs-billing-blocks.png', alt: 'TUI Cost Analytics', caption: 'Cost analytics with billing blocks and token breakdown' },
+  history: { src: '/assets/screenshots/tui/tui-07-history.png', alt: 'TUI History Search', caption: 'History search with temporal patterns' },
+  mcp: { src: '/assets/screenshots/tui/tui-08-mcp.png', alt: 'TUI MCP Servers Status', caption: 'MCP servers status with environment variables' },
+  analytics: { src: '/assets/screenshots/tui/tui-09-analytics-overview.png', alt: 'TUI Analytics with budget tracking and trends', caption: 'Advanced analytics with budget tracking and trends' },
+}
+
+const webScreenshots: Record<string, { src: string; alt: string; caption: string }> = {
+  dashboard: { src: '/assets/screenshots/web/web-01-dashboard.png', alt: 'Web Dashboard - Real-time Metrics', caption: 'Web dashboard with interactive charts and live stats' },
+  sessions: { src: '/assets/screenshots/web/web-02-sessions-list.png', alt: 'Web Sessions List', caption: 'Browse sessions with search, filters, and pagination' },
+  config: { src: '/assets/screenshots/web/web-03-config.png', alt: 'Web Configuration Panel', caption: 'Visual configuration editor with live validation' },
+  hooks: { src: '/assets/screenshots/web/web-04-hooks.png', alt: 'Web Hooks Manager', caption: 'Hook editor with syntax highlighting and test runner' },
+  agents: { src: '/assets/screenshots/web/web-05-agents.png', alt: 'Web Agents Browser', caption: 'Browse and configure custom AI personas' },
+  costs: { src: '/assets/screenshots/web/web-06-costs-overview.png', alt: 'Web Cost Dashboard', caption: 'Interactive cost analytics with charts and breakdowns' },
+  history: { src: '/assets/screenshots/web/web-07-history.png', alt: 'Web History Timeline', caption: 'Timeline view of all Claude Code activities' },
+  mcp: { src: '/assets/screenshots/web/web-08-mcp.png', alt: 'Web MCP Status', caption: 'MCP server monitoring with real-time status' },
+  analytics: { src: '/assets/screenshots/web/web-09-analytics-overview.png', alt: 'Web Analytics Dashboard', caption: 'Advanced analytics with forecasting and insights' },
+}
+---
+
+<section id="screenshots" class="py-16 md:py-20 bg-background-secondary">
+  <div class="mx-auto max-w-content px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-text-primary text-center mb-8">
+      See It In Action
+    </h2>
+
+    <!-- Interface Toggle (TUI/Web) -->
+    <div class="flex justify-center gap-2 mb-6" role="tablist" aria-label="Interface type">
+      <button class="interface-tab active px-4 py-2 rounded-lg font-medium text-sm transition-colors" data-interface="tui" role="tab" aria-selected="true">
+        TUI (Terminal)
+      </button>
+      <button class="interface-tab px-4 py-2 rounded-lg font-medium text-sm transition-colors" data-interface="web" role="tab" aria-selected="false">
+        Web
+      </button>
+    </div>
+
+    <!-- TUI Interface -->
+    <div class="interface-content active" id="interface-tui" role="tabpanel">
+      <div class="flex flex-wrap justify-center gap-2 mb-4" role="tablist" aria-label="TUI screenshots">
+        {tabs.map((tab, i) => (
+          <button
+            class:list={['screenshot-tab px-3 py-1.5 rounded text-sm font-medium transition-colors', i === 0 && 'active']}
+            data-interface="tui"
+            data-tab={tab.toLowerCase()}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+
+      {Object.entries(tuiScreenshots).map(([key, ss], i) => (
+        <div class:list={['screenshot-content', i === 0 && 'active']} id={`tab-tui-${key}`} role="tabpanel">
+          <img src={ss.src} alt={ss.alt} loading="lazy" class="w-full rounded-lg shadow-sm" />
+          <p class="text-center text-sm text-text-muted mt-3">{ss.caption}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Web Interface -->
+    <div class="interface-content" id="interface-web" role="tabpanel">
+      <div class="flex flex-wrap justify-center gap-2 mb-4" role="tablist" aria-label="Web screenshots">
+        {tabs.map((tab, i) => (
+          <button
+            class:list={['screenshot-tab px-3 py-1.5 rounded text-sm font-medium transition-colors', i === 0 && 'active']}
+            data-interface="web"
+            data-tab={tab.toLowerCase()}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+
+      {Object.entries(webScreenshots).map(([key, ss], i) => (
+        <div class:list={['screenshot-content', i === 0 && 'active']} id={`tab-web-${key}`} role="tabpanel">
+          <img src={ss.src} alt={ss.alt} loading="lazy" class="w-full rounded-lg shadow-sm" />
+          <p class="text-center text-sm text-text-muted mt-3">{ss.caption}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .interface-tab {
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+  .interface-tab.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  .interface-tab:hover:not(.active) {
+    border-color: var(--accent);
+    color: var(--text-primary);
+  }
+
+  .screenshot-tab {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid transparent;
+  }
+  .screenshot-tab.active {
+    background: var(--accent-highlight-bg);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .screenshot-tab:hover:not(.active) {
+    color: var(--text-secondary);
+    background: var(--bg-tertiary);
+  }
+
+  .interface-content { display: none; }
+  .interface-content.active { display: block; }
+
+  .screenshot-content { display: none; }
+  .screenshot-content.active { display: block; }
+</style>
+
+<script>
+  // Interface tabs (TUI/Web)
+  document.querySelectorAll('.interface-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.interface-tab').forEach(t => {
+        t.classList.remove('active')
+        t.setAttribute('aria-selected', 'false')
+      })
+      document.querySelectorAll('.interface-content').forEach(c => c.classList.remove('active'))
+
+      tab.classList.add('active')
+      tab.setAttribute('aria-selected', 'true')
+      const target = document.getElementById('interface-' + (tab as HTMLElement).dataset.interface)
+      if (target) target.classList.add('active')
+    })
+  })
+
+  // Screenshot tabs (within each interface)
+  document.querySelectorAll('.screenshot-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const el = tab as HTMLElement
+      const interfaceType = el.dataset.interface
+      const interfaceContent = document.getElementById('interface-' + interfaceType)
+      if (!interfaceContent) return
+
+      interfaceContent.querySelectorAll('.screenshot-tab').forEach(t => {
+        t.classList.remove('active')
+        t.setAttribute('aria-selected', 'false')
+      })
+      interfaceContent.querySelectorAll('.screenshot-content').forEach(c => c.classList.remove('active'))
+
+      tab.classList.add('active')
+      tab.setAttribute('aria-selected', 'true')
+      const target = document.getElementById('tab-' + interfaceType + '-' + el.dataset.tab)
+      if (target) target.classList.add('active')
+    })
+  })
+</script>

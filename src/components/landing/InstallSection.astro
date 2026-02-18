@@ -1,0 +1,180 @@
+---
+// Install section: Homebrew/cargo, CLI commands, keybindings, env vars
+const envVars = [
+  { name: 'CCBOARD_CLAUDE_HOME', desc: 'Override Claude home directory', example: 'CCBOARD_CLAUDE_HOME=/custom/path ccboard' },
+  { name: 'CCBOARD_NON_INTERACTIVE', desc: 'Disable interactive prompts (CI/CD mode)', example: 'CCBOARD_NON_INTERACTIVE=1 ccboard stats' },
+  { name: 'CCBOARD_FORMAT', desc: 'Force output format: json or table', example: 'CCBOARD_FORMAT=json ccboard recent 10' },
+  { name: 'CCBOARD_NO_COLOR', desc: 'Disable ANSI colors (log-friendly)', example: 'CCBOARD_NO_COLOR=1 ccboard search "bug"' },
+]
+---
+
+<section id="install" class="py-16 md:py-20 bg-background-secondary">
+  <div class="mx-auto max-w-content px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-text-primary text-center mb-8">
+      Quick Start
+    </h2>
+
+    <div class="max-w-3xl mx-auto">
+      <!-- Homebrew (Recommended) -->
+      <p class="text-center text-text-secondary mb-6">Get started in 30 seconds:</p>
+
+      <h3 class="text-xl font-semibold text-text-primary mb-3">Recommended: Homebrew</h3>
+      <div class="code-block bg-background border border-border rounded-lg overflow-hidden mb-4">
+        <div class="flex items-center justify-between px-3 py-2 bg-background-tertiary border-b border-border">
+          <span class="text-xs font-mono text-text-muted">bash</span>
+          <button class="copy-btn text-xs text-text-muted hover:text-accent transition-colors" aria-label="Copy code">Copy</button>
+        </div>
+        <pre class="p-4 overflow-x-auto text-sm font-mono text-text-primary"><code>brew tap FlorianBruniaux/tap
+brew install ccboard</code></pre>
+      </div>
+
+      <p class="text-sm text-text-secondary mb-4">
+        <strong>macOS & Linux users:</strong> Fastest installation method with automatic updates
+      </p>
+
+      <details class="mb-6 text-sm text-text-secondary">
+        <summary class="cursor-pointer font-semibold text-accent">Alternative: cargo install</summary>
+        <div class="code-block bg-background border border-border rounded-lg overflow-hidden mt-3">
+          <div class="flex items-center justify-between px-3 py-2 bg-background-tertiary border-b border-border">
+            <span class="text-xs font-mono text-text-muted">bash</span>
+            <button class="copy-btn text-xs text-text-muted hover:text-accent transition-colors" aria-label="Copy code">Copy</button>
+          </div>
+          <pre class="p-4 overflow-x-auto text-sm font-mono text-text-primary"><code>cargo install ccboard</code></pre>
+        </div>
+        <p class="mt-2"><strong>Requirements:</strong> Rust 1.85+ (Claude Code users already have Rust installed)</p>
+      </details>
+
+      <p class="text-sm text-text-secondary mb-8">
+        <strong>Pre-built binaries:</strong> Available from
+        <a href="https://github.com/FlorianBruniaux/ccboard/releases/latest" target="_blank" rel="noopener" class="text-accent hover:text-accent-hover">GitHub Releases</a>
+      </p>
+
+      <!-- Launch Commands -->
+      <h3 class="text-xl font-semibold text-text-primary mb-3">Launch Dashboard</h3>
+      <div class="code-block bg-background border border-border rounded-lg overflow-hidden mb-8">
+        <div class="flex items-center justify-between px-3 py-2 bg-background-tertiary border-b border-border">
+          <span class="text-xs font-mono text-text-muted">bash</span>
+          <button class="copy-btn text-xs text-text-muted hover:text-accent transition-colors" aria-label="Copy code">Copy</button>
+        </div>
+        <pre class="p-4 overflow-x-auto text-sm font-mono text-text-primary"><code><span class="text-text-muted"># TUI (default)</span>
+ccboard
+
+<span class="text-text-muted"># Web interface</span>
+ccboard web --port 3333
+
+<span class="text-text-muted"># Both TUI + Web</span>
+ccboard both --port 3333
+
+<span class="text-text-muted"># Stats summary</span>
+ccboard stats</code></pre>
+      </div>
+
+      <!-- CLI Commands -->
+      <h3 class="text-xl font-semibold text-text-primary mb-3">
+        CLI Commands <span class="text-sm text-accent font-normal">(v0.4.0+)</span>
+      </h3>
+      <div class="code-block bg-background border border-border rounded-lg overflow-hidden mb-4">
+        <div class="flex items-center justify-between px-3 py-2 bg-background-tertiary border-b border-border">
+          <span class="text-xs font-mono text-text-muted">bash</span>
+          <button class="copy-btn text-xs text-text-muted hover:text-accent transition-colors" aria-label="Copy code">Copy</button>
+        </div>
+        <pre class="p-4 overflow-x-auto text-sm font-mono text-text-primary"><code><span class="text-text-muted"># Session management</span>
+ccboard search "query"       <span class="text-text-muted"># Search sessions by content</span>
+ccboard recent 10            <span class="text-text-muted"># Show 10 most recent sessions</span>
+ccboard info &lt;session-id&gt;    <span class="text-text-muted"># Display detailed session metadata</span>
+ccboard resume &lt;session-id&gt;  <span class="text-text-muted"># Resume session in Claude CLI</span>
+
+<span class="text-text-muted"># Maintenance</span>
+ccboard clear-cache          <span class="text-text-muted"># Clear SQLite cache (after upgrades)</span></code></pre>
+      </div>
+      <p class="text-sm text-text-secondary mb-8">
+        All commands support JSON output: <code class="bg-background-tertiary px-1.5 py-0.5 rounded text-xs font-mono">ccboard recent 10 --json</code>
+      </p>
+
+      <!-- Keybindings -->
+      <h3 class="text-xl font-semibold text-text-primary mb-3">Keybindings</h3>
+      <div class="code-block bg-background border border-border rounded-lg overflow-hidden mb-8">
+        <div class="flex items-center justify-between px-3 py-2 bg-background-tertiary border-b border-border">
+          <span class="text-xs font-mono text-text-muted">keybindings</span>
+        </div>
+        <pre class="p-4 overflow-x-auto text-sm font-mono text-text-primary"><code><span class="text-text-muted"># Navigation</span>
+1-9        Jump to specific tab
+Tab        Next tab
+j/k        Move down/up (vim style)
+/          Search (Sessions, History)
+:          Command palette
+
+<span class="text-text-muted"># File operations</span>
+e          Edit file in $EDITOR
+o          Reveal in file manager
+
+<span class="text-text-muted"># Other</span>
+r          Refresh data
+?          Show help
+q          Quit</code></pre>
+      </div>
+
+      <!-- Environment Variables -->
+      <h3 class="text-xl font-semibold text-text-primary mb-3">Environment Variables</h3>
+      <p class="text-sm text-text-secondary mb-4">For automation and CI/CD workflows:</p>
+
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="border-b border-border">
+              <th class="text-left p-2 text-text-primary font-semibold">Variable</th>
+              <th class="text-left p-2 text-text-primary font-semibold">Description</th>
+              <th class="text-left p-2 text-text-primary font-semibold">Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            {envVars.map((v) => (
+              <tr class="border-b border-border-light">
+                <td class="p-2"><code class="bg-background-tertiary px-1.5 py-0.5 rounded text-xs font-mono">{v.name}</code></td>
+                <td class="p-2 text-text-secondary">{v.desc}</td>
+                <td class="p-2"><code class="bg-background-tertiary px-1 py-0.5 rounded text-xs font-mono">{v.example}</code></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-block bg-background border border-border rounded-lg overflow-hidden mb-6">
+        <div class="flex items-center justify-between px-3 py-2 bg-background-tertiary border-b border-border">
+          <span class="text-xs font-mono text-text-muted">bash</span>
+          <button class="copy-btn text-xs text-text-muted hover:text-accent transition-colors" aria-label="Copy code">Copy</button>
+        </div>
+        <pre class="p-4 overflow-x-auto text-sm font-mono text-text-primary"><code><span class="text-text-muted"># CI/CD: JSON output without colors</span>
+CCBOARD_NON_INTERACTIVE=1 CCBOARD_NO_COLOR=1 CCBOARD_FORMAT=json ccboard stats
+
+<span class="text-text-muted"># Log-friendly: No colors for file redirects</span>
+CCBOARD_NO_COLOR=1 ccboard recent 50 > sessions.log</code></pre>
+      </div>
+
+      <p class="text-center">
+        <a href="https://github.com/FlorianBruniaux/ccboard/blob/main/README.md#usage" target="_blank" rel="noopener" class="text-accent hover:text-accent-hover font-medium">
+          Full documentation →
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Copy code functionality
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const codeBlock = btn.closest('.code-block')
+      const code = codeBlock?.querySelector('code')?.textContent
+      if (!code) return
+
+      try {
+        await navigator.clipboard.writeText(code)
+        btn.textContent = 'Copied!'
+        setTimeout(() => { btn.textContent = 'Copy' }, 2000)
+      } catch (err) {
+        console.error('Copy failed:', err)
+      }
+    })
+  })
+</script>

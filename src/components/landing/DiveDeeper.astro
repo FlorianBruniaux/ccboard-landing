@@ -1,0 +1,74 @@
+---
+// Dive Deeper: 6 cards linking to docs pages
+const cards = [
+  {
+    icon: '🚀',
+    title: 'Getting Started',
+    desc: 'Install, launch, and navigate ccboard in under 2 minutes.',
+    href: '/docs/getting-started/',
+  },
+  {
+    icon: '📊',
+    title: '9 Tabs Guide',
+    desc: 'Deep dive into each tab: Dashboard, Sessions, Config, and more.',
+    href: '/docs/tabs/',
+  },
+  {
+    icon: '⚙️',
+    title: 'Configuration',
+    desc: '3-level config merge, environment variables, and CLI options.',
+    href: '/docs/configuration/',
+  },
+  {
+    icon: '⌨️',
+    title: 'CLI Commands',
+    desc: 'search, recent, info, resume, stats, and more.',
+    href: '/cheatsheet/',
+  },
+  {
+    icon: '🌐',
+    title: 'Web Interface',
+    desc: '100% feature parity with TUI. SSE live updates, responsive.',
+    href: '/docs/web-interface/',
+  },
+  {
+    icon: '⚡',
+    title: 'Performance',
+    desc: 'SQLite cache, 89x speedup, mtime invalidation explained.',
+    href: '/docs/performance/',
+  },
+]
+---
+
+<section class="py-16 md:py-20 bg-background-secondary">
+  <div class="mx-auto max-w-content px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-text-primary text-center mb-3">
+      Dive Deeper
+    </h2>
+    <p class="text-center text-text-secondary mb-8 max-w-xl mx-auto">
+      Explore the full documentation to get the most out of ccboard.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+      {cards.map((card) => (
+        <a
+          href={card.href}
+          class="block bg-background border border-border rounded-lg p-5 hover:border-accent hover:-translate-y-1 transition-all no-underline group"
+        >
+          <div class="text-2xl mb-3">{card.icon}</div>
+          <h3 class="text-base font-semibold text-text-primary mb-2 group-hover:text-accent transition-colors flex items-center gap-1">
+            {card.title}
+            <span class="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+          </h3>
+          <p class="text-sm text-text-muted">{card.desc}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  a.no-underline::after {
+    display: none;
+  }
+</style>

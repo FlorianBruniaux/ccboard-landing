@@ -11,8 +11,8 @@
 - Available: Globally via GitHub, Homebrew, Cargo (crates.io)
 - License: MIT OR Apache-2.0 (free, open source)
 - Language: Rust
-- Binary Size: 5.8MB
-- Tests: 234
+- Binary Size: 4.2MB
+- Tests: 281
 - Platforms: macOS (fully tested), Linux (community-tested), Windows (experimental)
 
 ## What ccboard Does
@@ -81,7 +81,7 @@ ccboard both
 - Cache hit rate: >99%
 - Initial load: 20s (cold start)
 - Cached load: 224ms (89x faster)
-- Memory footprint: ~5.8MB binary
+- Memory footprint: ~4.2MB binary
 - Real-time updates: 500ms debounce
 
 ## Comparison
@@ -101,8 +101,21 @@ ccboard both
 
 - Homepage: https://ccboard.bruniaux.com
 - Repository: https://github.com/FlorianBruniaux/ccboard
-- Documentation: https://github.com/FlorianBruniaux/ccboard/blob/main/README.md
+- Documentation: https://ccboard.bruniaux.com/docs/getting-started/
+- Cheatsheet: https://ccboard.bruniaux.com/cheatsheet/
 - Issues: https://github.com/FlorianBruniaux/ccboard/issues
+
+## Documentation Pages
+
+- Getting Started: https://ccboard.bruniaux.com/docs/getting-started/
+- Installation: https://ccboard.bruniaux.com/docs/installation/
+- Tabs Overview: https://ccboard.bruniaux.com/docs/tabs/
+- Configuration: https://ccboard.bruniaux.com/docs/configuration/
+- Keybindings: https://ccboard.bruniaux.com/docs/keybindings/
+- Web Interface: https://ccboard.bruniaux.com/docs/web-interface/
+- Performance: https://ccboard.bruniaux.com/docs/performance/
+- Troubleshooting: https://ccboard.bruniaux.com/docs/troubleshooting/
+- Changelog: https://ccboard.bruniaux.com/docs/changelog/
 
 ## Contributing
 
@@ -115,7 +128,7 @@ Contributions welcome! See CONTRIBUTING.md for guidelines:
 
 ## Related Projects
 
-- **Claude Code Ultimate Guide**: Complete guide for Claude Code
+- **Claude Code Ultimate Guide**: Comprehensive guide for Claude Code
   - URL: https://cc.bruniaux.com
   - GitHub: https://github.com/FlorianBruniaux/claude-code-ultimate-guide
 
