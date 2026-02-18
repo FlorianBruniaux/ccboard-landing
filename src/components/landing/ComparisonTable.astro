@@ -14,6 +14,7 @@ const rows = [
   { feature: 'Export CSV/JSON', ccboard: '✅', agtrace: '❌', claudelytics: '✅', ccusage: '✅ JSON' },
   { feature: 'Live File Watcher', ccboard: '✅', agtrace: '✅ Poll 1s', claudelytics: '❌', ccusage: '❌' },
   { feature: 'Advanced Analytics', ccboard: '✅ 4 views', agtrace: '❌', claudelytics: '⚠️ Burn rate', ccusage: '❌' },
+  { feature: 'Budget / Quota Management', ccboard: '✅ 4-level alerts', agtrace: '❌', claudelytics: '❌', ccusage: '❌', highlight: true },
   { feature: 'Single Binary', ccboard: '✅ 5.8MB', agtrace: '✅ Rust', claudelytics: '✅ Rust', ccusage: '❌ npm' },
 ]
 
@@ -24,18 +25,19 @@ const uniqueFeatures = [
   'Agents/Commands/Skills browser with <strong>invocation stats</strong>',
   'MCP server <strong>status detection</strong>',
   'SQLite metadata cache (<strong>89x faster</strong> startup)',
-  '<strong>Advanced Analytics</strong>: 30-day forecasting, budget alerts, session duration stats',
+  '<strong>Advanced Analytics</strong>: 30-day forecasting, session duration stats, activity patterns',
+  'Monthly budget limits with <strong>4-level quota system</strong> (Safe → Warning → Critical → Exceeded) and MTD cost tracking',
   'Dual TUI + Web in <strong>single binary</strong>',
 ]
 ---
 
 <section id="competitive" class="py-16 md:py-20">
   <div class="mx-auto max-w-content px-4">
-    <h2 class="text-3xl md:text-4xl font-bold text-text-primary text-center mb-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-6">
       Why ccboard?
     </h2>
 
-    <p class="text-center max-w-2xl mx-auto mb-8 text-text-secondary">
+    <p class="mb-8 text-text-secondary">
       The only actively-maintained Rust TUI combining Claude Code monitoring, config management, hooks, agents, and MCP servers in a single 5.8MB binary.
     </p>
 
@@ -66,7 +68,7 @@ const uniqueFeatures = [
     </div>
 
     <!-- Unique Features -->
-    <div class="max-w-2xl mx-auto bg-background-secondary border border-border rounded-lg p-6">
+    <div class="bg-background-secondary border border-border rounded-lg p-6">
       <h3 class="text-lg font-semibold text-text-primary mb-3">Unique to ccboard</h3>
       <ul class="space-y-2 text-sm text-text-secondary">
         {uniqueFeatures.map((f) => (

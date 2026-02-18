@@ -23,21 +23,21 @@ Ne JAMAIS modifier les stats ou métriques ici sans avoir d'abord mis à jour le
 
 | Élément | Source (ccboard repo) | Fichiers landing |
 |---------|----------------------|------------------|
-| Version | `Cargo.toml` version field | index.html (Schema.org line 58, footer) |
-| Tabs count | Feature cards in README | index.html (title, meta, hero stats, features section) |
-| Tests count | `cargo test` output | index.html (hero stats, meta description) |
-| Binary size | `target/release/ccboard` size | index.html (hero stats, meta description) |
-| Speedup metric | Benchmark results | index.html (hero stats, performance section) |
+| Version | `Cargo.toml` version field | `src/components/global/Footer.astro`, `src/utils/stats.ts`, `src/components/landing/HeroBanner.astro`, `src/pages/index.astro`, `src/pages/cheatsheet/index.astro`, `src/pages/faq/index.astro`, `src/content/docs/installation.md` |
+| Tabs count | Feature cards in README | `src/components/landing/HeroBanner.astro` |
+| Tests count | `cargo test --all` output | `src/components/landing/HeroBanner.astro`, `src/pages/cheatsheet/index.astro` |
+| Binary size | README / release binary | `src/components/landing/HeroBanner.astro`, `src/components/landing/ComparisonTable.astro`, `src/components/landing/FaqAccordion.astro`, `src/pages/index.astro`, `src/layouts/Layout.astro`, `src/pages/faq/index.astro`, `src/pages/cheatsheet/index.astro`, `src/content/docs/performance.md`, `src/content/docs/getting-started.md` |
+| Speedup metric | Benchmark results | `src/components/landing/HeroBanner.astro` |
 | Screenshots | `assets/screenshots/*.png` | index.html (gallery section), copied to landing repo |
 
 ## Valeurs actuelles (à maintenir synchronisées)
 
 | Métrique | Valeur | Source |
 |----------|--------|--------|
-| Version | `0.5.2` | Cargo.toml |
+| Version | `0.8.0` | Cargo.toml |
 | Tabs | `9` | Feature cards count (Dashboard, Sessions, Config, Hooks, Agents, Costs, History, MCP, Analytics) |
-| Tests | `281` | `cargo test --all` output |
-| Binary size | `4.2MB` | Release binary size |
+| Tests | `344` | `cargo test --all` output |
+| Binary size | `5.8MB` | README / release binary size |
 | Speedup | `89x` | Cache benchmark (20s → 224ms) |
 | Cache hit rate | `>99%` | Performance metrics |
 

@@ -5,9 +5,9 @@ const stats = await fetchStats()
 ---
 
 <section class="pt-28 pb-16 md:pt-32 md:pb-20">
-  <div class="mx-auto max-w-content px-4 text-center">
+  <div class="mx-auto max-w-content px-4">
     <!-- Badges -->
-    <div class="flex flex-wrap justify-center gap-2 mb-4">
+    <div class="flex flex-wrap gap-2 mb-4">
       <img src="https://img.shields.io/badge/Interface-TUI-orange?style=flat-square&logo=terminal" alt="TUI Interface" loading="lazy" />
       <img src="https://img.shields.io/badge/Interface-Web-blue?style=flat-square&logo=firefox" alt="Web Interface" loading="lazy" />
       <img src="https://img.shields.io/badge/License-MIT_OR_Apache--2.0-blue.svg" alt="MIT OR Apache-2.0 License" loading="lazy" />
@@ -31,12 +31,12 @@ const stats = await fetchStats()
     </h1>
 
     <!-- Problem Statement -->
-    <p class="text-lg md:text-xl text-text-secondary mb-8 max-w-2xl mx-auto">
+    <p class="text-lg md:text-xl text-text-secondary mb-8">
       Real-time monitoring &bull; Budget alerts &bull; 30-day forecasting
     </p>
 
     <!-- Demo GIF -->
-    <div class="mb-8 rounded-lg overflow-hidden shadow-2xl max-w-3xl mx-auto">
+    <div class="mb-8 rounded-lg overflow-hidden shadow-2xl">
       <img
         src="/assets/demo.gif"
         alt="ccboard TUI demo showing session monitoring, live stats, and navigation"
@@ -59,7 +59,7 @@ const stats = await fetchStats()
     </div>
 
     <!-- Stats Bar -->
-    <div class="flex flex-wrap justify-center gap-4 md:gap-6 mt-8">
+    <div class="flex flex-wrap gap-4 md:gap-6 mt-8">
       {stats.stars !== null && (
         <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">{formatNumber(stats.stars)}</strong> stars</span>
       )}
@@ -73,11 +73,11 @@ const stats = await fetchStats()
     </div>
 
     <!-- Architecture Diagram (collapsible) -->
-    <details class="mt-8 max-w-3xl mx-auto">
-      <summary class="cursor-pointer text-accent font-semibold text-center p-4 border border-dashed border-border rounded-lg hover:bg-background-secondary transition-colors">
+    <details class="mt-8">
+      <summary class="cursor-pointer text-accent font-semibold p-4 border border-dashed border-border rounded-lg hover:bg-background-secondary transition-colors">
         View Architecture Diagram
       </summary>
-      <div class="mt-4 text-center">
+      <div class="mt-4">
         <img src="/assets/architecture-diagram.svg" alt="ccboard Architecture Diagram" class="max-w-full h-auto rounded-lg" loading="lazy" />
       </div>
     </details>

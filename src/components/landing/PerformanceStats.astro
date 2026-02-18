@@ -4,11 +4,11 @@
 
 <section id="performance" class="py-16 md:py-20">
   <div class="mx-auto max-w-content px-4">
-    <h2 class="text-3xl md:text-4xl font-bold text-text-primary text-center mb-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-6">
       Instant Startup, Even With Thousands of Sessions
     </h2>
 
-    <p class="text-center max-w-2xl mx-auto mb-10 text-text-secondary leading-relaxed">
+    <p class="mb-10 text-text-secondary leading-relaxed">
       Claude Code stores every session as a JSONL file in <code class="bg-background-tertiary px-1.5 py-0.5 rounded text-sm font-mono">~/.claude</code>.
       After a few months, you accumulate thousands of files and gigabytes of data.
       ccboard solves this with a <strong class="text-text-primary">local SQLite cache</strong>: it scans your files once, then loads from cache on every subsequent launch.
@@ -34,7 +34,7 @@
     </div>
 
     <!-- How it works (collapsible) -->
-    <details class="max-w-3xl mx-auto border border-border rounded-lg p-4 bg-background">
+    <details class="border border-border rounded-lg p-4 bg-background">
       <summary class="cursor-pointer font-semibold text-accent">
         How it works under the hood →
       </summary>
