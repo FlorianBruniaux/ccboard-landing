@@ -26,3 +26,7 @@ claudedocs/
 
 # pnpm
 pnpm-debug.log*
+
+# Next.js leftovers (migrated to Astro)
+.next/
+next-env.d.ts
