@@ -17,12 +17,15 @@ const stats = await fetchStats()
     </div>
 
     <!-- Latest Release Badge -->
-    <div class="mb-6">
+    <div class="flex flex-wrap gap-2 mb-6">
       <a href="https://github.com/FlorianBruniaux/ccboard/releases/latest" target="_blank" rel="noopener" class="inline-block no-underline">
         <span class="inline-block bg-accent text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-          Latest Release: v0.10.0 - Export Features (sessions/stats/billing)
+          Latest: v0.11.1 — Activity Security Audit + FTS5 Search
         </span>
       </a>
+      <span class="inline-flex items-center gap-1.5 bg-green-500/10 border border-green-500/30 text-green-400 px-4 py-2 rounded-full text-sm font-semibold">
+        🔒 Security Audit — Now Live
+      </span>
     </div>
 
     <!-- Title -->
@@ -32,7 +35,7 @@ const stats = await fetchStats()
 
     <!-- Problem Statement -->
     <p class="text-lg md:text-xl text-text-secondary mb-8">
-      Real-time monitoring &bull; Budget alerts &bull; 30-day forecasting &bull; Light/Dark mode
+      Real-time monitoring &bull; Budget alerts &bull; 30-day forecasting &bull; Security audit &bull; Light/Dark mode
     </p>
 
     <!-- Demo GIF -->
@@ -66,8 +69,8 @@ const stats = await fetchStats()
       {stats.totalDownloads !== null && (
         <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">{formatNumber(stats.totalDownloads)}</strong> downloads</span>
       )}
-      <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">9</strong> tabs</span>
-      <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">344</strong> tests</span>
+      <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">11</strong> tabs</span>
+      <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">377</strong> tests</span>
       <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">89x</strong> speedup</span>
       <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">5.8MB</strong> binary</span>
     </div>

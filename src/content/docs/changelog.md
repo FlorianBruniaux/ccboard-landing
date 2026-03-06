@@ -5,6 +5,32 @@ section: Resources
 order: 12
 ---
 
+## v0.11.1 — Web Interface Fix for Linux (2026-03-06)
+
+- **WASM frontend embedded in binary**: `ccboard web` now works out of the box when installed via Homebrew or downloaded from GitHub Releases — no source tree or `trunk build` needed at runtime
+- Fix: 404 errors on Linux with installed binaries resolved via `rust-embed` (assets compiled into the binary at build time)
+
+## v0.11.0 — Activity Security Audit + Full-Text Search (2026-03-05)
+
+- **Activity tab** (press `a`): on-demand per-session security audit with Sessions view (security badges) and Violations view (cross-session alert feed sorted Critical → Warning → Info)
+- **6 alert types**: credential exposure (`sk-`, `ghp_`, `AKIA`…), destructive commands (`rm -rf`, `git push --force`, `DROP TABLE`…), external data exfiltration, scope violations, force-push detection
+- **SQLite activity tables** (schema v6): `activity_cache` + `activity_alerts` + FTS5 `session_fts` — atomic writes, TOCTOU-free, mtime-based invalidation
+- **Batch scan**: `r` to scan all sessions with 4-concurrent semaphore, live progress counter
+- **Search tab**: FTS5 full-text search across all sessions with ranked snippets (TUI + `/api/search` endpoint)
+- **Pricing fix**: `claude-opus-4-5` and `claude-opus-4-6` short model IDs now resolve to correct pricing ($5.00/MTok)
+- **31 tests** added (29 unit + 2 cross-module)
+
+## v0.10.0 — Export Features (2026-02-18)
+
+- `ccboard export` subcommands: `conversation`, `sessions`, `stats`, `billing`
+- CSV, JSON, Markdown export formats
+- Date filter (`--since 7d`) for sessions export
+
+## v0.9.0 — Light Mode (2026-02-18)
+
+- Full light theme activated via `Ctrl+T` — 11 tabs + 5 components migrated to centralized `Palette` system
+- Theme persistence saved to `~/.claude/cache/ccboard-preferences.json`
+
 ## v0.8.0 — Budget Tracking & Quota Management (2026-02-16)
 
 - **Monthly budget limits** with 4-level alert system: Safe / Warning / Critical / Exceeded

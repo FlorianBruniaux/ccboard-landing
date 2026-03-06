@@ -18,16 +18,16 @@ const softwareApp = {
   name: "ccboard",
   applicationCategory: "DeveloperApplication",
   operatingSystem: "macOS, Linux, Windows",
-  description: "TUI/Web dashboard for Claude Code management. Monitor sessions, analyze costs, manage config with 9 interactive tabs.",
+  description: "TUI/Web dashboard for Claude Code management. Monitor sessions, analyze costs, manage config, audit security with 11 interactive tabs.",
   url: "https://github.com/FlorianBruniaux/ccboard",
   downloadUrl: "https://crates.io/crates/ccboard",
   screenshot: "https://ccboard.bruniaux.com/assets/screenshots/tui/tui-01-dashboard.png",
   author: { "@type": "Person", name: "Florian Bruniaux", url: "https://github.com/FlorianBruniaux" },
   publisher: { "@type": "Person", name: "Florian Bruniaux", url: "https://github.com/FlorianBruniaux" },
   datePublished: "2025-01-15",
-  dateModified: "2026-02-18",
+  dateModified: "2026-03-06",
   license: "https://opensource.org/licenses/MIT",
-  softwareVersion: "0.10.0",
+  softwareVersion: "0.11.1",
   audience: { "@type": "Audience", audienceType: "Developers using Claude Code" },
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   potentialAction: { "@type": "DownloadAction", target: "https://github.com/FlorianBruniaux/ccboard/releases/latest" },
@@ -37,7 +37,7 @@ const faqSchema = {
   "@type": "FAQPage",
   "@id": "https://ccboard.bruniaux.com/#faq",
   mainEntity: [
-    { "@type": "Question", name: "What is ccboard?", acceptedAnswer: { "@type": "Answer", text: "ccboard is a unified TUI/Web dashboard for Claude Code management. It provides 9 interactive tabs for monitoring sessions, analyzing costs, managing config, hooks, agents, and MCP servers. Built in Rust with a 5.8MB binary." } },
+    { "@type": "Question", name: "What is ccboard?", acceptedAnswer: { "@type": "Answer", text: "ccboard is a unified TUI/Web dashboard for Claude Code management. It provides 11 interactive tabs for monitoring sessions, analyzing costs, managing config, hooks, agents, MCP servers, and security auditing. Built in Rust with a 5.8MB binary." } },
     { "@type": "Question", name: "How does the cache work?", acceptedAnswer: { "@type": "Answer", text: "ccboard uses SQLite to cache session metadata with mtime-based invalidation. This provides an 89x speedup (20s → 224ms) after the first run, with >99% cache hit rate." } },
     { "@type": "Question", name: "Does it work on Linux/Windows?", acceptedAnswer: { "@type": "Answer", text: "Yes! ccboard supports macOS (fully tested), Linux (community-tested), and Windows (experimental)." } },
     { "@type": "Question", name: "How much does it cost?", acceptedAnswer: { "@type": "Answer", text: "ccboard is free and open-source, licensed under MIT OR Apache-2.0. No subscription, no hidden costs." } },
@@ -51,7 +51,7 @@ const faqSchema = {
 
 <Layout
   title="ccboard - The Dashboard Claude Code Deserves"
-  description="Monitor sessions, analyze costs, manage config. 9 interactive tabs in a 5.8MB binary. 89x faster with SQLite cache."
+  description="Monitor sessions, analyze costs, manage config, audit security. 11 tabs in a 5.8MB binary. Activity security audit, FTS5 search, 89x faster with SQLite cache."
   jsonLd={[softwareApp, faqSchema]}
   preloadImages={['/assets/demo.gif']}
 >
