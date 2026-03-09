@@ -1,7 +1,7 @@
 ---
 // Screenshots gallery: TUI/Web toggle with 9 tabs each
 
-const tabs = ['Dashboard', 'Sessions', 'Config', 'Hooks', 'Agents', 'Costs', 'History', 'MCP', 'Analytics']
+const tabs = ['Dashboard', 'Sessions', 'Config', 'Hooks', 'Agents', 'Costs', 'History', 'MCP', 'Analytics', 'Activity']
 
 const tuiScreenshots: Record<string, { src: string; alt: string; caption: string }> = {
   dashboard: { src: '/assets/screenshots/tui/tui-01-dashboard.png', alt: 'TUI Dashboard - Key Metrics & Model Usage', caption: 'Dashboard with overview stats and 7-day activity' },
@@ -13,6 +13,7 @@ const tuiScreenshots: Record<string, { src: string; alt: string; caption: string
   history: { src: '/assets/screenshots/tui/tui-07-history.png', alt: 'TUI History Search', caption: 'History search with temporal patterns' },
   mcp: { src: '/assets/screenshots/tui/tui-08-mcp.png', alt: 'TUI MCP Servers Status', caption: 'MCP servers status with environment variables' },
   analytics: { src: '/assets/screenshots/tui/tui-09-analytics-overview.png', alt: 'TUI Analytics with budget tracking and trends', caption: 'Advanced analytics with budget tracking and trends' },
+  activity: { src: '/assets/screenshots/tui/tui-10-activity.png', alt: 'TUI Activity Security Audit - Sessions + Violations feed', caption: 'Activity tab (press `a`): security audit with violations feed sorted by severity' },
 }
 
 const webScreenshots: Record<string, { src: string; alt: string; caption: string }> = {
