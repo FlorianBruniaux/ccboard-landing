@@ -1,19 +1,18 @@
 ---
 // Screenshots gallery: TUI/Web toggle with 9 tabs each
 
-const tabs = ['Dashboard', 'Sessions', 'Config', 'Hooks', 'Agents', 'Costs', 'History', 'MCP', 'Analytics', 'Activity']
+const tabs = ['Dashboard', 'Sessions', 'Config', 'Hooks', 'Tools', 'Costs', 'History', 'MCP', 'Analytics']
 
 const tuiScreenshots: Record<string, { src: string; alt: string; caption: string }> = {
   dashboard: { src: '/assets/screenshots/tui/tui-01-dashboard.png', alt: 'TUI Dashboard - Key Metrics & Model Usage', caption: 'Dashboard with overview stats and 7-day activity' },
   sessions: { src: '/assets/screenshots/tui/tui-02-sessions-live.png', alt: 'TUI Sessions Browser with live process monitoring', caption: 'Sessions browser with live CPU/RAM/Tokens monitoring' },
   config: { src: '/assets/screenshots/tui/tui-03-config.png', alt: 'TUI Configuration Viewer', caption: 'Configuration viewer with 4-column diff' },
   hooks: { src: '/assets/screenshots/tui/tui-04-hooks.png', alt: 'TUI Hooks Management', caption: 'Hooks management with syntax highlighting' },
-  agents: { src: '/assets/screenshots/tui/tui-05-agents.png', alt: 'TUI Agents Manager', caption: 'Agents manager with custom persona configurations' },
+  tools: { src: '/assets/screenshots/tui/tui-05-agents.png', alt: 'TUI Tools & Agents Browser', caption: 'Tools browser: agents, commands, skills with invocation stats' },
   costs: { src: '/assets/screenshots/tui/tui-06-costs-billing-blocks.png', alt: 'TUI Cost Analytics', caption: 'Cost analytics with billing blocks and token breakdown' },
   history: { src: '/assets/screenshots/tui/tui-07-history.png', alt: 'TUI History Search', caption: 'History search with temporal patterns' },
   mcp: { src: '/assets/screenshots/tui/tui-08-mcp.png', alt: 'TUI MCP Servers Status', caption: 'MCP servers status with environment variables' },
   analytics: { src: '/assets/screenshots/tui/tui-09-analytics-overview.png', alt: 'TUI Analytics with budget tracking and trends', caption: 'Advanced analytics with budget tracking and trends' },
-  activity: { src: '/assets/screenshots/tui/tui-10-activity.png', alt: 'TUI Activity Security Audit - Sessions + Violations feed', caption: 'Activity tab (press `a`): security audit with violations feed sorted by severity' },
 }
 
 const webScreenshots: Record<string, { src: string; alt: string; caption: string }> = {
@@ -21,7 +20,7 @@ const webScreenshots: Record<string, { src: string; alt: string; caption: string
   sessions: { src: '/assets/screenshots/web/web-02-sessions-list.png', alt: 'Web Sessions List', caption: 'Browse sessions with search, filters, and pagination' },
   config: { src: '/assets/screenshots/web/web-03-config.png', alt: 'Web Configuration Panel', caption: 'Visual configuration editor with live validation' },
   hooks: { src: '/assets/screenshots/web/web-04-hooks.png', alt: 'Web Hooks Manager', caption: 'Hook editor with syntax highlighting and test runner' },
-  agents: { src: '/assets/screenshots/web/web-05-agents.png', alt: 'Web Agents Browser', caption: 'Browse and configure custom AI personas' },
+  tools: { src: '/assets/screenshots/web/web-05-agents.png', alt: 'Web Tools & Agents Browser', caption: 'Browse agents, commands, and skills with invocation stats' },
   costs: { src: '/assets/screenshots/web/web-06-costs-overview.png', alt: 'Web Cost Dashboard', caption: 'Interactive cost analytics with charts and breakdowns' },
   history: { src: '/assets/screenshots/web/web-07-history.png', alt: 'Web History Timeline', caption: 'Timeline view of all Claude Code activities' },
   mcp: { src: '/assets/screenshots/web/web-08-mcp.png', alt: 'Web MCP Status', caption: 'MCP server monitoring with real-time status' },

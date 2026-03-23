@@ -5,7 +5,7 @@ const rows = [
   { feature: 'Stars', ccboard: '0', agtrace: '23', claudelytics: '62', ccusage: '10,361' },
   { feature: 'Language', ccboard: 'Rust', agtrace: 'Rust', claudelytics: 'Rust', ccusage: 'TypeScript' },
   { feature: 'Type', ccboard: 'TUI+Web', agtrace: 'TUI', claudelytics: 'TUI', ccusage: 'CLI' },
-  { feature: 'TUI Dashboard', ccboard: '✅ 9 tabs', agtrace: '✅ Single view', claudelytics: '✅ 8 tabs', ccusage: '❌', highlight: true },
+  { feature: 'TUI Dashboard', ccboard: '✅ 12 tabs', agtrace: '✅ Single view', claudelytics: '✅ 8 tabs', ccusage: '❌', highlight: true },
   { feature: 'Config Viewer (3-level)', ccboard: '✅', agtrace: '❌', claudelytics: '❌', ccusage: '❌', highlight: true },
   { feature: 'Hooks Viewer + Test', ccboard: '✅', agtrace: '❌', claudelytics: '❌', ccusage: '❌', highlight: true },
   { feature: 'Agents Browser', ccboard: '✅', agtrace: '❌', claudelytics: '❌', ccusage: '❌', highlight: true },
@@ -15,7 +15,7 @@ const rows = [
   { feature: 'Live File Watcher', ccboard: '✅', agtrace: '✅ Poll 1s', claudelytics: '❌', ccusage: '❌' },
   { feature: 'Advanced Analytics', ccboard: '✅ 4 views', agtrace: '❌', claudelytics: '⚠️ Burn rate', ccusage: '❌' },
   { feature: 'Budget / Quota Management', ccboard: '✅ 4-level alerts', agtrace: '❌', claudelytics: '❌', ccusage: '❌', highlight: true },
-  { feature: 'Single Binary', ccboard: '✅ 5.8MB', agtrace: '✅ Rust', claudelytics: '✅ Rust', ccusage: '❌ npm' },
+  { feature: 'Single Binary (TUI+Web)', ccboard: '✅ Rust', agtrace: '✅ Rust', claudelytics: '✅ Rust', ccusage: '❌ npm' },
 ]
 
 const uniqueFeatures = [
@@ -27,6 +27,7 @@ const uniqueFeatures = [
   'SQLite metadata cache (<strong>89x faster</strong> startup)',
   '<strong>Advanced Analytics</strong>: 30-day forecasting, session duration stats, activity patterns',
   'Monthly budget limits with <strong>4-level quota system</strong> (Safe → Warning → Critical → Exceeded) and MTD cost tracking',
+  '<strong>Conversation Viewer</strong>: JSONL replay, tool call visualization, regex search, HTML export',
   'Dual TUI + Web in <strong>single binary</strong>',
 ]
 ---
@@ -38,7 +39,7 @@ const uniqueFeatures = [
     </h2>
 
     <p class="mb-8 text-text-secondary">
-      The only actively-maintained Rust TUI combining Claude Code monitoring, config management, hooks, agents, and MCP servers in a single 5.8MB binary.
+      The only actively-maintained Rust TUI+Web dashboard combining Claude Code monitoring, conversation viewer, config management, hooks, agents, and MCP servers in a single binary.
     </p>
 
     <!-- Comparison Table -->
