@@ -3,22 +3,24 @@
 
 const workflows = [
   { icon: '💰', title: 'Cost Tracking', desc: 'Budget alerts, 30-day forecasting, billing blocks', tabs: ['Costs', 'Analytics', 'History'] },
-  { icon: '🔍', title: 'Session Monitoring', desc: 'Live processes (CPU/RAM/Tokens), search, detail view', tabs: ['Sessions', 'Dashboard'] },
+  { icon: '🔍', title: 'Session Monitoring', desc: 'Live processes (CPU/RAM/Tokens), search, conversation replay', tabs: ['Sessions', 'Dashboard', 'Search'] },
   { icon: '⚙️', title: 'Config Management', desc: '3-level merge, hooks, agents, MCP servers', tabs: ['Config', 'Hooks', 'Agents', 'MCP'] },
   { icon: '🔒', title: 'Security Audit', desc: 'Cross-session violations feed, destructive command detection, credential exposure alerts', tabs: ['Activity'] },
 ]
 
 const features = [
-  { icon: '📊', title: 'Dashboard', desc: 'Overview stats, model usage, MCP servers, 7-day activity, API usage estimation with plan budgets.' },
-  { icon: '🔍', title: 'Sessions', desc: 'Browse all sessions with search, live Claude processes with CPU/RAM/Tokens, detail view.' },
+  { icon: '📊', title: 'Dashboard', desc: 'Overview stats, model usage, MCP servers, 30-day activity heatmap (responsive), API usage estimation with plan budgets.' },
+  { icon: '🔍', title: 'Sessions', desc: 'Browse all sessions with search, live Claude processes with CPU/RAM/Tokens, conversation replay with tool call visualization.' },
+  { icon: '📖', title: 'Conversation Viewer', desc: 'Full JSONL replay with tool call visualization (grouped, collapsible), regex search with hit navigation, HTML export with syntax highlighting (40+ languages).' },
+  { icon: '🔎', title: 'Search', desc: 'FTS5 full-text search across all sessions with search-as-you-type, detail pane (date, project, snippet), arrow-key navigation, and conversation jump.' },
   { icon: '⚙️', title: 'Config', desc: 'Cascading configuration editor (global/project/local) with 4-column diff view.' },
   { icon: '🔗', title: 'Hooks', desc: 'Event-based hook management with bash syntax highlighting and test mode.' },
   { icon: '🤖', title: 'Agents', desc: 'Browse agents, commands, and skills with frontmatter YAML parsing and invocation stats.' },
   { icon: '💰', title: 'Costs', desc: 'Budget quota gauge with 4-level alerts (Safe/Warning/Critical/Exceeded), MTD cost, monthly projection, billing blocks export.' },
   { icon: '🕐', title: 'History', desc: 'Full-text search across sessions with temporal patterns, filters, and CSV/JSON export.' },
   { icon: '🔌', title: 'MCP', desc: 'Server management with status detection and env vars display.' },
-  { icon: '📈', title: 'Analytics', desc: 'Advanced analytics with 4 sub-views: Budget tracking, Trends, Patterns, Insights.' },
-  { icon: '🔒', title: 'Activity', desc: 'Security audit tab (press `a`): per-session file/bash/network tool calls, cross-session violations feed sorted Critical→Warning→Info with remediation hints.' },
+  { icon: '📈', title: 'Analytics', desc: 'Advanced analytics: responsive activity heatmap, trends, patterns, insights. Heatmap fills available space and adapts to terminal width.' },
+  { icon: '🔒', title: 'Activity', desc: 'Security audit tab: per-session file/bash/network tool calls, cross-session violations feed sorted Critical→Warning→Info with remediation hints.' },
 ]
 ---
 
@@ -47,7 +49,7 @@ const features = [
     <!-- All 9 Tabs Detail (collapsible) -->
     <details class="border border-border rounded-lg">
       <summary class="cursor-pointer font-semibold text-accent p-4 hover:bg-background-secondary transition-colors text-center">
-        View all 10 tabs in detail →
+        View all 12 tabs in detail →
       </summary>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4 pt-2">
         {features.map((f) => (

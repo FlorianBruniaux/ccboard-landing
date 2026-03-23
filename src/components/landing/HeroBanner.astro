@@ -20,11 +20,11 @@ const stats = await fetchStats()
     <div class="flex flex-wrap gap-2 mb-6">
       <a href="https://github.com/FlorianBruniaux/ccboard/releases/latest" target="_blank" rel="noopener" class="inline-block no-underline">
         <span class="inline-block bg-accent text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-          Latest: v0.11.1 — Activity Security Audit + FTS5 Search
+          Latest: v0.16.3 — Conversation Viewer + Web UI + Heatmap
         </span>
       </a>
-      <span class="inline-flex items-center gap-1.5 bg-green-500/10 border border-green-500/30 text-green-400 px-4 py-2 rounded-full text-sm font-semibold">
-        🔒 Security Audit — Now Live
+      <span class="inline-flex items-center gap-1.5 bg-blue-500/10 border border-blue-500/30 text-blue-400 px-4 py-2 rounded-full text-sm font-semibold">
+        📖 Conversation Viewer — Now Live
       </span>
     </div>
 
@@ -35,7 +35,7 @@ const stats = await fetchStats()
 
     <!-- Problem Statement -->
     <p class="text-lg md:text-xl text-text-secondary mb-8">
-      Real-time monitoring &bull; Budget alerts &bull; 30-day forecasting &bull; Security audit &bull; Light/Dark mode
+      Real-time monitoring &bull; Budget alerts &bull; Conversation viewer &bull; FTS5 search &bull; Security audit &bull; Web UI
     </p>
 
     <!-- Demo GIF -->
@@ -69,10 +69,10 @@ const stats = await fetchStats()
       {stats.totalDownloads !== null && (
         <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">{formatNumber(stats.totalDownloads)}</strong> downloads</span>
       )}
-      <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">11</strong> tabs</span>
-      <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">377</strong> tests</span>
+      <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">12</strong> tabs</span>
+      <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">458</strong> tests</span>
       <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">89x</strong> speedup</span>
-      <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">5.8MB</strong> binary</span>
+      <span class="text-sm text-text-secondary"><strong class="text-text-primary text-lg">TUI + Web</strong> binary</span>
     </div>
 
     <!-- Architecture Diagram (collapsible) -->
