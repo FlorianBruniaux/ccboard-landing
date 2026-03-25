@@ -16,7 +16,7 @@ const FALLBACK: CcboardStats = {
   forks: null,
   totalDownloads: null,
   recentDownloads: null,
-  latestVersion: '0.16.3',
+  latestVersion: '0.17.0',
 }
 
 async function fetchGitHub(): Promise<Partial<CcboardStats>> {
