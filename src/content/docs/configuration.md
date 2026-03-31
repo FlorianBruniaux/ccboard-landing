@@ -53,15 +53,16 @@ ccboard clear-cache          # Clear SQLite cache
 
 All commands support JSON output with `--json` flag.
 
-## Config 3-Level Merge
+## Config 4-Level Merge
 
-ccboard's Config tab (Tab 3) shows a 3-level cascading view:
+ccboard's Config tab (Tab 3) shows a 4-level cascading view:
 
-1. **Global** (`~/.claude/config.json`)
-2. **Project** (`.claude/config.json` in project root)
-3. **Local** (`.claude/config.local.json` in project root)
+1. **Global** (`~/.claude/settings.json`)
+2. **Project** (`.claude/settings.json` in project root)
+3. **Local** (`.claude/settings.local.json` in project root)
+4. **Env** (environment variables, highest priority)
 
-Values cascade: local overrides project, project overrides global.
+Values cascade: env overrides local, local overrides project, project overrides global.
 
 ## Budget Configuration
 

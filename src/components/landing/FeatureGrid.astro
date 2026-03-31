@@ -1,11 +1,11 @@
 ---
-// Features section: 3 workflow cards + 9 tabs detail (collapsible)
+// Features section: 4 workflow cards + 13 tabs detail (collapsible)
 
 const workflows = [
   { icon: '💰', title: 'Cost Tracking', desc: 'Budget alerts, 30-day forecasting, billing blocks', tabs: ['Costs', 'Analytics', 'History'] },
   { icon: '🔍', title: 'Session Monitoring', desc: 'Live processes (CPU/RAM/Tokens), search, conversation replay', tabs: ['Sessions', 'Dashboard', 'Search'] },
-  { icon: '⚙️', title: 'Config Management', desc: '3-level merge, hooks, agents, MCP servers', tabs: ['Config', 'Hooks', 'Agents', 'MCP'] },
-  { icon: '🔒', title: 'Security Audit', desc: 'Cross-session violations feed, destructive command detection, credential exposure alerts', tabs: ['Activity'] },
+  { icon: '⚙️', title: 'Config Management', desc: '4-level merge, hooks, agents, MCP servers', tabs: ['Config', 'Hooks', 'Agents', 'MCP'] },
+  { icon: '🔒', title: 'Security Audit', desc: 'Cross-session violations feed, destructive command detection, credential exposure alerts', tabs: ['Audit Log'] },
 ]
 
 const features = [
@@ -19,8 +19,10 @@ const features = [
   { icon: '💰', title: 'Costs', desc: 'Budget quota gauge with 4-level alerts (Safe/Warning/Critical/Exceeded), MTD cost, monthly projection, billing blocks export.' },
   { icon: '🕐', title: 'History', desc: 'Full-text search across sessions with temporal patterns, filters, and CSV/JSON export.' },
   { icon: '🔌', title: 'MCP', desc: 'Server management with status detection and env vars display.' },
-  { icon: '📈', title: 'Analytics', desc: 'Advanced analytics: responsive activity heatmap, trends, patterns, insights. Heatmap fills available space and adapts to terminal width.' },
-  { icon: '🔒', title: 'Activity', desc: 'Security audit tab: per-session file/bash/network tool calls, cross-session violations feed sorted Critical→Warning→Info with remediation hints.' },
+  { icon: '📈', title: 'Analytics', desc: 'Advanced analytics: responsive activity heatmap, trends, patterns, summary, anomalies, costs, discover. 7 sub-views adapting to terminal width.' },
+  { icon: '🔒', title: 'Audit Log', desc: 'Security audit tab: per-session file/bash/network tool calls, cross-session violations feed sorted Critical→Warning→Info with remediation hints.' },
+  { icon: '🧩', title: 'Plugins', desc: 'Plugin usage analytics: invocation counts, token consumption, and extension stats across all sessions.' },
+  { icon: '🧠', title: 'Brain', desc: 'Cross-session knowledge base: hooks auto-extract progress, decisions, blockers, patterns, and fixes into a searchable SQLite store. Context injected at session start.' },
 ]
 ---
 
@@ -46,10 +48,10 @@ const features = [
       ))}
     </div>
 
-    <!-- All 9 Tabs Detail (collapsible) -->
+    <!-- All 13 Tabs Detail (collapsible) -->
     <details class="border border-border rounded-lg">
       <summary class="cursor-pointer font-semibold text-accent p-4 hover:bg-background-secondary transition-colors text-center">
-        View all 12 tabs in detail →
+        View all 13 tabs in detail →
       </summary>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4 pt-2">
         {features.map((f) => (

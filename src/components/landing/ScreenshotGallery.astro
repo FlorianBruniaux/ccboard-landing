@@ -1,7 +1,7 @@
 ---
-// Screenshots gallery: TUI/Web toggle with 9 tabs each
+// Screenshots gallery: TUI/Web toggle with 13 tabs each
 
-const tabs = ['Dashboard', 'Sessions', 'Config', 'Hooks', 'Tools', 'Costs', 'History', 'MCP', 'Analytics']
+const tabs = ['Dashboard', 'Sessions', 'Config', 'Hooks', 'Tools', 'Costs', 'History', 'MCP', 'Analytics', 'Audit Log', 'Plugins', 'Search', 'Brain']
 
 const tuiScreenshots: Record<string, { src: string; alt: string; caption: string }> = {
   dashboard: { src: '/assets/screenshots/tui/tui-01-dashboard.png', alt: 'TUI Dashboard - Key Metrics & Model Usage', caption: 'Dashboard with overview stats and 7-day activity' },
@@ -13,6 +13,10 @@ const tuiScreenshots: Record<string, { src: string; alt: string; caption: string
   history: { src: '/assets/screenshots/tui/tui-07-history.png', alt: 'TUI History Search', caption: 'History search with temporal patterns' },
   mcp: { src: '/assets/screenshots/tui/tui-08-mcp.png', alt: 'TUI MCP Servers Status', caption: 'MCP servers status with environment variables' },
   analytics: { src: '/assets/screenshots/tui/tui-09-analytics-overview.png', alt: 'TUI Analytics with budget tracking and trends', caption: 'Advanced analytics with budget tracking and trends' },
+  'audit-log': { src: '/assets/screenshots/tui/tui-10-audit-log.png', alt: 'TUI Audit Log - Security violations feed', caption: 'Cross-session security audit: violations feed, destructive command detection' },
+  plugins: { src: '/assets/screenshots/tui/tui-11-plugins.png', alt: 'TUI Plugins - Extension analytics', caption: 'Plugin usage analytics and extension stats' },
+  search: { src: '/assets/screenshots/tui/tui-12-search.png', alt: 'TUI Search - FTS5 full-text search', caption: 'FTS5 full-text search across all sessions with search-as-you-type' },
+  brain: { src: '/assets/screenshots/tui/tui-13-brain.png', alt: 'TUI Brain - Cross-session knowledge base', caption: 'Cross-session knowledge base: progress, decisions, patterns, blockers' },
 }
 
 const webScreenshots: Record<string, { src: string; alt: string; caption: string }> = {
@@ -51,7 +55,7 @@ const webScreenshots: Record<string, { src: string; alt: string; caption: string
           <button
             class:list={['screenshot-tab px-3 py-1.5 rounded text-sm font-medium transition-colors', i === 0 && 'active']}
             data-interface="tui"
-            data-tab={tab.toLowerCase()}
+            data-tab={tab.toLowerCase().replace(/\s+/g, '-')}
             role="tab"
             aria-selected={i === 0 ? 'true' : 'false'}
           >
@@ -75,7 +79,7 @@ const webScreenshots: Record<string, { src: string; alt: string; caption: string
           <button
             class:list={['screenshot-tab px-3 py-1.5 rounded text-sm font-medium transition-colors', i === 0 && 'active']}
             data-interface="web"
-            data-tab={tab.toLowerCase()}
+            data-tab={tab.toLowerCase().replace(/\s+/g, '-')}
             role="tab"
             aria-selected={i === 0 ? 'true' : 'false'}
           >

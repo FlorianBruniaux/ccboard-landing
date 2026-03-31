@@ -1,15 +1,15 @@
 ---
 title: Config (Tab 3)
-description: Cascading configuration viewer with 3-level merge and real-time search.
+description: Cascading configuration viewer with 4-level merge and real-time search.
 section: Features
 order: 3.3
 ---
 
 ## Overview
 
-The Config tab provides a 3-level cascading configuration viewer, showing how global, project, and local configs merge together.
+The Config tab provides a 4-level cascading configuration viewer, showing how global, project, local, and env configs merge together.
 
-## 3-Level Merge
+## 4-Level Merge
 
 | Level | Path | Priority |
 |-------|------|----------|

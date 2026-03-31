@@ -276,7 +276,7 @@ const docTabEntries: SearchEntry[] = [
   {
     id: 'doc-tab-config',
     title: 'Config (Tab 3)',
-    keywords: 'config tab 3 cascading configuration viewer 3-level merge real-time search',
+    keywords: 'config tab 3 cascading configuration viewer 4-level merge real-time search',
     category: 'Features',
     url: '/docs/tabs/config/',
     source: 'landing',

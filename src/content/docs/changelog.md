@@ -5,6 +5,75 @@ section: Resources
 order: 12
 ---
 
+## v0.21.0 — Brain tab + Third-party Sessions + Code Metrics (2026-03-28)
+
+- **Brain tab** (key `b`): cross-session knowledge base powered by hooks. `session-stop.sh` auto-extracts progress, decisions, blockers, patterns, and fixes into `~/.ccboard/insights.db`. `session-start.sh` injects recent context at session start. Filterable by type (`←`/`→`), expandable detail pane, archive (`d`), refresh (`r`).
+- **Third-party session imports**: Cursor (`state.vscdb`), Codex CLI (`rollout-*.jsonl`), and OpenCode (`opencode.db`) sessions imported alongside Claude Code — opt-in, yellow badge in Sessions tab.
+- **Code Metrics**: `+N/-N` diff badge in Sessions list and detail pane, computed from Edit/Write tool inputs during indexing.
+- `/ccboard-remember` skill for storing insights directly from any Claude session.
+
+## v0.20.0 — Analytics Costs + Pattern Discovery + MCP Stats (2026-03-28)
+
+- **Analytics — Per-Tool Cost Breakdown** (`Costs` sub-tab): scrollable table — Tool | Calls | Tokens | % Total | Est. Cost | $/Call, with red/yellow hotspot coloring.
+- **Analytics — Pattern Discovery** (`Discover` sub-tab): press `r` to scan sessions, extract recurring user message patterns via n-gram analysis, surface CLAUDE.md / Skill / Command suggestions.
+- **MCP — Server Usage Stats**: press `s` in MCP tab for a usage table — Server | Calls | Sessions | Last Seen.
+- **TUI Smoke Tests**: 12 tests added, one per tab. Total: 492 tests.
+
+## v0.19.0 — Agent Invocation Counts + Session Graph + Bookmarks (2026-03-27)
+
+- **Agents**: real invocation counts for agents discovered from sessions (no local frontmatter required).
+- **Sessions — Subagent Graph**: sessions that spawned subagents show a tree in the detail pane with per-child token breakdown.
+- **Sessions — Bookmarks** (`b` to toggle, `B` to filter): tag sessions with labels, persisted to `~/.ccboard/bookmarks.json`.
+- **Sessions — LLM Summaries** (`ccboard summarize <id>`): AI summary cached to `~/.ccboard/summaries/`.
+- **Sessions — Model Switching Timeline**: detail pane shows ordered model segments `Opus 4.5 (8) → Sonnet 4.6 (15)`.
+- **Analytics — Configurable Anomaly Thresholds**: tune z-score and spike thresholds via `settings.json`.
+- **Dashboard — Context Saturation Trend**: linear regression predicts sessions until 85% context breach.
+
+## v0.18.0 — Live Sessions Panel on Web + claude-mem (2026-03-27)
+
+- **Web Dashboard — Live Sessions Panel**: real-time list of running Claude Code sessions via SSE, matching TUI live process view.
+- **Brain page — claude-mem Integration**: session summaries from `claude-mem` indexed and searchable in the Brain tab.
+- **Settings Hot-Reload Toast**: changing `settings.json` while running shows a "Settings reloaded" toast.
+- **Hook State TTL**: stale `Running`/`WaitingInput` sessions auto-pruned after 10 min.
+
+## v0.17.0 — Waiting Answers Panel (2026-03-24)
+
+- **Sessions — Waiting Answers panel**: when live sessions are waiting for user input, a split panel highlights them with idle time at a glance.
+- **Dashboard — Max 20x tip**: contextual hint appears when Max 5x plan is detected, surfacing the `max20x` override path.
+
+## v0.16.0 — Conversation Viewer + Responsive Heatmap (2026-03-23)
+
+- **Conversation Viewer** (`Enter` in Sessions): full JSONL replay with tool call visualization (grouped, collapsible), regex search (`/`), HTML export with syntax highlighting (40+ languages).
+- **Activity heatmap responsive layout**: fills available vertical space, scales with terminal width.
+- Fix: `?` and `:` keybindings now work correctly on macOS.
+
+## v0.15.5 — Conversation Viewer Enhancements (2026-03-20)
+
+- Tool call visualization: collapsed `▶ 2 tool call(s)`, expanded with key param per tool.
+- Regex search in replay viewer: `/` to activate, `n`/`N` to navigate, yellow highlights.
+- HTML export: syntect syntax highlighting (40+ languages, InspiredGitHub theme).
+
+## v0.14.0 — Live Session Monitoring (2026-03-19)
+
+- **Hook-based live monitoring**: `PreToolUse`/`PostToolUse` hooks update session status (`Running` / `WaitingInput` / `Stopped`) in real time.
+- **`ccboard setup`**: installs monitoring hooks automatically.
+- Live sessions displayed in TUI Sessions tab and Web Sessions page with CPU/RAM/Tokens.
+
+## v0.13.0 — Tool Cost Analytics (2026-03-15)
+
+- Per-tool token attribution on `SessionMetadata`: `tool_token_usage` map.
+- Tool chain analysis (bigram/trigram) surfaced in Analytics → Plugins sub-tab.
+- Cost optimization suggestion engine: dead plugins, high-cost tools, model downgrade opportunities.
+- `GET /api/analytics/suggestions` endpoint.
+
+## v0.12.0 — `ccboard discover` (2026-03-13)
+
+- **`ccboard discover`**: analyzes session history via n-gram pattern extraction, suggests CLAUDE.md rules, skills, and commands. Cross-project patterns get a 1.5× bonus. `--since`, `--min-count`, `--top`, `--json`, `--llm` flags.
+
+## v0.11.2 — Homebrew Build Fix (2026-03-09)
+
+- `cargo build --all` now succeeds without `dist/` (e.g. `brew install --build-from-source`). Missing frontend replaced with a minimal placeholder page.
+
 ## v0.11.1 — Web Interface Fix for Linux (2026-03-06)
 
 - **WASM frontend embedded in binary**: `ccboard web` now works out of the box when installed via Homebrew or downloaded from GitHub Releases — no source tree or `trunk build` needed at runtime
