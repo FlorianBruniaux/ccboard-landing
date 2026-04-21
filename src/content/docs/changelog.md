@@ -5,6 +5,14 @@ section: Resources
 order: 12
 ---
 
+## v0.22.0 — Live Context Window Monitoring + ccboard-ffi (2026-04-21)
+
+- **Live context pressure bar**: Sessions tab shows `[████░░░░░░] 42% ⚡` inline for each active session. Detail panel has a 20-char color-coded bar (green < 65%, orange < 85%, red above), compaction count, turn count, and current active tool. `/compact` events detected automatically and marked with `⚡`.
+- **Incremental JSONL parsing** (`LiveMonitorState`): live session polling now reads only new bytes since the last tick — O(delta) vs O(file_size). On 50MB+ JSONL files from long sessions, this eliminates multi-second re-parsing every 2 seconds.
+- **Live sessions panel (Web Dashboard)**: web Dashboard polls `/api/sessions/live` every 5s and shows project name, elapsed time, token count, CPU%, and memory per active session. Animated green dot when sessions are running.
+- **claude-mem integration (Brain)**: Brain tab and web Brain page now optionally surface `claude-mem` observations alongside session insights. Toggle with `m`.
+- **ccboard-ffi crate**: UniFFI bindings exposing `ccboard-core` to Swift/iOS — enables native mobile dashboards. Provides `ccboard_init()`, `FfiProject`, `FfiSession`, `FfiStats`, and event streaming.
+
 ## v0.21.0 — Brain tab + Third-party Sessions + Code Metrics (2026-03-28)
 
 - **Brain tab** (key `b`): cross-session knowledge base powered by hooks. `session-stop.sh` auto-extracts progress, decisions, blockers, patterns, and fixes into `~/.ccboard/insights.db`. `session-start.sh` injects recent context at session start. Filterable by type (`←`/`→`), expandable detail pane, archive (`d`), refresh (`r`).
